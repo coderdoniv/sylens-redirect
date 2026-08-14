@@ -1,88 +1,994 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Sylens — Movie Charades. Guess. Act. Laugh Together.">
+
+    <meta name="theme-color" content="#090011">
+
+    <meta property="og:title" content="Sylens — Movie Charades">
+
+    <meta property="og:description" content="Guess. Act. Laugh Together.">
+
     <title>Sylens — Movie Charades</title>
+
     <style>
+        :root {
+            --purple: #7c2cff;
+            --purple-light: #a66cff;
+            --pink: #ff42d0;
+            --gold: #ffc400;
+
+            --background: #090011;
+            --glass: rgba(18, 5, 35, 0.76);
+            --glass-border: rgba(180, 110, 255, 0.38);
+
+            --text: #ffffff;
+            --muted: rgba(255, 255, 255, 0.72);
+            --soft: rgba(255, 255, 255, 0.52);
+        }
+
         * {
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             margin: 0;
             min-height: 100vh;
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            color: var(--text);
+            background-color: var(--background);
+
+            overflow-x: hidden;
+        }
+
+        /* ==================================================
+           BACKGROUND
+        ================================================== */
+
+        .page-background {
+            position: fixed;
+            inset: 0;
+
+            z-index: -2;
+
+            background:
+                linear-gradient(rgba(8, 0, 20, 0.32),
+                    rgba(8, 0, 20, 0.72)),
+                url("assets/sylens-background.png") center top / cover no-repeat;
+
+            transform: scale(1.02);
+        }
+
+        .page-overlay {
+            position: fixed;
+            inset: 0;
+
+            z-index: -1;
+
+            pointer-events: none;
+
+            background:
+                radial-gradient(circle at 50% 12%,
+                    rgba(126, 40, 255, 0.18),
+                    transparent 38%),
+                linear-gradient(to bottom,
+                    transparent 0%,
+                    rgba(5, 0, 12, 0.25) 45%,
+                    rgba(5, 0, 12, 0.85) 100%);
+        }
+
+        /* ==================================================
+           HERO
+        ================================================== */
+
+        .hero {
+            min-height: 100vh;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: linear-gradient(135deg, #17132b, #30205c);
-            color: white;
+
+            padding: 70px 24px 90px;
+
             text-align: center;
         }
 
-        .container {
-            padding: 40px 24px;
-            max-width: 500px;
+        .hero-content {
+            width: min(100%, 1000px);
         }
 
-        .logo {
-            font-size: 48px;
-            font-weight: 800;
-            letter-spacing: 4px;
-            margin-bottom: 16px;
+        .brand-logo {
+            width: min(280px, 62vw);
+            height: auto;
+
+            display: block;
+
+            margin: 0 auto 24px;
+
+            filter:
+                drop-shadow(0 0 28px rgba(125, 45, 255, 0.55));
         }
 
-        h1 {
-            font-size: 28px;
+        .eyebrow {
             margin: 0 0 12px;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            letter-spacing: 0.30em;
+
+            text-transform: uppercase;
+
+            color: rgba(255, 255, 255, 0.78);
         }
 
-        p {
-            font-size: 17px;
+        .hero h1 {
+            margin: 0;
+
+            font-size: clamp(36px, 6vw, 68px);
+            line-height: 1.04;
+
+            font-weight: 800;
+
+            letter-spacing: -0.035em;
+
+            text-shadow:
+                0 4px 30px rgba(0, 0, 0, 0.55);
+        }
+
+        .tagline {
+            max-width: 650px;
+
+            margin: 22px auto 38px;
+
+            font-size: clamp(17px, 2.4vw, 22px);
             line-height: 1.6;
-            opacity: 0.85;
+
+            color: var(--muted);
         }
 
-        .badge {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 20px;
-            border-radius: 12px;
-            background: rgba(255,255,255,0.12);
+        /* ==================================================
+           STORE OPTIONS
+        ================================================== */
+
+        .stores {
+            display: flex;
+
+            justify-content: center;
+            align-items: stretch;
+
+            flex-wrap: wrap;
+
+            gap: 16px;
+        }
+
+        .store {
+            min-width: 225px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 14px;
+
+            padding: 15px 24px;
+
+            border-radius: 17px;
+
+            text-decoration: none;
+
+            color: #ffffff;
+
+            border: 1px solid rgba(255, 255, 255, 0.17);
+
+            background:
+                linear-gradient(135deg,
+                    rgba(124, 44, 255, 0.96),
+                    rgba(70, 18, 135, 0.96));
+
+            box-shadow:
+                0 14px 45px rgba(68, 0, 130, 0.38);
+
+            transition:
+                transform 0.22s ease,
+                box-shadow 0.22s ease,
+                border-color 0.22s ease;
+        }
+
+        .store:hover {
+            transform: translateY(-3px);
+
+            border-color:
+                rgba(255, 255, 255, 0.35);
+
+            box-shadow:
+                0 20px 55px rgba(120, 40, 255, 0.45);
+        }
+
+        .store.apple {
+            background:
+                linear-gradient(135deg,
+                    rgba(255, 65, 205, 0.90),
+                    rgba(104, 32, 162, 0.96));
+        }
+
+        .store.disabled {
+            cursor: default;
+
+            opacity: 0.72;
+
+            background:
+                rgba(255, 255, 255, 0.09);
+
+            box-shadow: none;
+        }
+
+        .store-icon {
+            width: 34px;
+            height: 34px;
+
+            object-fit: contain;
+
+            flex-shrink: 0;
+        }
+
+        .store-content {
+            text-align: left;
+        }
+
+        .store-title {
+            display: block;
+
+            font-size: 16px;
+            font-weight: 750;
+        }
+
+        .store-subtitle {
+            display: block;
+
+            margin-top: 3px;
+
+            font-size: 12px;
+
+            color: rgba(255, 255, 255, 0.68);
+        }
+
+        /* ==================================================
+           FEATURE STRIP
+        ================================================== */
+
+        .features {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 48px;
+
+            margin-top: 52px;
+        }
+
+        .feature {
+            min-width: 135px;
+        }
+
+        .feature-value {
+            display: block;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            letter-spacing: 0.10em;
+
+            text-transform: uppercase;
+        }
+
+        .feature-label {
+            display: block;
+
+            margin-top: 6px;
+
+            font-size: 13px;
+
+            color: var(--soft);
+        }
+
+        /* ==================================================
+           SHOWCASE
+        ================================================== */
+
+        .showcase {
+            padding: 90px 24px 110px;
+
+            background:
+                linear-gradient(to bottom,
+                    rgba(7, 0, 16, 0.10),
+                    rgba(7, 0, 16, 0.82));
+        }
+
+        .section-inner {
+            width: min(1100px, 100%);
+
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 12px;
+
+            font-size: clamp(28px, 4vw, 46px);
+
+            letter-spacing: -0.025em;
+        }
+
+        .section-heading p {
+            margin: 0;
+
+            font-size: 17px;
+
+            color: var(--muted);
+        }
+
+        /* ==================================================
+           DOWNLOAD CARD
+        ================================================== */
+
+        .download-card {
+            width: min(760px, 100%);
+
+            margin: 0 auto 90px;
+
+            padding: 34px;
+
+            border-radius: 28px;
+
+            border: 1px solid var(--glass-border);
+
+            background:
+                linear-gradient(135deg,
+                    rgba(25, 5, 48, 0.86),
+                    rgba(12, 2, 28, 0.76));
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 30px 90px rgba(0, 0, 0, 0.45);
+
+            text-align: center;
+        }
+
+        .download-icon {
+            width: 72px;
+            height: 72px;
+
+            margin: 0 auto 18px;
+
+            display: block;
+
+            filter:
+                drop-shadow(0 0 20px rgba(160, 60, 255, 0.55));
+        }
+
+        .download-card h2 {
+            margin: 0 0 10px;
+
+            font-size: 30px;
+        }
+
+        .download-card>p {
+            max-width: 570px;
+
+            margin: 0 auto 28px;
+
+            line-height: 1.6;
+
+            color: var(--muted);
+        }
+
+        /* ==================================================
+           SCREENSHOTS
+        ================================================== */
+
+        .screenshots {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 24px;
+
+            align-items: start;
+        }
+
+        .screenshot {
+            width: 100%;
+            height: auto;
+
+            display: block;
+
+            border-radius: 28px;
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            background: #10001d;
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.52);
+
+            transition:
+                transform 0.25s ease;
+        }
+
+        .screenshot:hover {
+            transform: translateY(-8px);
+        }
+
+        /* ==================================================
+           COMING SOON MESSAGE
+        ================================================== */
+
+        .coming-soon {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 8px;
+
+            padding: 8px 14px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 0.05em;
+
+            text-transform: uppercase;
+
+            color:
+                rgba(255, 255, 255, 0.68);
+        }
+
+        /* ==================================================
+           FOOTER
+        ================================================== */
+
+        footer {
+            padding: 28px 20px;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            color:
+                rgba(255, 255, 255, 0.38);
+
+            background:
+                rgba(5, 0, 12, 0.85);
+        }
+
+        /* ==================================================
+           IOS COMING SOON VIEW
+        ================================================== */
+
+        .ios-view {
+            display: none;
+
+            min-height: 100vh;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px 22px;
+
+            text-align: center;
+        }
+
+        .ios-card {
+            width: min(440px, 100%);
+
+            padding: 38px 28px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(145deg,
+                    rgba(30, 6, 55, 0.90),
+                    rgba(10, 1, 23, 0.88));
+
+            border: 1px solid rgba(180, 110, 255, 0.38);
+
+            box-shadow:
+                0 30px 90px rgba(0, 0, 0, 0.55);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        .ios-icon {
+            width: 92px;
+            height: 92px;
+
+            display: block;
+
+            margin: 0 auto 22px;
+
+            filter:
+                drop-shadow(0 0 25px rgba(150, 55, 255, 0.55));
+        }
+
+        .ios-card h1 {
+            margin: 0 0 14px;
+
+            font-size: 34px;
+        }
+
+        .ios-card p {
+            margin: 0;
+
+            font-size: 17px;
+            line-height: 1.65;
+
+            color: var(--muted);
+        }
+
+        .ios-movie {
+            margin-top: 28px;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            letter-spacing: 0.12em;
+
+            text-transform: uppercase;
+
+            color: rgba(255, 255, 255, 0.60);
+        }
+
+        /* ==================================================
+           RESPONSIVE
+        ================================================== */
+
+        @media (max-width: 760px) {
+
+            .page-background {
+                position: fixed;
+
+                background-attachment: scroll;
+            }
+
+            .hero {
+                min-height: auto;
+
+                padding-top: 58px;
+                padding-bottom: 70px;
+            }
+
+            .brand-logo {
+                width: min(230px, 62vw);
+            }
+
+            .stores {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+            .store {
+                width: 100%;
+
+                min-width: 0;
+            }
+
+            .features {
+                gap: 26px;
+            }
+
+            .showcase {
+                padding-top: 65px;
+            }
+
+            .download-card {
+                padding: 28px 20px;
+            }
+
+            .screenshots {
+                grid-template-columns: 1fr;
+
+                width: min(420px, 100%);
+
+                margin: 0 auto;
+            }
+
+            .screenshot:hover {
+                transform: none;
+            }
+        }
+
+        /* ==================================================
+           IOS DEVICE MODE
+        ================================================== */
+
+        body.ios-device .desktop-page {
+            display: none;
+        }
+
+        body.ios-device .ios-view {
+            display: flex;
         }
     </style>
 </head>
 
 <body>
 
-<div class="container">
-    <div class="logo">SYLENS</div>
+    <div class="page-background"></div>
+    <div class="page-overlay"></div>
 
-    <h1>Coming Soon to iPhone</h1>
 
-    <p>
-        Sylens is currently making its way to the App Store.
-        We'll be ready for you soon!
-    </p>
+    <!-- ==================================================
+         DESKTOP / ANDROID PAGE
+    ================================================== -->
 
-    <div class="badge">
-        🎬 Movie Charades
+    <div class="desktop-page">
+
+        <main>
+
+            <!-- HERO -->
+
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <img src="assets/sylens-logo.png" alt="Sylens" class="brand-logo">
+
+                    <p class="eyebrow">
+                        Movie Charades
+                    </p>
+
+                    <h1>
+                        Guess. Act. Laugh Together.
+                    </h1>
+
+                    <p class="tagline">
+                        Fast-paced movie charades for friends,
+                        family and everyone who loves movies.
+                    </p>
+
+
+                    <!-- STORE BUTTONS -->
+
+                    <div class="stores">
+
+                        <!-- GOOGLE PLAY -->
+
+                        <a class="store" href="https://play.google.com/store/apps/details?id=com.coderdoniv.sylens"
+                            target="_blank" rel="noopener">
+
+                            <img src="assets/sylens-icon.svg" alt="" class="store-icon">
+
+                            <span class="store-content">
+
+                                <span class="store-title">
+                                    Google Play
+                                </span>
+
+                                <span class="store-subtitle">
+                                    Available now
+                                </span>
+
+                            </span>
+
+                        </a>
+
+
+                        <!-- APP STORE - CURRENTLY COMING SOON -->
+
+                        <div class="store apple disabled">
+
+                            <img src="assets/sylens-icon.svg" alt="" class="store-icon">
+
+                            <span class="store-content">
+
+                                <span class="store-title">
+                                    App Store
+                                </span>
+
+                                <span class="store-subtitle">
+                                    Coming soon
+                                </span>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FEATURES -->
+
+                    <div class="features">
+
+                        <div class="feature">
+
+                            <span class="feature-value">
+                                Fast Paced
+                            </span>
+
+                            <span class="feature-label">
+                                Fun rounds
+                            </span>
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <span class="feature-value">
+                                Play Together
+                            </span>
+
+                            <span class="feature-label">
+                                With friends
+                            </span>
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <span class="feature-value">
+                                1000+ Movies
+                            </span>
+
+                            <span class="feature-label">
+                                All genres
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SCREENSHOT SHOWCASE -->
+
+            <section class="showcase">
+
+                <div class="section-inner">
+
+
+                    <!-- DOWNLOAD CARD -->
+
+                    <div class="download-card">
+
+                        <img src="assets/sylens-icon.svg" alt="Sylens" class="download-icon">
+
+                        <h2>
+                            Ready to play?
+                        </h2>
+
+                        <p>
+                            Sylens is available now on Android.
+                            The iPhone version is currently
+                            making its way to the App Store.
+                        </p>
+
+
+                        <div class="stores">
+
+                            <a class="store" href="https://play.google.com/store/apps/details?id=com.coderdoniv.sylens"
+                                target="_blank" rel="noopener">
+
+                                <span class="store-content">
+
+                                    <span class="store-title">
+                                        Get Sylens
+                                    </span>
+
+                                    <span class="store-subtitle">
+                                        Google Play
+                                    </span>
+
+                                </span>
+
+                            </a>
+
+
+                            <div class="store apple disabled">
+
+                                <span class="store-content">
+
+                                    <span class="store-title">
+                                        iPhone & iPad
+                                    </span>
+
+                                    <span class="store-subtitle">
+                                        Coming soon to the App Store
+                                    </span>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SCREENSHOTS -->
+
+                    <div class="section-heading">
+
+                        <h2>
+                            Made for movie lovers.
+                        </h2>
+
+                        <p>
+                            Jump in, pick a movie and start acting.
+                        </p>
+
+                    </div>
+
+
+                    <div class="screenshots">
+
+                        <img src="assets/screenshot-1.png" alt="Sylens Just Vibing game mode" class="screenshot"
+                            loading="lazy">
+
+                        <img src="assets/screenshot-2.png" alt="Sylens Squad War game mode" class="screenshot"
+                            loading="lazy">
+
+                        <img src="assets/screenshot-3.png" alt="Sylens home screen" class="screenshot" loading="lazy">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <footer>
+            © 2026 Sylens · VBVerse
+        </footer>
+
     </div>
-</div>
 
-<script>
-    const androidUrl =
-        "https://play.google.com/store/apps/details?id=com.coderdoniv.sylens";
 
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    <!-- ==================================================
+         IPHONE / IPAD COMING SOON PAGE
+    ================================================== -->
 
-    const isAndroid = /android/i.test(userAgent);
+    <section class="ios-view">
 
-    if (isAndroid) {
-        window.location.replace(androidUrl);
-    }
-</script>
+        <div class="ios-card">
+
+            <img src="assets/sylens-icon.svg" alt="Sylens" class="ios-icon">
+
+            <h1>
+                Coming Soon
+            </h1>
+
+            <p>
+                Sylens is making its way to
+                the App Store.
+            </p>
+
+            <p>
+                We're putting the finishing touches
+                on the iPhone experience.
+            </p>
+
+            <div class="ios-movie">
+                Movie Charades · Sylens
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script>
+
+        /*
+         * DEVICE DETECTION
+         *
+         * Android:
+         *   Redirect immediately to Google Play.
+         *
+         * iPhone / iPad:
+         *   Show the dedicated Coming Soon page.
+         *
+         * Desktop / Mac:
+         *   Show the full download page.
+         */
+
+        const androidUrl =
+            "https://play.google.com/store/apps/details?id=com.coderdoniv.sylens";
+
+
+        const userAgent =
+            navigator.userAgent ||
+            navigator.vendor ||
+            window.opera;
+
+
+        const isAndroid =
+            /android/i.test(userAgent);
+
+
+        /*
+         * iPadOS 13+ can identify itself as Macintosh,
+         * so we also check for touch points.
+         */
+
+        const isIOS =
+            /iPad|iPhone|iPod/i.test(userAgent) ||
+            (
+                navigator.platform === "MacIntel" &&
+                navigator.maxTouchPoints > 1
+            );
+
+
+        /*
+         * Android phones go directly to Google Play.
+         */
+
+        if (isAndroid) {
+
+            window.location.replace(androidUrl);
+
+        }
+
+
+        /*
+         * iPhone / iPad gets the Coming Soon experience.
+         */
+
+        else if (isIOS) {
+
+            document.body.classList.add("ios-device");
+
+        }
+
+    </script>
 
 </body>
+
 </html>
