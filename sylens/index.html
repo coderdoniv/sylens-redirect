@@ -6,15 +6,19 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Sylens — Movie Charades. Guess. Act. Laugh Together.">
+    <meta name="description" content="Sylens: Movie Charades. Guess. Act. Laugh Together.">
 
     <meta name="theme-color" content="#090011">
 
-    <meta property="og:title" content="Sylens — Movie Charades">
+    <meta property="og:title" content="Sylens: Movie Charades">
 
     <meta property="og:description" content="Guess. Act. Laugh Together.">
 
-    <title>Sylens — Movie Charades</title>
+    <title>Sylens: Movie Charades</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -22,6 +26,7 @@
             --purple-light: #a66cff;
             --pink: #ff42d0;
             --gold: #ffc400;
+            --cyan: #52dcff;
 
             --background: #090011;
             --glass: rgba(18, 5, 35, 0.76);
@@ -45,11 +50,13 @@
             min-height: 100vh;
 
             font-family:
+                "Quicksand",
+                "Segoe UI Variable",
+                "Segoe UI",
+                system-ui,
                 -apple-system,
                 BlinkMacSystemFont,
-                "Segoe UI",
-                Roboto,
-                Helvetica,
+                "Helvetica Neue",
                 Arial,
                 sans-serif;
 
@@ -238,10 +245,12 @@
         }
 
         .scroll-cue {
-            position: absolute;
+            position: fixed;
 
             left: 50%;
             bottom: 22px;
+
+            z-index: 40;
 
             transform: translateX(-50%);
 
@@ -259,6 +268,16 @@
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.12);
 
             animation: scroll-cue-blink 1.5s ease-in-out infinite;
+
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-cue.is-hidden {
+            opacity: 0;
+
+            animation: none;
+
+            pointer-events: none;
         }
 
         .scroll-cue-icon {
@@ -471,11 +490,6 @@
 
         .showcase {
             padding: 90px 24px 110px;
-
-            background:
-                linear-gradient(to bottom,
-                    rgba(7, 0, 16, 0.10),
-                    rgba(7, 0, 16, 0.82));
         }
 
         .section-inner {
@@ -493,9 +507,10 @@
         .section-heading h2 {
             margin: 0 0 12px;
 
-            font-size: clamp(28px, 4vw, 46px);
+            font-size: clamp(26px, 2.6vw, 34px);
+            font-weight: 500;
 
-            letter-spacing: -0.025em;
+            letter-spacing: -0.01em;
         }
 
         .section-heading p {
@@ -542,6 +557,8 @@
             margin: 0 auto 18px;
 
             display: block;
+
+            border-radius: 6px;
 
             filter:
                 drop-shadow(0 0 20px rgba(160, 60, 255, 0.55));
@@ -638,18 +655,94 @@
            FOOTER
         ================================================== */
 
-        footer {
-            padding: 28px 20px;
+        .site-footer {
+            padding: 60px 24px 30px;
+
+            background: rgba(5, 0, 12, 0.92);
+
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-grid {
+            width: min(1100px, 100%);
+
+            margin: 0 auto 40px;
+
+            display: grid;
+
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+
+            gap: 32px;
+        }
+
+        .footer-brand {
+            font-size: 17px;
+            font-weight: 800;
+
+            letter-spacing: 0.08em;
+
+            text-transform: uppercase;
+
+            color: #ffffff;
+        }
+
+        .footer-brand-text {
+            margin: 12px 0 0;
+
+            max-width: 260px;
+
+            font-size: 13px;
+            line-height: 1.6;
+
+            color: var(--soft);
+        }
+
+        .footer-heading {
+            margin: 0 0 14px;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 0.10em;
+
+            text-transform: uppercase;
+
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+
+            color: rgba(255, 255, 255, 0.68);
+
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            width: min(1100px, 100%);
+
+            margin: 0 auto;
+
+            padding-top: 24px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
 
             text-align: center;
 
             font-size: 13px;
 
-            color:
-                rgba(255, 255, 255, 0.38);
-
-            background:
-                rgba(5, 0, 12, 0.85);
+            color: rgba(255, 255, 255, 0.38);
         }
 
         /* ==================================================
@@ -731,8 +824,1852 @@
         }
 
         /* ==================================================
+           SITE NAV
+        ================================================== */
+
+        .site-nav {
+            position: sticky;
+            top: 0;
+
+            z-index: 50;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 14px 24px;
+
+            background: rgba(9, 0, 17, 0.72);
+
+            border-bottom: 1px solid rgba(180, 110, 255, 0.22);
+
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .site-nav-inner {
+            width: min(1100px, 100%);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .site-nav-brand {
+            flex-shrink: 0;
+
+            font-size: 15px;
+            font-weight: 800;
+
+            letter-spacing: 0.12em;
+
+            text-transform: uppercase;
+
+            color: #ffffff;
+
+            text-decoration: none;
+        }
+
+        .site-nav-links {
+            display: flex;
+            align-items: center;
+
+            gap: 26px;
+
+            overflow-x: auto;
+
+            scrollbar-width: none;
+        }
+
+        .site-nav-links::-webkit-scrollbar {
+            display: none;
+        }
+
+        .site-nav-links a {
+            flex-shrink: 0;
+
+            font-size: 13px;
+            font-weight: 650;
+
+            letter-spacing: 0.02em;
+
+            color: rgba(255, 255, 255, 0.72);
+
+            text-decoration: none;
+
+            transition: color 0.2s ease;
+        }
+
+        .site-nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .site-nav-links a.site-nav-cta {
+            padding: 8px 16px;
+
+            border-radius: 999px;
+
+            color: #ffffff;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(124, 44, 255, 0.95),
+                    rgba(255, 65, 205, 0.85));
+        }
+
+        /* ==================================================
+           SHARED SECTION HEADER
+        ================================================== */
+
+        .section-tag {
+            display: inline-block;
+
+            margin: 0 0 14px;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            letter-spacing: 0.24em;
+
+            text-transform: uppercase;
+
+            color: var(--purple-light);
+        }
+
+        .accent {
+            color: var(--gold);
+        }
+
+        /* ==================================================
+           ABOUT
+        ================================================== */
+
+        .about {
+            padding: 70px 24px 110px;
+        }
+
+        .about-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 18px;
+        }
+
+        .about-step {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-width: 140px;
+
+            padding: 20px 30px;
+
+            border-radius: 20px;
+
+            border: 1px solid var(--glass-border);
+
+            background: var(--glass);
+
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .about-step-word {
+            font-size: 20px;
+            font-weight: 800;
+
+            letter-spacing: 0.08em;
+
+            text-transform: uppercase;
+
+            background: linear-gradient(135deg, var(--purple-light), var(--pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .about-arrow {
+            display: inline-flex;
+            align-items: center;
+
+            width: 22px;
+            height: 22px;
+
+            color: var(--purple-light);
+
+            opacity: 0.7;
+        }
+
+        /* ==================================================
+           HOW TO PLAY
+        ================================================== */
+
+        .how-to-play {
+            padding: 0 24px 110px;
+        }
+
+        .how-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+
+            gap: 20px;
+        }
+
+        .how-card {
+            padding: 28px 22px;
+
+            border-radius: 22px;
+
+            border: 1px solid var(--glass-border);
+
+            background:
+                linear-gradient(160deg,
+                    rgba(25, 5, 48, 0.72),
+                    rgba(12, 2, 28, 0.62));
+
+            text-align: left;
+        }
+
+        .how-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 34px;
+            height: 34px;
+
+            margin-bottom: 16px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            background: rgba(124, 44, 255, 0.28);
+
+            color: var(--purple-light);
+        }
+
+        .how-title {
+            margin: 0 0 8px;
+
+            font-size: 17px;
+            font-weight: 750;
+        }
+
+        .how-text {
+            margin: 0;
+
+            font-size: 14px;
+            line-height: 1.55;
+
+            color: var(--muted);
+        }
+
+        /* ==================================================
+           GAME MODES
+        ================================================== */
+
+        .game-modes {
+            padding: 0 24px 110px;
+        }
+
+        .modes-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 26px;
+        }
+
+        .mode-card {
+            overflow: hidden;
+
+            padding-top: 22px;
+
+            border-radius: 26px;
+
+            border: 1px solid var(--glass-border);
+
+            background:
+                linear-gradient(160deg,
+                    rgba(25, 5, 48, 0.78),
+                    rgba(12, 2, 28, 0.68));
+        }
+
+        .mode-shot {
+            width: min(320px, calc(100% - 40px));
+            height: auto;
+
+            display: block;
+
+            margin: 0 auto;
+
+            border-radius: 18px;
+            border: 1px solid rgba(180, 110, 255, 0.24);
+            box-shadow: 0 16px 42px rgba(0, 0, 0, 0.32);
+        }
+
+        .mode-body {
+            padding: 24px 24px 28px;
+        }
+
+        .mode-title {
+            margin: 0 0 8px;
+
+            font-size: 21px;
+        }
+
+        .mode-text {
+            margin: 0 0 16px;
+
+            font-size: 14px;
+            line-height: 1.6;
+
+            color: var(--muted);
+        }
+
+        .mode-tags {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+        }
+
+        .mode-tag {
+            padding: 5px 12px;
+
+            border-radius: 999px;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 0.04em;
+
+            text-transform: uppercase;
+
+            background: rgba(255, 255, 255, 0.08);
+
+            color: rgba(255, 255, 255, 0.68);
+        }
+
+        .tv-party {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.9fr) 1.25fr;
+            align-items: stretch;
+
+            margin-top: 26px;
+
+            overflow: hidden;
+
+            border-radius: 24px;
+
+            border: 1px solid var(--glass-border);
+
+            background: var(--glass);
+        }
+
+        .tv-party-shot {
+            width: 100%;
+            height: auto;
+
+            aspect-ratio: 16 / 9;
+
+            display: block;
+
+            object-fit: cover;
+            object-position: center;
+
+            border-right: 1px solid rgba(180, 110, 255, 0.24);
+        }
+
+        .tv-party-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            padding: 28px 30px;
+
+            background: linear-gradient(110deg, rgba(22, 5, 45, 0.20), rgba(7, 1, 18, 0.46));
+        }
+
+        .tv-party-title {
+            margin: 0 0 6px;
+
+            font-size: 17px;
+            font-weight: 750;
+        }
+
+        .tv-party-text {
+            margin: 0;
+
+            font-size: 14px;
+            line-height: 1.6;
+
+            color: var(--muted);
+        }
+
+        .tv-party-text strong {
+            color: #ffffff;
+        }
+
+        /* ==================================================
+           GAME TOOLS (THE TWIST)
+        ================================================== */
+
+        .game-tools-section {
+            padding: 0 24px 110px;
+        }
+
+        .game-tools-stage {
+            display: grid;
+
+            grid-template-columns: minmax(240px, 300px) 1fr;
+
+            gap: 48px;
+
+            align-items: start;
+        }
+
+        .game-tools-phone {
+            display: block;
+
+            width: 100%;
+
+            border-radius: 22px;
+
+            border: 1px solid var(--glass-border);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.52),
+                0 0 40px rgba(124, 44, 255, 0.18);
+        }
+
+        .game-tools-explain {
+            display: flex;
+            flex-direction: column;
+            align-self: stretch;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .game-tools-question {
+            margin: 0;
+
+            font-size: 15px;
+            line-height: 1.5;
+
+            color: var(--soft);
+        }
+
+        .game-tools-question span {
+            color: var(--pink);
+            font-weight: 800;
+
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .game-tools-question strong {
+            display: block;
+
+            margin-top: 2px;
+
+            font-size: 22px;
+
+            color: #ffffff;
+        }
+
+        .game-tool-list {
+            display: flex;
+            flex-direction: column;
+
+            gap: 0;
+        }
+
+        .game-tool-row {
+            display: grid;
+            grid-template-columns: 72px minmax(0, 1fr) 108px;
+
+            gap: 20px;
+            align-items: center;
+
+            padding: 14px 0;
+
+            border-bottom: 1px solid rgba(173, 110, 255, 0.18);
+        }
+
+        .game-tool-row:first-child {
+            padding-top: 0;
+        }
+
+        .game-tool-row:last-child {
+            padding-bottom: 0;
+            border-bottom: 0;
+        }
+
+        .game-tool-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 72px;
+            height: 72px;
+
+            border-radius: 50%;
+
+            border: 2px solid currentColor;
+
+            box-shadow: 0 0 22px currentColor;
+        }
+
+        .game-tool-icon img {
+            width: 34px;
+            height: 34px;
+
+            filter: brightness(0) invert(1);
+        }
+
+        .game-tool-row.gt-purple .game-tool-icon {
+            color: var(--purple-light);
+            background: radial-gradient(circle, rgba(166, 108, 255, 0.32), rgba(73, 18, 138, 0.10));
+        }
+
+        .game-tool-row.gt-cyan .game-tool-icon {
+            color: var(--cyan);
+            background: radial-gradient(circle, rgba(82, 220, 255, 0.28), rgba(18, 103, 138, 0.08));
+        }
+
+        .game-tool-row.gt-pink .game-tool-icon {
+            color: var(--pink);
+            background: radial-gradient(circle, rgba(255, 66, 208, 0.26), rgba(132, 11, 95, 0.08));
+        }
+
+        .game-tool-row h3 {
+            margin: 0 0 5px;
+
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .game-tool-row p {
+            margin: 0;
+
+            font-size: 15px;
+            line-height: 1.5;
+
+            color: var(--muted);
+        }
+
+        .game-tool-cost {
+            min-height: 82px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            padding: 8px;
+
+            border-radius: 17px;
+            border: 1px solid currentColor;
+
+            text-transform: uppercase;
+        }
+
+        .game-tool-cost-label,
+        .game-tool-cost-points {
+            display: block;
+
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .game-tool-cost-value {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 5px;
+
+            font-size: 27px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .game-tool-cost-coin {
+            width: 22px;
+            height: 22px;
+
+            object-fit: contain;
+        }
+
+        .game-tool-row.gt-purple .game-tool-cost {
+            color: var(--purple-light);
+            background: rgba(119, 43, 225, 0.08);
+        }
+
+        .game-tool-row.gt-cyan .game-tool-cost {
+            color: var(--cyan);
+            background: rgba(32, 171, 224, 0.07);
+        }
+
+        .game-tool-row.gt-pink .game-tool-cost {
+            color: var(--pink);
+            background: rgba(226, 32, 168, 0.07);
+        }
+
+        .game-tools-payoff {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+
+            min-height: 126px;
+            margin-top: 6px;
+            padding: 20px clamp(135px, 17vw, 175px) 20px clamp(125px, 16vw, 165px);
+
+            display: flex;
+            align-items: center;
+
+            border-radius: 20px;
+            border: 1px solid rgba(171, 79, 255, 0.48);
+
+            background:
+                radial-gradient(circle at 14% 80%, rgba(191, 27, 255, 0.28), transparent 29%),
+                radial-gradient(circle at 88% 32%, rgba(105, 25, 184, 0.20), transparent 25%),
+                linear-gradient(105deg, rgba(19, 3, 39, 0.97), rgba(4, 3, 15, 0.98));
+
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.05),
+                0 14px 38px rgba(0, 0, 0, 0.24);
+        }
+
+        .game-tools-payoff::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+
+            background:
+                linear-gradient(90deg, rgba(102, 30, 190, 0.12), transparent 45%),
+                repeating-linear-gradient(125deg, transparent 0 20px, rgba(147, 69, 255, 0.025) 21px 22px);
+        }
+
+        .game-tools-payoff-copy {
+            position: relative;
+            z-index: 1;
+        }
+
+        .game-tools-payoff-art {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .game-tools-payoff-cup {
+            left: -18px;
+            bottom: -36px;
+            width: clamp(110px, 15vw, 150px);
+
+            filter: drop-shadow(0 13px 14px rgba(0, 0, 0, 0.55));
+        }
+
+        .game-tools-payoff-roll {
+            right: -25px;
+            top: 50%;
+            width: clamp(120px, 16vw, 170px);
+
+            opacity: 0.38;
+            transform: translateY(-50%) rotate(-8deg);
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
+        }
+
+        .game-tools-payoff strong {
+            display: block;
+
+            margin-bottom: 5px;
+
+            font-size: clamp(17px, 1.8vw, 21px);
+            font-weight: 800;
+
+            line-height: 1.22;
+            letter-spacing: 0.035em;
+            text-transform: uppercase;
+
+            color: #ffd326;
+            text-shadow: 0 3px 18px rgba(255, 190, 0, 0.16);
+        }
+
+        .game-tools-payoff p {
+            margin: 0;
+
+            max-width: 310px;
+
+            font-size: clamp(13px, 1.4vw, 15px);
+            font-weight: 500;
+            line-height: 1.42;
+
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        /* ==================================================
+           LANGUAGES
+        ================================================== */
+
+        .languages {
+            padding: 0 24px 110px;
+        }
+
+        .languages .section-inner {
+            width: min(1460px, 100%);
+        }
+
+        /* -------- three-column story -------- */
+
+        .languages-story {
+            display: grid;
+
+            grid-template-columns: 0.85fr 1.3fr 1fr;
+
+            gap: 36px;
+
+            align-items: stretch;
+        }
+
+        /* -------- column 1: feature points -------- */
+
+        .languages-copy {
+            display: flex;
+            flex-direction: column;
+
+            align-self: start;
+
+            gap: 32px;
+        }
+
+        .languages-headline {
+            margin: 0;
+
+            font-size: clamp(26px, 2.8vw, 36px);
+            line-height: 1.1;
+
+            font-weight: 700;
+
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+        }
+
+        .languages-headline span {
+            display: block;
+        }
+
+        .languages-headline .lh-gradient {
+            margin-top: 4px;
+
+            font-style: italic;
+
+            background: linear-gradient(90deg, var(--gold), var(--pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .languages-sub {
+            margin: 16px 0 0;
+
+            font-size: 17px;
+            line-height: 1.6;
+
+            color: var(--muted);
+        }
+
+        .languages-feature {
+            display: flex;
+
+            gap: 18px;
+
+            align-items: flex-start;
+        }
+
+        .languages-feature-icon {
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 52px;
+            height: 52px;
+
+            border-radius: 50%;
+
+            border: 1px solid currentColor;
+
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .languages-feature-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .languages-feature-icon.lf-purple {
+            color: var(--purple-light);
+            background: rgba(166, 108, 255, 0.16);
+        }
+
+        .languages-feature-icon.lf-gold {
+            color: var(--gold);
+            background: rgba(255, 196, 0, 0.14);
+        }
+
+        .languages-feature-icon.lf-cyan {
+            color: var(--cyan);
+            background: rgba(82, 220, 255, 0.14);
+        }
+
+        .languages-feature-title {
+            margin: 4px 0 8px;
+
+            font-size: 15px;
+            font-weight: 800;
+
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .languages-feature .how-text {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .languages-feature-title.lf-purple {
+            color: var(--purple-light);
+        }
+
+        .languages-feature-title.lf-gold {
+            color: var(--gold);
+        }
+
+        .languages-feature-title.lf-cyan {
+            color: var(--cyan);
+        }
+
+        /* -------- shared glass panel (columns 2 & 3) -------- */
+
+        .languages-panel {
+            display: flex;
+            flex-direction: column;
+
+            padding: 32px;
+
+            border-radius: 24px;
+
+            border: 1px solid var(--glass-border);
+
+            background: var(--glass);
+
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .languages-panel-heading {
+            margin: 0 0 28px;
+
+            text-align: center;
+
+            font-size: 16px;
+            line-height: 1.5;
+
+            color: var(--soft);
+        }
+
+        .languages-panel-heading strong {
+            color: #ffffff;
+        }
+
+        /* -------- each player: circle + connector + phone + overlay icon -------- */
+
+        .languages-players-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 14px;
+
+            margin-bottom: 30px;
+        }
+
+        .languages-player-col {
+            flex: 1;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .languages-player-col.lang-en {
+            --lc: var(--purple-light);
+            --lc-bg: rgba(166, 108, 255, 0.18);
+        }
+
+        .languages-player-col.lang-ml {
+            --lc: var(--cyan);
+            --lc-bg: rgba(82, 220, 255, 0.18);
+        }
+
+        .languages-player-col.lang-hi {
+            --lc: var(--gold);
+            --lc-bg: rgba(255, 196, 0, 0.18);
+        }
+
+        .languages-player-col.lang-ta {
+            --lc: var(--pink);
+            --lc-bg: rgba(255, 66, 208, 0.18);
+        }
+
+        .languages-lang-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 88px;
+            height: 88px;
+
+            padding: 0 6px;
+
+            border-radius: 50%;
+
+            border: 2px solid var(--lc);
+
+            background: var(--lc-bg);
+
+            color: var(--lc);
+
+            box-shadow: 0 0 18px var(--lc-bg);
+
+            font-weight: 800;
+
+            font-size: 15px;
+            line-height: 1.2;
+        }
+
+        .languages-connector {
+            width: 0;
+            height: 20px;
+
+            margin: 6px 0;
+
+            border-left: 2px dashed var(--lc);
+
+            opacity: 0.6;
+        }
+
+        .languages-phone-wrap {
+            position: relative;
+
+            width: 100%;
+            max-width: 140px;
+
+            margin: 0 auto 36px;
+        }
+
+        .languages-phone {
+            display: block;
+
+            width: 100%;
+
+            aspect-ratio: 9 / 17;
+
+            overflow: hidden;
+
+            border-radius: 16px;
+
+            border: 1px solid var(--lc);
+
+            box-shadow: 0 0 14px var(--lc-bg);
+        }
+
+        .languages-phone img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+            object-position: bottom;
+        }
+
+        .languages-player-icon {
+            position: absolute;
+
+            left: 50%;
+            bottom: -30px;
+
+            transform: translateX(-50%);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 60px;
+            height: 60px;
+
+            border-radius: 50%;
+
+            border: 2px solid var(--lc);
+
+            background: var(--background);
+
+            color: var(--lc);
+
+            box-shadow:
+                0 0 18px var(--lc-bg),
+                0 6px 14px rgba(0, 0, 0, 0.45);
+        }
+
+        .languages-player-icon svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        .languages-player-label {
+            display: block;
+
+            margin-top: 10px;
+
+            font-size: 14px;
+            font-weight: 800;
+
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+
+            color: var(--lc);
+        }
+
+        /* -------- "Sylens remembers" callout -------- */
+
+        .languages-remember {
+            display: flex;
+            align-items: center;
+
+            gap: 16px;
+
+            margin-top: auto;
+
+            padding: 18px 20px;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(90deg,
+                    rgba(124, 44, 255, 0.16),
+                    rgba(255, 66, 208, 0.08));
+
+            border: 1px solid rgba(170, 108, 255, 0.30);
+        }
+
+        .languages-remember > svg {
+            flex-shrink: 0;
+
+            width: 28px;
+            height: 28px;
+
+            color: var(--purple-light);
+        }
+
+        .languages-remember-arrows {
+            display: flex;
+            align-items: center;
+
+            flex-shrink: 0;
+
+            margin-left: auto;
+            padding-left: 8px;
+
+            color: var(--pink);
+
+            filter: drop-shadow(0 0 6px rgba(255, 66, 208, 0.65));
+        }
+
+        .languages-remember .languages-remember-arrows svg {
+            width: 22px;
+            height: 22px;
+
+            margin-left: -10px;
+
+            color: var(--pink);
+        }
+
+        .languages-remember .languages-remember-arrows svg:first-child {
+            margin-left: 0;
+        }
+
+        .languages-remember p {
+            margin: 0;
+
+            font-size: 13px;
+            line-height: 1.55;
+
+            color: var(--soft);
+        }
+
+        .languages-remember p strong {
+            display: block;
+
+            margin-bottom: 4px;
+
+            font-size: 14px;
+
+            color: #ffffff;
+        }
+
+        /* -------- column 3: results preview -------- */
+
+        .languages-results {
+            flex: 1;
+
+            min-height: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            gap: 14px;
+        }
+
+        .languages-result {
+            display: flex;
+            align-items: center;
+
+            gap: 16px;
+        }
+
+        .languages-result-player {
+            flex-shrink: 0;
+
+            width: 112px;
+
+            font-size: 13px;
+            line-height: 1.4;
+
+            color: var(--soft);
+        }
+
+        .languages-result-player strong {
+            display: block;
+
+            font-size: 13px;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+
+            color: #ffffff;
+        }
+
+        .languages-result-movie {
+            flex: 1;
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 16px 18px;
+
+            border-radius: 16px;
+
+            background: rgba(255, 255, 255, 0.04);
+
+            border: 1.5px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .languages-result-movie img {
+            flex-shrink: 0;
+
+            width: 22px;
+            height: 22px;
+        }
+
+        .languages-result-movie-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .languages-result-movie-text strong {
+            font-size: 16px;
+        }
+
+        .languages-result-movie-text span {
+            margin-top: 3px;
+
+            font-size: 12px;
+
+            color: var(--soft);
+        }
+
+        .languages-result.lang-en .languages-result-movie {
+            border-color: rgba(166, 108, 255, 0.55);
+            box-shadow: 0 0 16px rgba(166, 108, 255, 0.14);
+        }
+
+        .languages-result.lang-ml .languages-result-movie {
+            border-color: rgba(82, 220, 255, 0.55);
+            box-shadow: 0 0 16px rgba(82, 220, 255, 0.14);
+        }
+
+        .languages-result.lang-hi .languages-result-movie {
+            border-color: rgba(255, 196, 0, 0.55);
+            box-shadow: 0 0 16px rgba(255, 196, 0, 0.14);
+        }
+
+        .languages-result.lang-ta .languages-result-movie {
+            border-color: rgba(255, 66, 208, 0.55);
+            box-shadow: 0 0 16px rgba(255, 66, 208, 0.14);
+        }
+
+        /* -------- bottom bar -------- */
+
+        .languages-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            flex-wrap: wrap;
+
+            gap: 24px;
+
+            margin-top: 28px;
+
+            padding: 26px 32px;
+
+            border-radius: 20px;
+
+            border: 1px solid var(--glass-border);
+
+            background:
+                linear-gradient(90deg,
+                    rgba(124, 44, 255, 0.14),
+                    rgba(255, 66, 208, 0.06));
+        }
+
+        .languages-bottom-main {
+            display: flex;
+            align-items: center;
+
+            gap: 18px;
+        }
+
+        .languages-bottom-icon-badge {
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 64px;
+            height: 64px;
+
+            border-radius: 50%;
+
+            border: 2px solid var(--purple-light);
+
+            background: rgba(166, 108, 255, 0.10);
+
+            box-shadow: 0 0 22px rgba(166, 108, 255, 0.35);
+        }
+
+        .languages-bottom-icon-badge svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .languages-bottom-main strong {
+            display: block;
+
+            font-size: 19px;
+
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+        }
+
+        .languages-bottom-main p {
+            margin: 6px 0 0;
+
+            font-size: 15px;
+
+            color: var(--muted);
+        }
+
+        .languages-bottom-main p .highlight {
+            color: var(--pink);
+        }
+
+        .languages-bottom-coming-group {
+            display: flex;
+            align-items: center;
+
+            gap: 16px;
+
+            flex-shrink: 0;
+        }
+
+        .languages-bottom-art {
+            flex-shrink: 0;
+
+            height: 160px;
+            width: auto;
+
+            margin: -46px 0;
+
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .languages-bottom-coming {
+            flex-shrink: 0;
+
+            text-align: right;
+        }
+
+        .languages-bottom-coming strong {
+            display: block;
+
+            font-size: 15px;
+            font-weight: 800;
+            line-height: 1.3;
+
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+
+            color: var(--gold);
+        }
+
+        .languages-bottom-coming span {
+            display: block;
+
+            margin-top: 6px;
+
+            font-size: 13px;
+
+            color: var(--muted);
+        }
+
+        /* ==================================================
+           WHY SYLENS
+        ================================================== */
+
+        .why-sylens {
+            padding: 0 24px 110px;
+        }
+
+        .why-grid {
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 20px;
+        }
+
+        .why-card {
+            padding: 28px 26px;
+
+            border-radius: 20px;
+
+            border: 1px solid rgba(255, 255, 255, 0.10);
+
+            background: rgba(255, 255, 255, 0.04);
+
+            text-align: left;
+        }
+
+        .why-icon {
+            width: 30px;
+            height: 30px;
+
+            margin-bottom: 16px;
+
+            color: var(--purple-light);
+        }
+
+        .why-title {
+            margin: 0 0 8px;
+
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .why-text {
+            margin: 0;
+
+            font-size: 16px;
+            line-height: 1.6;
+
+            color: var(--soft);
+        }
+
+        /* ==================================================
+           VIDEOS
+        ================================================== */
+
+        .videos {
+            padding: 0 24px 110px;
+        }
+
+        .video-card {
+            width: min(700px, 100%);
+
+            margin: 0 auto;
+
+            padding: 46px 34px;
+
+            border-radius: 28px;
+
+            border: 1px solid var(--glass-border);
+
+            background:
+                linear-gradient(135deg,
+                    rgba(255, 65, 205, 0.14),
+                    rgba(124, 44, 255, 0.18));
+
+            text-align: center;
+        }
+
+        .video-icon {
+            width: 52px;
+            height: 52px;
+
+            margin: 0 auto 18px;
+
+            color: var(--pink);
+        }
+
+        .video-card h2 {
+            margin: 0 0 10px;
+
+            font-size: 26px;
+        }
+
+        .video-card p {
+            max-width: 480px;
+
+            margin: 0 auto 26px;
+
+            line-height: 1.6;
+
+            color: var(--muted);
+        }
+
+        .video-cta {
+            display: inline-flex;
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 14px 28px;
+
+            border-radius: 999px;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(255, 65, 205, 0.95),
+                    rgba(124, 44, 255, 0.95));
+
+            box-shadow:
+                0 16px 40px rgba(255, 40, 190, 0.32);
+
+            transition: transform 0.22s ease;
+        }
+
+        .video-cta:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ==================================================
+           FAQ
+        ================================================== */
+
+        .faq {
+            padding: 0 24px 110px;
+        }
+
+        .faq-list {
+            width: min(780px, 100%);
+
+            margin: 0 auto;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+        .faq-item {
+            padding: 4px 22px;
+
+            border-radius: 18px;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .faq-item summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 16px;
+
+            padding: 18px 0;
+
+            font-size: 18px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            list-style: none;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: "+";
+
+            flex-shrink: 0;
+
+            font-size: 20px;
+            font-weight: 400;
+
+            color: var(--purple-light);
+
+            transition: transform 0.22s ease;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-item p {
+            margin: 0 0 20px;
+
+            font-size: 14px;
+            line-height: 1.65;
+
+            color: var(--muted);
+        }
+
+        /* ==================================================
+           TIPS & TRICKS
+        ================================================== */
+
+        .tips {
+            padding: 0 24px 110px;
+        }
+
+        .tips-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 20px;
+        }
+
+        .tip-card {
+            padding: 28px 26px;
+
+            border-radius: 20px;
+
+            border: 1px solid rgba(255, 255, 255, 0.10);
+
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .tip-icon {
+            display: block;
+
+            width: 34px;
+            height: 34px;
+
+            margin-bottom: 14px;
+        }
+
+        .tip-icon-act {
+            color: var(--pink);
+        }
+
+        .tip-icon-clock {
+            color: var(--gold);
+        }
+
+        .tip-icon-target {
+            color: var(--purple-light);
+        }
+
+        .tip-title {
+            margin: 0 0 8px;
+
+            font-size: 20px;
+            font-weight: 750;
+        }
+
+        .tip-text {
+            margin: 0;
+
+            font-size: 16px;
+            line-height: 1.6;
+
+            color: var(--soft);
+        }
+
+        /* ==================================================
+           WHAT'S NEW
+        ================================================== */
+
+        .whats-new {
+            padding: 0 24px 110px;
+        }
+
+        .whats-new-list {
+            width: min(780px, 100%);
+
+            margin: 0 auto;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 16px;
+        }
+
+        .whats-new-item {
+            display: flex;
+
+            gap: 18px;
+
+            padding: 23px 26px;
+
+            border-radius: 20px;
+
+            border: 1px solid rgba(180, 110, 255, 0.30);
+
+            background: linear-gradient(110deg, rgba(26, 6, 50, 0.78), rgba(12, 2, 28, 0.58));
+        }
+
+        .whats-new-marker {
+            flex-shrink: 0;
+
+            width: 3px;
+
+            border-radius: 3px;
+
+            background: linear-gradient(var(--purple-light), var(--pink));
+            box-shadow: 0 0 14px rgba(197, 83, 255, 0.42);
+        }
+
+        .whats-new-item.is-coming .whats-new-marker {
+            background: linear-gradient(var(--cyan), var(--purple-light));
+            box-shadow: 0 0 14px rgba(82, 220, 255, 0.32);
+        }
+
+        .whats-new-status {
+            display: flex;
+            align-items: center;
+
+            gap: 7px;
+
+            margin: 0 0 6px;
+
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+
+            color: var(--pink);
+        }
+
+        .whats-new-status::before {
+            content: "";
+
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: currentColor;
+            box-shadow: 0 0 9px currentColor;
+        }
+
+        .whats-new-item.is-coming .whats-new-status {
+            color: var(--cyan);
+        }
+
+        .whats-new-title {
+            margin: 0 0 6px;
+
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .whats-new-text {
+            margin: 0;
+
+            font-size: 16px;
+            line-height: 1.6;
+
+            color: var(--muted);
+        }
+
+        /* ==================================================
+           COMMUNITY
+        ================================================== */
+
+        .community {
+            padding: 0 24px 110px;
+        }
+
+        .community-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 20px;
+        }
+
+        .community-card {
+            padding: 28px 24px;
+
+            border-radius: 22px;
+
+            border: 1px solid rgba(255, 255, 255, 0.10);
+
+            background: rgba(255, 255, 255, 0.04);
+
+            text-align: center;
+        }
+
+        .community-icon {
+            width: 30px;
+            height: 30px;
+
+            margin: 0 auto 14px;
+
+            color: var(--purple-light);
+        }
+
+        .community-title {
+            margin: 0 0 8px;
+
+            font-size: 20px;
+            font-weight: 750;
+        }
+
+        .community-text {
+            margin: 0 0 16px;
+
+            font-size: 16px;
+            line-height: 1.6;
+
+            color: var(--soft);
+        }
+
+        .community-link {
+            font-size: 15px;
+            font-weight: 700;
+
+            color: var(--purple-light);
+
+            text-decoration: none;
+        }
+
+        .community-link:hover {
+            text-decoration: underline;
+        }
+
+        .copy-btn {
+            font: inherit;
+
+            padding: 0;
+
+            border: none;
+
+            background: none;
+
+            color: var(--purple-light);
+
+            font-weight: 700;
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* ==================================================
+           FINAL DOWNLOAD CTA
+        ================================================== */
+
+        .final-download {
+            padding: 0 24px 100px;
+
+            text-align: center;
+        }
+
+        .final-download-url {
+            display: inline-block;
+
+            margin-top: 22px;
+
+            font-size: 13px;
+
+            color: var(--soft);
+        }
+
+        .final-download-url span {
+            color: var(--purple-light);
+
+            font-weight: 700;
+        }
+
+        /* ==================================================
            RESPONSIVE
         ================================================== */
+
+        @media (max-width: 900px) {
+
+            .how-grid,
+            .why-grid,
+            .footer-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .languages-story {
+                grid-template-columns: 1fr;
+            }
+        }
 
         @media (max-width: 760px) {
 
@@ -811,6 +2748,236 @@
             .screenshot:hover {
                 transform: none;
             }
+
+            .site-nav {
+                padding: 12px 16px;
+            }
+
+            .site-nav-links {
+                gap: 16px;
+            }
+
+            .site-nav-links a.nav-optional {
+                display: none;
+            }
+
+            .about,
+            .how-to-play,
+            .game-modes,
+            .game-tools-section,
+            .languages,
+            .why-sylens,
+            .videos,
+            .faq,
+            .tips,
+            .whats-new,
+            .community,
+            .final-download {
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-bottom: 70px;
+            }
+
+            .how-grid,
+            .why-grid,
+            .modes-grid,
+            .languages-story,
+            .tips-grid,
+            .community-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tv-party {
+                grid-template-columns: 1fr;
+            }
+
+            .tv-party-shot {
+                aspect-ratio: 16 / 9;
+                height: auto;
+
+                border-right: 0;
+                border-bottom: 1px solid rgba(180, 110, 255, 0.24);
+            }
+
+            .tv-party-copy {
+                padding: 24px 22px;
+
+                text-align: center;
+            }
+
+            .game-tools-stage {
+                grid-template-columns: 1fr;
+
+                gap: 30px;
+            }
+
+            .game-tools-explain {
+                align-self: auto;
+                justify-content: flex-start;
+
+                gap: 28px;
+            }
+
+            .game-tool-row {
+                grid-template-columns: 54px minmax(0, 1fr) 74px;
+
+                gap: 12px;
+                padding: 12px 0;
+            }
+
+            .game-tool-icon {
+                width: 54px;
+                height: 54px;
+
+                border-width: 1px;
+            }
+
+            .game-tool-icon img {
+                width: 26px;
+                height: 26px;
+            }
+
+            .game-tool-row h3 {
+                margin-bottom: 2px;
+
+                font-size: 17px;
+            }
+
+            .game-tool-row p {
+                font-size: 13px;
+                line-height: 1.35;
+            }
+
+            .game-tool-cost {
+                min-height: 62px;
+
+                padding: 5px 3px;
+
+                border-radius: 12px;
+            }
+
+            .game-tool-cost-label,
+            .game-tool-cost-points {
+                font-size: 8px;
+            }
+
+            .game-tool-cost-value {
+                gap: 2px;
+
+                font-size: 20px;
+            }
+
+            .game-tool-cost-coin {
+                width: 16px;
+                height: 16px;
+            }
+
+            .game-tools-phone {
+                max-width: 260px;
+
+                margin: 0 auto;
+            }
+
+            .game-tools-payoff {
+                min-height: 0;
+                padding: 18px 88px 18px 95px;
+            }
+
+            .game-tools-payoff-cup {
+                left: -22px;
+                bottom: -22px;
+                width: 105px;
+            }
+
+            .game-tools-payoff-roll {
+                right: -38px;
+                width: 110px;
+                opacity: 0.38;
+            }
+
+            .game-tools-payoff strong {
+                font-size: clamp(16px, 4.8vw, 20px);
+            }
+
+            .game-tools-payoff p {
+                font-size: 13px;
+            }
+
+            .languages-panel {
+                padding: 20px;
+            }
+
+            .languages-players-row {
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                row-gap: 22px;
+            }
+
+            .languages-player-col {
+                flex: 0 0 42%;
+            }
+
+            .languages-result {
+                flex-wrap: wrap;
+            }
+
+            .languages-result-player {
+                width: 100%;
+            }
+
+            .languages-result-movie {
+                width: 100%;
+            }
+
+            .languages-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .languages-bottom-coming-group {
+                align-self: stretch;
+
+                justify-content: space-between;
+            }
+
+            .languages-bottom-art {
+                height: 110px;
+
+                margin: 0;
+            }
+
+            .languages-bottom-coming {
+                text-align: left;
+            }
+
+            .video-card {
+                padding: 34px 22px;
+            }
+
+            .whats-new-item {
+                gap: 14px;
+
+                padding: 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+
+                gap: 30px;
+
+                text-align: center;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+
+            .footer-brand-text {
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
 
         /* ==================================================
@@ -858,6 +3025,27 @@
     ================================================== -->
 
     <div class="desktop-page">
+
+        <nav class="site-nav">
+
+            <div class="site-nav-inner">
+
+                <a href="#" class="site-nav-brand">Sylens</a>
+
+                <div class="site-nav-links">
+                    <a href="#about" class="nav-optional">About</a>
+                    <a href="#how-to-play">How to Play</a>
+                    <a href="#game-modes" class="nav-optional">Game Modes</a>
+                    <a href="#game-tools" class="nav-optional">Game Tools</a>
+                    <a href="#languages" class="nav-optional">Languages</a>
+                    <a href="#videos" class="nav-optional">Videos</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#download" class="site-nav-cta">Download</a>
+                </div>
+
+            </div>
+
+        </nav>
 
         <main>
 
@@ -975,7 +3163,7 @@
                             <img src="assets/FilmRoll02Icon.svg" alt="Large movie collection" class="feature-icon">
 
                             <span class="feature-value">
-                                1000+ Movies
+                                28,000+ Movies
                             </span>
 
                             <span class="feature-label">
@@ -1020,9 +3208,10 @@
                         </h2>
 
                         <p>
-                            Sylens is available now on Android.
-                            The iPhone version is currently
-                            making its way to the App Store.
+                            Sylens is available now on Android, phone
+                            and Android TV alike. iPhone, iPad and
+                            Apple TV are currently making their way
+                            to the App Store.
                         </p>
 
 
@@ -1038,7 +3227,7 @@
                                     </span>
 
                                     <span class="store-subtitle">
-                                        Google Play
+                                        Google Play &middot; Phone &amp; Android TV
                                     </span>
 
                                 </span>
@@ -1051,7 +3240,7 @@
                                 <span class="store-content">
 
                                     <span class="store-title">
-                                        iPhone & iPad
+                                        iPhone, iPad &amp; Apple TV
                                     </span>
 
                                     <span class="store-subtitle">
@@ -1083,15 +3272,1266 @@
 
                     <div class="screenshots">
 
-                        <img src="assets/screenshot-1.png" alt="Sylens Just Vibing game mode" class="screenshot"
+                        <img src="assets/screenshot-1.jpg" alt="Sylens Just Vibing game mode" class="screenshot"
                             loading="lazy">
 
-                        <img src="assets/screenshot-2.png" alt="Sylens Squad War game mode" class="screenshot"
+                        <img src="assets/screenshot-2.jpg" alt="Sylens Squad War game mode" class="screenshot"
                             loading="lazy">
 
-                        <img src="assets/screenshot-3.png" alt="Sylens home screen" class="screenshot" loading="lazy">
+                        <img src="assets/screenshot-3.jpg" alt="Sylens home screen" class="screenshot" loading="lazy">
 
                     </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- WHAT IS SYLENS -->
+
+            <section id="about" class="about">
+
+                <div class="section-inner">
+
+                    <div class="section-heading">
+
+                        <p class="section-tag">
+                            What is Sylens?
+                        </p>
+
+                        <h2>
+                            Movie charades. <span class="accent">Together.</span>
+                        </h2>
+
+                        <p>
+                            Sylens turns movie guessing into a fast, hilarious game
+                            for everyone. Pick a movie, act it out with no talking
+                            allowed, and race the clock while your friends try to
+                            guess it.
+                        </p>
+
+                    </div>
+
+                    <div class="about-steps">
+
+                        <div class="about-step">
+                            <span class="about-step-word">Pick</span>
+                        </div>
+
+                        <span class="about-arrow" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path fill="currentColor"
+                                    d="M5.976,7.306 C5.698,7.09 5.217,6.726 5.055,6.604 C4.722,6.358 4.651,5.889 4.896,5.555 C5.142,5.222 5.612,5.151 5.945,5.396 L5.947,5.398 L5.948,5.398 C6.116,5.526 6.615,5.902 6.899,6.124 C7.468,6.568 8.229,7.178 8.992,7.841 C9.751,8.5 10.53,9.226 11.125,9.899 C11.421,10.234 11.688,10.575 11.884,10.901 C12.069,11.206 12.25,11.593 12.25,12 C12.25,12.406 12.069,12.793 11.884,13.099 C11.688,13.425 11.421,13.765 11.125,14.101 C10.53,14.774 9.751,15.5 8.992,16.159 C8.229,16.822 7.468,17.432 6.899,17.876 C6.616,18.097 6.117,18.474 5.947,18.602 L5.947,18.602 L5.945,18.604 C5.611,18.849 5.142,18.778 4.896,18.445 C4.65,18.111 4.722,17.641 5.056,17.395 C5.217,17.274 5.698,16.91 5.976,16.693 C6.532,16.259 7.271,15.666 8.008,15.026 C8.749,14.383 9.47,13.708 10,13.108 C10.266,12.807 10.468,12.542 10.6,12.324 C10.724,12.119 10.749,12.002 10.749,12.002 C10.749,12.002 10.724,11.88 10.6,11.675 C10.468,11.457 10.266,11.193 10,10.892 C9.47,10.292 8.749,9.616 8.008,8.973 C7.271,8.333 6.532,7.74 5.976,7.306 Z M12.976,7.306 C12.698,7.09 12.217,6.726 12.055,6.604 C11.722,6.358 11.651,5.889 11.896,5.555 C12.142,5.222 12.612,5.151 12.945,5.396 L12.948,5.398 L12.948,5.398 C13.117,5.526 13.616,5.902 13.899,6.124 C14.468,6.568 15.229,7.178 15.992,7.841 C16.751,8.5 17.53,9.226 18.125,9.899 C18.421,10.234 18.688,10.575 18.885,10.901 C19.069,11.206 19.25,11.593 19.25,12 C19.25,12.406 19.069,12.793 18.885,13.099 C18.688,13.425 18.421,13.765 18.125,14.101 C17.53,14.774 16.751,15.5 15.992,16.159 C15.229,16.822 14.468,17.432 13.899,17.876 C13.616,18.097 13.117,18.474 12.948,18.602 L12.947,18.602 L12.945,18.604 C12.611,18.849 12.142,18.778 11.896,18.445 C11.651,18.111 11.722,17.641 12.056,17.395 C12.217,17.274 12.698,16.91 12.976,16.693 C13.532,16.259 14.271,15.666 15.008,15.026 C15.749,14.383 16.47,13.708 17,13.108 C17.266,12.807 17.468,12.542 17.6,12.324 C17.723,12.119 17.749,12.002 17.749,12.002 C17.749,12.002 17.723,11.88 17.6,11.675 C17.468,11.457 17.266,11.193 17,10.892 C16.47,10.292 15.749,9.616 15.008,8.973 C14.271,8.333 13.532,7.74 12.976,7.306 Z">
+                                </path>
+                            </svg>
+                        </span>
+
+                        <div class="about-step">
+                            <span class="about-step-word">Act</span>
+                        </div>
+
+                        <span class="about-arrow" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path fill="currentColor"
+                                    d="M5.976,7.306 C5.698,7.09 5.217,6.726 5.055,6.604 C4.722,6.358 4.651,5.889 4.896,5.555 C5.142,5.222 5.612,5.151 5.945,5.396 L5.947,5.398 L5.948,5.398 C6.116,5.526 6.615,5.902 6.899,6.124 C7.468,6.568 8.229,7.178 8.992,7.841 C9.751,8.5 10.53,9.226 11.125,9.899 C11.421,10.234 11.688,10.575 11.884,10.901 C12.069,11.206 12.25,11.593 12.25,12 C12.25,12.406 12.069,12.793 11.884,13.099 C11.688,13.425 11.421,13.765 11.125,14.101 C10.53,14.774 9.751,15.5 8.992,16.159 C8.229,16.822 7.468,17.432 6.899,17.876 C6.616,18.097 6.117,18.474 5.947,18.602 L5.947,18.602 L5.945,18.604 C5.611,18.849 5.142,18.778 4.896,18.445 C4.65,18.111 4.722,17.641 5.056,17.395 C5.217,17.274 5.698,16.91 5.976,16.693 C6.532,16.259 7.271,15.666 8.008,15.026 C8.749,14.383 9.47,13.708 10,13.108 C10.266,12.807 10.468,12.542 10.6,12.324 C10.724,12.119 10.749,12.002 10.749,12.002 C10.749,12.002 10.724,11.88 10.6,11.675 C10.468,11.457 10.266,11.193 10,10.892 C9.47,10.292 8.749,9.616 8.008,8.973 C7.271,8.333 6.532,7.74 5.976,7.306 Z M12.976,7.306 C12.698,7.09 12.217,6.726 12.055,6.604 C11.722,6.358 11.651,5.889 11.896,5.555 C12.142,5.222 12.612,5.151 12.945,5.396 L12.948,5.398 L12.948,5.398 C13.117,5.526 13.616,5.902 13.899,6.124 C14.468,6.568 15.229,7.178 15.992,7.841 C16.751,8.5 17.53,9.226 18.125,9.899 C18.421,10.234 18.688,10.575 18.885,10.901 C19.069,11.206 19.25,11.593 19.25,12 C19.25,12.406 19.069,12.793 18.885,13.099 C18.688,13.425 18.421,13.765 18.125,14.101 C17.53,14.774 16.751,15.5 15.992,16.159 C15.229,16.822 14.468,17.432 13.899,17.876 C13.616,18.097 13.117,18.474 12.948,18.602 L12.947,18.602 L12.945,18.604 C12.611,18.849 12.142,18.778 11.896,18.445 C11.651,18.111 11.722,17.641 12.056,17.395 C12.217,17.274 12.698,16.91 12.976,16.693 C13.532,16.259 14.271,15.666 15.008,15.026 C15.749,14.383 16.47,13.708 17,13.108 C17.266,12.807 17.468,12.542 17.6,12.324 C17.723,12.119 17.749,12.002 17.749,12.002 C17.749,12.002 17.723,11.88 17.6,11.675 C17.468,11.457 17.266,11.193 17,10.892 C16.47,10.292 15.749,9.616 15.008,8.973 C14.271,8.333 13.532,7.74 12.976,7.306 Z">
+                                </path>
+                            </svg>
+                        </span>
+
+                        <div class="about-step">
+                            <span class="about-step-word">Guess</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- HOW TO PLAY -->
+
+            <section id="how-to-play" class="how-to-play">
+
+                <div class="section-inner">
+
+                    <div class="section-heading">
+
+                        <p class="section-tag">
+                            How to Play
+                        </p>
+
+                        <h2>
+                            Four steps to chaos.
+                        </h2>
+
+                        <p>
+                            No board, no cards, just you, a timer and a movie
+                            only you can see.
+                        </p>
+
+                    </div>
+
+                    <div class="how-grid">
+
+                        <div class="how-card">
+
+                            <span class="how-num">1</span>
+
+                            <h3 class="how-title">Pick a Movie</h3>
+
+                            <p class="how-text">
+                                Sylens shuffles a movie from its library and
+                                shows it only to the actor.
+                            </p>
+
+                        </div>
+
+                        <div class="how-card">
+
+                            <span class="how-num">2</span>
+
+                            <h3 class="how-title">Act It Out</h3>
+
+                            <p class="how-text">
+                                No talking, no spelling, just gestures,
+                                expressions and pure movement.
+                            </p>
+
+                        </div>
+
+                        <div class="how-card">
+
+                            <span class="how-num">3</span>
+
+                            <h3 class="how-title">Guess Fast</h3>
+
+                            <p class="how-text">
+                                Your team races the clock to shout out the right
+                                title before time runs out.
+                            </p>
+
+                        </div>
+
+                        <div class="how-card">
+
+                            <span class="how-num">4</span>
+
+                            <h3 class="how-title">Score Points</h3>
+
+                            <p class="how-text">
+                                Guess it quicker and you score more: remaining
+                                time turns straight into points.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- GAME MODES -->
+
+            <section id="game-modes" class="game-modes">
+
+                <div class="section-inner">
+
+                    <div class="section-heading">
+
+                        <p class="section-tag">
+                            Game Modes
+                        </p>
+
+                        <h2>
+                            Choose your way to play.
+                        </h2>
+
+                        <p>
+                            Play as one team to warm up, or go head-to-head with friends
+                            and family.
+                        </p>
+
+                    </div>
+
+                    <div class="modes-grid">
+
+                        <div class="mode-card">
+
+                            <img src="assets/screenshot-1.jpg" alt="Sylens Just Vibing game mode" class="mode-shot"
+                                loading="lazy">
+
+                            <div class="mode-body">
+
+                                <h3 class="mode-title">Just Vibing</h3>
+
+                                <p class="mode-text">
+                                    One-team charades, zero setup. Jump straight in
+                                    and act out movie after movie. Skip freely
+                                    before you reveal, and keep the streak going
+                                    for as long as you like.
+                                </p>
+
+                                <div class="mode-tags">
+                                    <span class="mode-tag">One Team</span>
+                                    <span class="mode-tag">No Scoring</span>
+                                    <span class="mode-tag">Warm-up</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="mode-card">
+
+                            <img src="assets/screenshot-3.jpg" alt="Sylens Squad War game mode" class="mode-shot"
+                                loading="lazy">
+
+                            <div class="mode-body">
+
+                                <h3 class="mode-title">Squad War</h3>
+
+                                <p class="mode-text">
+                                    Split into teams and battle it out. Every
+                                    turn runs on the clock: guess fast for a
+                                    time bonus, spend points on power-ups like
+                                    Clue or Change Movie, and force
+                                    sudden death if the scores are tied.
+                                </p>
+
+                                <div class="mode-tags">
+                                    <span class="mode-tag">Teams</span>
+                                    <span class="mode-tag">Scored</span>
+                                    <span class="mode-tag">Sudden Death</span>
+                                    <span class="mode-tag">Mixed Languages</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="tv-party">
+
+                        <img src="assets/TV.png"
+                            alt="Sylens TV Party screen with options to start a TV game or mirror a phone game"
+                            class="tv-party-shot" loading="lazy">
+
+                        <div class="tv-party-copy">
+
+                            <h3 class="tv-party-title">
+                                Squad War on the big screen: TV Party
+                            </h3>
+
+                            <p class="tv-party-text">
+                                Put Sylens on the TV and play Squad War with
+                                phones as controllers. The TV mirrors the game
+                                for everyone to watch, and never reveals the
+                                movie title, so the game stays fair.
+                                <strong>Live now on Android TV</strong> (same
+                                Google Play listing, no separate download).
+                                <strong>Apple TV is currently in App Store
+                                    review.</strong>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- GAME TOOLS (THE TWIST) -->
+
+            <section id="game-tools" class="game-tools-section">
+
+                <div class="section-inner">
+
+                    <div class="section-heading">
+
+                        <p class="section-tag">
+                            The Twist
+                        </p>
+
+                        <h2>
+                            Movie charades. <span class="accent">Reinvented.</span>
+                        </h2>
+
+                        <p>
+                            The clock is ticking. You're stuck. Now you have a
+                            choice.
+                        </p>
+
+                    </div>
+
+                    <div class="game-tools-stage">
+
+                        <img src="assets/gameplay.jpg"
+                            alt="Sylens Squad War round in progress, showing the Change Movie, Clue and Half Name game tools"
+                            class="game-tools-phone" loading="lazy">
+
+                        <div class="game-tools-explain">
+
+                            <p class="game-tools-question">
+                                <span>Stuck?</span>
+                                <strong>You've got options.</strong>
+                            </p>
+
+                            <div class="game-tool-list">
+
+                                <div class="game-tool-row gt-purple">
+
+                                    <span class="game-tool-icon">
+                                        <img src="assets/ic_swap.svg" alt="" aria-hidden="true">
+                                    </span>
+
+                                    <div class="game-tool-copy">
+                                        <h3>Change Movie</h3>
+                                        <p>Too tricky to act out? Swap it for another movie.</p>
+                                    </div>
+
+                                    <div class="game-tool-cost">
+                                        <span class="game-tool-cost-label">Costs</span>
+                                        <span class="game-tool-cost-value"><img src="assets/coin.png" alt=""
+                                                class="game-tool-cost-coin">1</span>
+                                        <span class="game-tool-cost-points">Point</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="game-tool-row gt-cyan">
+
+                                    <span class="game-tool-icon">
+                                        <img src="assets/ic_info.svg" alt="" aria-hidden="true">
+                                    </span>
+
+                                    <div class="game-tool-copy">
+                                        <h3>Clue</h3>
+                                        <p>Reveal the release year, main cast and a short clue.</p>
+                                    </div>
+
+                                    <div class="game-tool-cost">
+                                        <span class="game-tool-cost-label">Costs</span>
+                                        <span class="game-tool-cost-value"><img src="assets/coin.png" alt=""
+                                                class="game-tool-cost-coin">2</span>
+                                        <span class="game-tool-cost-points">Points</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="game-tool-row gt-pink">
+
+                                    <span class="game-tool-icon">
+                                        <img src="assets/ic_view.svg" alt="" aria-hidden="true">
+                                    </span>
+
+                                    <div class="game-tool-copy">
+                                        <h3>Half Name</h3>
+                                        <p>Reveal the first half of the movie title to help your team.</p>
+                                    </div>
+
+                                    <div class="game-tool-cost">
+                                        <span class="game-tool-cost-label">Costs</span>
+                                        <span class="game-tool-cost-value"><img src="assets/coin.png" alt=""
+                                                class="game-tool-cost-coin">5</span>
+                                        <span class="game-tool-cost-points">Points</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="game-tools-payoff">
+                                <img src="assets/cup.png" alt="" class="game-tools-payoff-art game-tools-payoff-cup"
+                                    aria-hidden="true" loading="lazy">
+
+                                <div class="game-tools-payoff-copy">
+                                    <strong>Every advantage has a cost.</strong>
+                                    <p>Play safe. Take a risk. The choice is yours.</p>
+                                </div>
+
+                                <img src="assets/roll.png" alt="" class="game-tools-payoff-art game-tools-payoff-roll"
+                                    aria-hidden="true" loading="lazy">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- LANGUAGES -->
+
+            <section id="languages" class="languages">
+
+                <div class="section-inner">
+
+                    <div class="section-heading">
+
+                        <p class="section-tag">
+                            Languages
+                        </p>
+
+                        <h2>
+                            One team. Every language.
+                        </h2>
+
+                        <p>
+                            Choose the languages you want to play with, and
+                            the way you want to read them.
+                        </p>
+
+                    </div>
+
+                    <div class="languages-story">
+
+                        <!-- COLUMN 1: HEADLINE + FEATURE POINTS -->
+
+                        <div class="languages-copy">
+
+                            <div>
+
+                                <h2 class="languages-headline">
+                                    <span class="lh-white">Break the</span>
+                                    <span class="lh-gradient">language barriers!</span>
+                                </h2>
+
+                                <p class="languages-sub">
+                                    Play together. No matter the language.
+                                </p>
+
+                            </div>
+
+                            <div class="languages-feature">
+
+                                <span class="languages-feature-icon lf-purple">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="9"></circle>
+                                        <path d="M3 12h18"></path>
+                                        <path
+                                            d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9s1.3-6.5 3.8-9z">
+                                        </path>
+                                    </svg>
+                                </span>
+
+                                <div>
+                                    <h3 class="languages-feature-title lf-purple">Choose your languages</h3>
+                                    <p class="how-text">
+                                        Pick the languages you're comfortable
+                                        with. You can choose more than one.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="languages-feature">
+
+                                <span class="languages-feature-icon lf-gold" aria-hidden="true">Aa</span>
+
+                                <div>
+                                    <h3 class="languages-feature-title lf-gold">Read it your way</h3>
+                                    <p class="how-text">
+                                        See movie titles in their original
+                                        script, or spelled out in English
+                                        letters if that's easier for you.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="languages-feature">
+
+                                <span class="languages-feature-icon lf-cyan">
+                                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path fill="currentColor"
+                                            d="M12,21.577 C11.404,22.294 10.505,22.75 9.5,22.75 C7.942,22.75 6.639,21.653 6.323,20.189 C4.575,19.871 3.25,18.34 3.25,16.5 C3.25,16.117 3.308,15.748 3.414,15.399 C2.136,14.802 1.25,13.505 1.25,12 C1.25,10.495 2.136,9.198 3.414,8.601 C3.308,8.252 3.25,7.883 3.25,7.5 C3.25,5.66 4.575,4.13 6.323,3.811 C6.639,2.347 7.942,1.25 9.5,1.25 C10.505,1.25 11.404,1.706 12,2.423 C12.596,1.706 13.495,1.25 14.5,1.25 C16.059,1.25 17.361,2.347 17.677,3.811 C19.425,4.13 20.75,5.66 20.75,7.5 C20.75,7.883 20.692,8.252 20.586,8.601 C21.864,9.198 22.75,10.495 22.75,12 C22.75,13.505 21.864,14.802 20.586,15.399 C20.692,15.748 20.75,16.117 20.75,16.5 C20.75,18.34 19.425,19.871 17.677,20.189 C17.361,21.653 16.059,22.75 14.5,22.75 C13.495,22.75 12.596,22.294 12,21.577 Z M12.75,19.5 C12.75,20.466 13.533,21.25 14.5,21.25 C15.467,21.25 16.25,20.466 16.25,19.5 C16.25,18.928 15.976,18.42 15.55,18.1 C15.218,17.851 15.152,17.381 15.4,17.049 C15.649,16.718 16.119,16.651 16.45,16.9 C17.022,17.33 17.449,17.945 17.64,18.658 C18.571,18.382 19.25,17.52 19.25,16.5 C19.25,16.072 19.131,15.675 18.926,15.335 C18.798,15.125 18.782,14.866 18.882,14.642 C18.981,14.417 19.185,14.256 19.426,14.21 C20.465,14.011 21.25,13.096 21.25,12 C21.25,11.064 20.678,10.26 19.864,9.921 C19.439,10.423 18.884,10.812 18.25,11.036 C17.859,11.175 17.431,10.97 17.293,10.579 C17.155,10.189 17.36,9.76 17.75,9.622 C18.243,9.448 18.658,9.106 18.926,8.665 C19.131,8.325 19.25,7.928 19.25,7.5 C19.25,6.257 18.243,5.25 17,5.25 C16.586,5.25 16.25,4.914 16.25,4.5 C16.25,3.533 15.467,2.75 14.5,2.75 C13.533,2.75 12.75,3.533 12.75,4.5 Z M7.75,4.5 C7.75,5.072 8.024,5.58 8.45,5.901 C8.782,6.149 8.848,6.619 8.6,6.951 C8.351,7.282 7.881,7.349 7.55,7.1 C6.978,6.67 6.551,6.055 6.36,5.342 C5.429,5.618 4.75,6.48 4.75,7.5 C4.75,7.928 4.869,8.325 5.074,8.665 C5.202,8.875 5.218,9.134 5.118,9.358 C5.019,9.583 4.815,9.744 4.574,9.79 C3.535,9.989 2.75,10.904 2.75,12 C2.75,12.936 3.322,13.74 4.136,14.079 C4.561,13.577 5.116,13.188 5.75,12.964 C6.141,12.825 6.569,13.03 6.707,13.421 C6.845,13.811 6.64,14.24 6.25,14.378 C5.758,14.552 5.342,14.894 5.074,15.335 C4.869,15.675 4.75,16.072 4.75,16.5 C4.75,17.743 5.757,18.75 7,18.75 C7.414,18.75 7.75,19.086 7.75,19.5 C7.75,20.466 8.533,21.25 9.5,21.25 C10.467,21.25 11.25,20.466 11.25,19.5 L11.25,4.5 C11.25,3.533 10.467,2.75 9.5,2.75 C8.533,2.75 7.75,3.533 7.75,4.5 Z">
+                                        </path>
+                                    </svg>
+                                </span>
+
+                                <div>
+                                    <h3 class="languages-feature-title lf-cyan">Sylens remembers</h3>
+                                    <p class="how-text">
+                                        Your language choices are saved and
+                                        used automatically whenever it's
+                                        your turn.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- COLUMN 2: EACH PLAYER CHOOSES -->
+
+                        <div class="languages-panel">
+
+                            <p class="languages-panel-heading">
+                                Each player chooses
+                                <strong>their languages</strong>
+                            </p>
+
+                            <div class="languages-players-row">
+
+                                <div class="languages-player-col lang-en">
+
+                                    <span class="languages-lang-circle">English</span>
+
+                                    <span class="languages-connector" aria-hidden="true"></span>
+
+                                    <span class="languages-phone-wrap">
+
+                                        <span class="languages-phone">
+                                            <img src="assets/english.jpg"
+                                                alt="Sylens language selection screen with English chosen">
+                                        </span>
+
+                                        <span class="languages-player-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                <path fill="currentColor"
+                                                    d="M19 21.25C19.4142 21.25 19.75 20.9142 19.75 20.5C19.75 17.3026 17.8128 14.5593 15.0488 13.375C16.6709 12.3584 17.75 10.5555 17.75 8.5C17.75 5.32436 15.1756 2.75 12 2.75C8.82436 2.75 6.25 5.32436 6.25 8.5C6.25 10.5552 7.32849 12.3583 8.9502 13.375C6.18662 14.5595 4.25 17.3029 4.25 20.5C4.25 20.9142 4.58579 21.25 5 21.25C5.41421 21.25 5.75 20.9142 5.75 20.5C5.75 17.0482 8.54822 14.25 12 14.25C15.4518 14.25 18.25 17.0482 18.25 20.5C18.25 20.9142 18.5858 21.25 19 21.25ZM12 12.75C9.65279 12.75 7.75 10.8472 7.75 8.5C7.75 6.15279 9.65279 4.25 12 4.25C14.3472 4.25 16.25 6.15279 16.25 8.5C16.25 10.8472 14.3472 12.75 12 12.75Z">
+                                                </path>
+                                            </svg>
+                                        </span>
+
+                                    </span>
+
+                                    <span class="languages-player-label">Player 1</span>
+
+                                </div>
+
+                                <div class="languages-player-col lang-ml">
+
+                                    <span class="languages-lang-circle">Malayalam</span>
+
+                                    <span class="languages-connector" aria-hidden="true"></span>
+
+                                    <span class="languages-phone-wrap">
+
+                                        <span class="languages-phone">
+                                            <img src="assets/malayalam.jpg"
+                                                alt="Sylens language selection screen with Malayalam chosen">
+                                        </span>
+
+                                        <span class="languages-player-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                <path fill="currentColor"
+                                                    d="M19 21.25C19.4142 21.25 19.75 20.9142 19.75 20.5C19.75 17.3026 17.8128 14.5593 15.0488 13.375C16.6709 12.3584 17.75 10.5555 17.75 8.5C17.75 5.32436 15.1756 2.75 12 2.75C8.82436 2.75 6.25 5.32436 6.25 8.5C6.25 10.5552 7.32849 12.3583 8.9502 13.375C6.18662 14.5595 4.25 17.3029 4.25 20.5C4.25 20.9142 4.58579 21.25 5 21.25C5.41421 21.25 5.75 20.9142 5.75 20.5C5.75 17.0482 8.54822 14.25 12 14.25C15.4518 14.25 18.25 17.0482 18.25 20.5C18.25 20.9142 18.5858 21.25 19 21.25ZM12 12.75C9.65279 12.75 7.75 10.8472 7.75 8.5C7.75 6.15279 9.65279 4.25 12 4.25C14.3472 4.25 16.25 6.15279 16.25 8.5C16.25 10.8472 14.3472 12.75 12 12.75Z">
+                                                </path>
+                                            </svg>
+                                        </span>
+
+                                    </span>
+
+                                    <span class="languages-player-label">Player 2</span>
+
+                                </div>
+
+                                <div class="languages-player-col lang-hi">
+
+                                    <span class="languages-lang-circle">हिन्दी</span>
+
+                                    <span class="languages-connector" aria-hidden="true"></span>
+
+                                    <span class="languages-phone-wrap">
+
+                                        <span class="languages-phone">
+                                            <img src="assets/hindi.jpg"
+                                                alt="Sylens language selection screen with Hindi chosen">
+                                        </span>
+
+                                        <span class="languages-player-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                <path fill="currentColor"
+                                                    d="M19 21.25C19.4142 21.25 19.75 20.9142 19.75 20.5C19.75 17.3026 17.8128 14.5593 15.0488 13.375C16.6709 12.3584 17.75 10.5555 17.75 8.5C17.75 5.32436 15.1756 2.75 12 2.75C8.82436 2.75 6.25 5.32436 6.25 8.5C6.25 10.5552 7.32849 12.3583 8.9502 13.375C6.18662 14.5595 4.25 17.3029 4.25 20.5C4.25 20.9142 4.58579 21.25 5 21.25C5.41421 21.25 5.75 20.9142 5.75 20.5C5.75 17.0482 8.54822 14.25 12 14.25C15.4518 14.25 18.25 17.0482 18.25 20.5C18.25 20.9142 18.5858 21.25 19 21.25ZM12 12.75C9.65279 12.75 7.75 10.8472 7.75 8.5C7.75 6.15279 9.65279 4.25 12 4.25C14.3472 4.25 16.25 6.15279 16.25 8.5C16.25 10.8472 14.3472 12.75 12 12.75Z">
+                                                </path>
+                                            </svg>
+                                        </span>
+
+                                    </span>
+
+                                    <span class="languages-player-label">Player 3</span>
+
+                                </div>
+
+                                <div class="languages-player-col lang-ta">
+
+                                    <span class="languages-lang-circle">தமிழ்</span>
+
+                                    <span class="languages-connector" aria-hidden="true"></span>
+
+                                    <span class="languages-phone-wrap">
+
+                                        <span class="languages-phone">
+                                            <img src="assets/tamil.jpg"
+                                                alt="Sylens language selection screen with Tamil chosen">
+                                        </span>
+
+                                        <span class="languages-player-icon">
+                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                <path fill="currentColor"
+                                                    d="M19 21.25C19.4142 21.25 19.75 20.9142 19.75 20.5C19.75 17.3026 17.8128 14.5593 15.0488 13.375C16.6709 12.3584 17.75 10.5555 17.75 8.5C17.75 5.32436 15.1756 2.75 12 2.75C8.82436 2.75 6.25 5.32436 6.25 8.5C6.25 10.5552 7.32849 12.3583 8.9502 13.375C6.18662 14.5595 4.25 17.3029 4.25 20.5C4.25 20.9142 4.58579 21.25 5 21.25C5.41421 21.25 5.75 20.9142 5.75 20.5C5.75 17.0482 8.54822 14.25 12 14.25C15.4518 14.25 18.25 17.0482 18.25 20.5C18.25 20.9142 18.5858 21.25 19 21.25ZM12 12.75C9.65279 12.75 7.75 10.8472 7.75 8.5C7.75 6.15279 9.65279 4.25 12 4.25C14.3472 4.25 16.25 6.15279 16.25 8.5C16.25 10.8472 14.3472 12.75 12 12.75Z">
+                                                </path>
+                                            </svg>
+                                        </span>
+
+                                    </span>
+
+                                    <span class="languages-player-label">Player 4</span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="languages-remember">
+
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path fill="currentColor"
+                                        d="M12,21.577 C11.404,22.294 10.505,22.75 9.5,22.75 C7.942,22.75 6.639,21.653 6.323,20.189 C4.575,19.871 3.25,18.34 3.25,16.5 C3.25,16.117 3.308,15.748 3.414,15.399 C2.136,14.802 1.25,13.505 1.25,12 C1.25,10.495 2.136,9.198 3.414,8.601 C3.308,8.252 3.25,7.883 3.25,7.5 C3.25,5.66 4.575,4.13 6.323,3.811 C6.639,2.347 7.942,1.25 9.5,1.25 C10.505,1.25 11.404,1.706 12,2.423 C12.596,1.706 13.495,1.25 14.5,1.25 C16.059,1.25 17.361,2.347 17.677,3.811 C19.425,4.13 20.75,5.66 20.75,7.5 C20.75,7.883 20.692,8.252 20.586,8.601 C21.864,9.198 22.75,10.495 22.75,12 C22.75,13.505 21.864,14.802 20.586,15.399 C20.692,15.748 20.75,16.117 20.75,16.5 C20.75,18.34 19.425,19.871 17.677,20.189 C17.361,21.653 16.059,22.75 14.5,22.75 C13.495,22.75 12.596,22.294 12,21.577 Z M12.75,19.5 C12.75,20.466 13.533,21.25 14.5,21.25 C15.467,21.25 16.25,20.466 16.25,19.5 C16.25,18.928 15.976,18.42 15.55,18.1 C15.218,17.851 15.152,17.381 15.4,17.049 C15.649,16.718 16.119,16.651 16.45,16.9 C17.022,17.33 17.449,17.945 17.64,18.658 C18.571,18.382 19.25,17.52 19.25,16.5 C19.25,16.072 19.131,15.675 18.926,15.335 C18.798,15.125 18.782,14.866 18.882,14.642 C18.981,14.417 19.185,14.256 19.426,14.21 C20.465,14.011 21.25,13.096 21.25,12 C21.25,11.064 20.678,10.26 19.864,9.921 C19.439,10.423 18.884,10.812 18.25,11.036 C17.859,11.175 17.431,10.97 17.293,10.579 C17.155,10.189 17.36,9.76 17.75,9.622 C18.243,9.448 18.658,9.106 18.926,8.665 C19.131,8.325 19.25,7.928 19.25,7.5 C19.25,6.257 18.243,5.25 17,5.25 C16.586,5.25 16.25,4.914 16.25,4.5 C16.25,3.533 15.467,2.75 14.5,2.75 C13.533,2.75 12.75,3.533 12.75,4.5 Z M7.75,4.5 C7.75,5.072 8.024,5.58 8.45,5.901 C8.782,6.149 8.848,6.619 8.6,6.951 C8.351,7.282 7.881,7.349 7.55,7.1 C6.978,6.67 6.551,6.055 6.36,5.342 C5.429,5.618 4.75,6.48 4.75,7.5 C4.75,7.928 4.869,8.325 5.074,8.665 C5.202,8.875 5.218,9.134 5.118,9.358 C5.019,9.583 4.815,9.744 4.574,9.79 C3.535,9.989 2.75,10.904 2.75,12 C2.75,12.936 3.322,13.74 4.136,14.079 C4.561,13.577 5.116,13.188 5.75,12.964 C6.141,12.825 6.569,13.03 6.707,13.421 C6.845,13.811 6.64,14.24 6.25,14.378 C5.758,14.552 5.342,14.894 5.074,15.335 C4.869,15.675 4.75,16.072 4.75,16.5 C4.75,17.743 5.757,18.75 7,18.75 C7.414,18.75 7.75,19.086 7.75,19.5 C7.75,20.466 8.533,21.25 9.5,21.25 C10.467,21.25 11.25,20.466 11.25,19.5 L11.25,4.5 C11.25,3.533 10.467,2.75 9.5,2.75 C8.533,2.75 7.75,3.533 7.75,4.5 Z"></path>
+                                </svg>
+
+                                <p>
+                                    <strong>Sylens remembers every player's preference.</strong>
+                                    When it's your turn, it already knows what you want to see.
+                                </p>
+
+                                <span class="languages-remember-arrows" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path fill="currentColor"
+                                            d="M5.976,7.306 C5.698,7.09 5.217,6.726 5.055,6.604 C4.722,6.358 4.651,5.889 4.896,5.555 C5.142,5.222 5.612,5.151 5.945,5.396 L5.947,5.398 L5.948,5.398 C6.116,5.526 6.615,5.902 6.899,6.124 C7.468,6.568 8.229,7.178 8.992,7.841 C9.751,8.5 10.53,9.226 11.125,9.899 C11.421,10.234 11.688,10.575 11.884,10.901 C12.069,11.206 12.25,11.593 12.25,12 C12.25,12.406 12.069,12.793 11.884,13.099 C11.688,13.425 11.421,13.765 11.125,14.101 C10.53,14.774 9.751,15.5 8.992,16.159 C8.229,16.822 7.468,17.432 6.899,17.876 C6.616,18.097 6.117,18.474 5.947,18.602 L5.947,18.602 L5.945,18.604 C5.611,18.849 5.142,18.778 4.896,18.445 C4.65,18.111 4.722,17.641 5.056,17.395 C5.217,17.274 5.698,16.91 5.976,16.693 C6.532,16.259 7.271,15.666 8.008,15.026 C8.749,14.383 9.47,13.708 10,13.108 C10.266,12.807 10.468,12.542 10.6,12.324 C10.724,12.119 10.749,12.002 10.749,12.002 C10.749,12.002 10.724,11.88 10.6,11.675 C10.468,11.457 10.266,11.193 10,10.892 C9.47,10.292 8.749,9.616 8.008,8.973 C7.271,8.333 6.532,7.74 5.976,7.306 Z M12.976,7.306 C12.698,7.09 12.217,6.726 12.055,6.604 C11.722,6.358 11.651,5.889 11.896,5.555 C12.142,5.222 12.612,5.151 12.945,5.396 L12.948,5.398 L12.948,5.398 C13.117,5.526 13.616,5.902 13.899,6.124 C14.468,6.568 15.229,7.178 15.992,7.841 C16.751,8.5 17.53,9.226 18.125,9.899 C18.421,10.234 18.688,10.575 18.885,10.901 C19.069,11.206 19.25,11.593 19.25,12 C19.25,12.406 19.069,12.793 18.885,13.099 C18.688,13.425 18.421,13.765 18.125,14.101 C17.53,14.774 16.751,15.5 15.992,16.159 C15.229,16.822 14.468,17.432 13.899,17.876 C13.616,18.097 13.117,18.474 12.948,18.602 L12.947,18.602 L12.945,18.604 C12.611,18.849 12.142,18.778 11.896,18.445 C11.651,18.111 11.722,17.641 12.056,17.395 C12.217,17.274 12.698,16.91 12.976,16.693 C13.532,16.259 14.271,15.666 15.008,15.026 C15.749,14.383 16.47,13.708 17,13.108 C17.266,12.807 17.468,12.542 17.6,12.324 C17.723,12.119 17.749,12.002 17.749,12.002 C17.749,12.002 17.723,11.88 17.6,11.675 C17.468,11.457 17.266,11.193 17,10.892 C16.47,10.292 15.749,9.616 15.008,8.973 C14.271,8.333 13.532,7.74 12.976,7.306 Z">
+                                        </path>
+                                    </svg>
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path fill="currentColor"
+                                            d="M5.976,7.306 C5.698,7.09 5.217,6.726 5.055,6.604 C4.722,6.358 4.651,5.889 4.896,5.555 C5.142,5.222 5.612,5.151 5.945,5.396 L5.947,5.398 L5.948,5.398 C6.116,5.526 6.615,5.902 6.899,6.124 C7.468,6.568 8.229,7.178 8.992,7.841 C9.751,8.5 10.53,9.226 11.125,9.899 C11.421,10.234 11.688,10.575 11.884,10.901 C12.069,11.206 12.25,11.593 12.25,12 C12.25,12.406 12.069,12.793 11.884,13.099 C11.688,13.425 11.421,13.765 11.125,14.101 C10.53,14.774 9.751,15.5 8.992,16.159 C8.229,16.822 7.468,17.432 6.899,17.876 C6.616,18.097 6.117,18.474 5.947,18.602 L5.947,18.602 L5.945,18.604 C5.611,18.849 5.142,18.778 4.896,18.445 C4.65,18.111 4.722,17.641 5.056,17.395 C5.217,17.274 5.698,16.91 5.976,16.693 C6.532,16.259 7.271,15.666 8.008,15.026 C8.749,14.383 9.47,13.708 10,13.108 C10.266,12.807 10.468,12.542 10.6,12.324 C10.724,12.119 10.749,12.002 10.749,12.002 C10.749,12.002 10.724,11.88 10.6,11.675 C10.468,11.457 10.266,11.193 10,10.892 C9.47,10.292 8.749,9.616 8.008,8.973 C7.271,8.333 6.532,7.74 5.976,7.306 Z M12.976,7.306 C12.698,7.09 12.217,6.726 12.055,6.604 C11.722,6.358 11.651,5.889 11.896,5.555 C12.142,5.222 12.612,5.151 12.945,5.396 L12.948,5.398 L12.948,5.398 C13.117,5.526 13.616,5.902 13.899,6.124 C14.468,6.568 15.229,7.178 15.992,7.841 C16.751,8.5 17.53,9.226 18.125,9.899 C18.421,10.234 18.688,10.575 18.885,10.901 C19.069,11.206 19.25,11.593 19.25,12 C19.25,12.406 19.069,12.793 18.885,13.099 C18.688,13.425 18.421,13.765 18.125,14.101 C17.53,14.774 16.751,15.5 15.992,16.159 C15.229,16.822 14.468,17.432 13.899,17.876 C13.616,18.097 13.117,18.474 12.948,18.602 L12.947,18.602 L12.945,18.604 C12.611,18.849 12.142,18.778 11.896,18.445 C11.651,18.111 11.722,17.641 12.056,17.395 C12.217,17.274 12.698,16.91 12.976,16.693 C13.532,16.259 14.271,15.666 15.008,15.026 C15.749,14.383 16.47,13.708 17,13.108 C17.266,12.807 17.468,12.542 17.6,12.324 C17.723,12.119 17.749,12.002 17.749,12.002 C17.749,12.002 17.723,11.88 17.6,11.675 C17.468,11.457 17.266,11.193 17,10.892 C16.47,10.292 15.749,9.616 15.008,8.973 C14.271,8.333 13.532,7.74 12.976,7.306 Z">
+                                        </path>
+                                    </svg>
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <!-- COLUMN 3: YOU SEE MOVIES YOUR WAY -->
+
+                        <div class="languages-panel">
+
+                            <p class="languages-panel-heading">
+                                On your turn,
+                                <strong>you see movies your way</strong>
+                            </p>
+
+                            <div class="languages-results">
+
+                                <div class="languages-result lang-en">
+                                    <span class="languages-result-player">
+                                        <strong>Player 1</strong>
+                                        Prefers English
+                                    </span>
+                                    <span class="languages-result-movie">
+                                        <img src="assets/FilmRoll02Icon.svg" alt="">
+                                        <span class="languages-result-movie-text">
+                                            <strong>The Dark Knight</strong>
+                                        </span>
+                                    </span>
+                                </div>
+
+                                <div class="languages-result lang-ml">
+                                    <span class="languages-result-player">
+                                        <strong>Player 2</strong>
+                                        Prefers Malayalam (English letters)
+                                    </span>
+                                    <span class="languages-result-movie">
+                                        <img src="assets/FilmRoll02Icon.svg" alt="">
+                                        <span class="languages-result-movie-text">
+                                            <strong>Premam</strong>
+                                        </span>
+                                    </span>
+                                </div>
+
+                                <div class="languages-result lang-hi">
+                                    <span class="languages-result-player">
+                                        <strong>Player 3</strong>
+                                        Prefers हिन्दी
+                                    </span>
+                                    <span class="languages-result-movie">
+                                        <img src="assets/FilmRoll02Icon.svg" alt="">
+                                        <span class="languages-result-movie-text">
+                                            <strong>3 इडियट्स</strong>
+                                        </span>
+                                    </span>
+                                </div>
+
+                                <div class="languages-result lang-ta">
+                                    <span class="languages-result-player">
+                                        <strong>Player 4</strong>
+                                        Prefers தமிழ்
+                                    </span>
+                                    <span class="languages-result-movie">
+                                        <img src="assets/FilmRoll02Icon.svg" alt="">
+                                        <span class="languages-result-movie-text">
+                                            <strong>விக்ரம்</strong>
+                                        </span>
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BOTTOM MESSAGE -->
+
+                    <div class="languages-bottom">
+
+                        <div class="languages-bottom-main">
+
+                            <span class="languages-bottom-icon-badge">
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <defs>
+                                        <linearGradient id="lang-bottom-icon-grad" x1="0" y1="0" x2="24" y2="24"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop offset="0" stop-color="#a66cff"></stop>
+                                            <stop offset="1" stop-color="#ff42d0"></stop>
+                                        </linearGradient>
+                                    </defs>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M13.7154 11.5709C14.1321 11.6875 14.5647 11.7478 15 11.7478V11.7578C15.0817 11.7578 15.163 11.7557 15.2437 11.7516C18.0305 11.8789 20.25 14.1778 20.25 16.9961C20.25 17.4061 20.59 17.7461 21 17.7461C21.41 17.7461 21.75 17.4061 21.75 16.9961C21.75 14.2702 20.1231 11.9148 17.7899 10.8506C18.9771 9.98642 19.75 8.58601 19.75 7.00781C19.75 4.38781 17.62 2.25781 15 2.25781C12.5781 2.25781 10.5748 4.07795 10.2858 6.42274C9.87674 6.30766 9.44546 6.24609 9 6.24609C6.38 6.24609 4.25 8.37609 4.25 10.9961C4.25 12.5787 5.02718 13.9825 6.22007 14.8461C3.88156 15.9081 2.25 18.2663 2.25 20.9961C2.25 21.4061 2.59 21.7461 3 21.7461C3.41 21.7461 3.75 21.4061 3.75 20.9961C3.75 18.0961 6.1 15.7461 9 15.7461C11.9 15.7461 14.25 18.0961 14.25 20.9961C14.25 21.4061 14.59 21.7461 15 21.7461C15.41 21.7461 15.75 21.4061 15.75 20.9961C15.75 18.2663 14.1184 15.9081 11.7799 14.8461C12.8262 14.0886 13.5527 12.9156 13.7154 11.5709ZM15.0937 10.2467C15.0625 10.2463 15.0313 10.2461 15 10.2461C14.9853 10.2461 14.9707 10.2465 14.9563 10.2474C14.4941 10.2402 14.0452 10.1406 13.6337 9.94858C13.3735 8.79592 12.6932 7.80099 11.7627 7.13366C11.7609 7.08784 11.76 7.04238 11.76 6.9978C11.76 5.2078 13.22 3.7478 15.01 3.7478C16.8 3.7478 18.26 5.2078 18.26 6.9978C18.26 8.7598 16.8453 10.202 15.0937 10.2467ZM12.25 10.9961C12.25 12.7861 10.79 14.2461 9 14.2461C7.21 14.2461 5.75 12.7861 5.75 10.9961C5.75 9.20609 7.21 7.74609 9 7.74609C9.5813 7.74609 10.1278 7.90006 10.6008 8.16931C10.6398 8.1981 10.6815 8.22314 10.7254 8.24398C11.6401 8.82011 12.25 9.83917 12.25 10.9961Z"
+                                        fill="url(#lang-bottom-icon-grad)"></path>
+                                </svg>
+                            </span>
+
+                            <div>
+                                <strong>Everyone plays together.</strong>
+                                <p>Different languages. Different scripts. <span class="highlight">One unforgettable game.</span></p>
+                            </div>
+
+                        </div>
+
+                        <div class="languages-bottom-coming-group">
+
+                            <img src="assets/comingsoon.png" alt="" class="languages-bottom-art">
+
+                            <div class="languages-bottom-coming">
+                                <strong>More Languages<br>Coming Soon!</strong>
+                                <span>Our collection keeps growing.</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- WHY SYLENS -->
+
+            <section id="why-sylens" class="why-sylens">
+
+                <div class="section-inner">
+
+                    <div class="section-heading">
+
+                        <p class="section-tag">
+                            Why Sylens
+                        </p>
+
+                        <h2>
+                            Built for game night.
+                        </h2>
+
+                        <p>
+                            Everything you need for a great round, nothing you
+                            don't.
+                        </p>
+
+                    </div>
+
+                    <div class="why-grid">
+
+                        <div class="why-card">
+                            <img src="assets/FlashIcon.svg" alt="" class="why-icon">
+                            <h3 class="why-title">Fast-Paced Rounds</h3>
+                            <p class="why-text">No waiting around, jump straight into the action.</p>
+                        </div>
+
+                        <div class="why-card">
+                            <img src="assets/FilmRoll02Icon.svg" alt="" class="why-icon">
+                            <h3 class="why-title">28,000+ Movies</h3>
+                            <p class="why-text">From classics to modern hits, across every genre.</p>
+                        </div>
+
+                        <div class="why-card">
+                            <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M3 12h18"></path>
+                                <path
+                                    d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9s1.3-6.5 3.8-9z">
+                                </path>
+                            </svg>
+                            <h3 class="why-title">Multiple Languages</h3>
+                            <p class="why-text">Every player picks their own languages, even reading Malayalam, Hindi or Tamil in English letters.</p>
+                        </div>
+
+                        <div class="why-card">
+                            <img src="assets/UserGrroup02Icon.svg" alt="" class="why-icon">
+                            <h3 class="why-title">Made for Groups</h3>
+                            <p class="why-text">Friends, family and game nights of any size.</p>
+                        </div>
+
+                        <div class="why-card">
+                            <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="4" width="18" height="13" rx="2"></rect>
+                                <path d="M8 21h8"></path>
+                                <path d="M12 17v4"></path>
+                            </svg>
+                            <h3 class="why-title">Big-Screen Ready</h3>
+                            <p class="why-text">Host on Android TV now, with Apple TV on the way.</p>
+                        </div>
+
+                        <div class="why-card">
+                            <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <circle cx="12" cy="12" r="1"></circle>
+                            </svg>
+                            <h3 class="why-title">Strategic Scoring</h3>
+                            <p class="why-text">Power-ups, time bonuses and sudden death keep every round tense.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SEE SYLENS IN ACTION -->
+
+            <section id="videos" class="videos">
+
+                <div class="section-inner">
+
+                    <div class="video-card">
+
+                        <svg class="video-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M10 8.5l6 3.5-6 3.5v-7z" fill="currentColor" stroke="none"></path>
+                        </svg>
+
+                        <h2>See Sylens in Action</h2>
+
+                        <p>
+                            Don't just take our word for it: watch full rounds
+                            of Just Vibing and Squad War, plus how-to-play
+                            walkthroughs, on the official Sylens YouTube channel.
+                        </p>
+
+                        <a class="video-cta" href="https://www.youtube.com/@SylensGame" target="_blank" rel="noopener">
+                            Visit our YouTube channel
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FAQ -->
+
+            <section id="faq" class="faq">
+
+                <div class="section-inner">
+
+                    <div class="section-heading">
+
+                        <p class="section-tag">
+                            FAQ
+                        </p>
+
+                        <h2>
+                            Frequently Asked Questions
+                        </h2>
+
+                    </div>
+
+                    <div class="faq-list">
+
+                        <details class="faq-item">
+                            <summary>What is Sylens?</summary>
+                            <p>
+                                Sylens is a fast-paced movie charades game. One
+                                player acts out a movie without speaking while
+                                others race the clock to guess it.
+                            </p>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>How do I play?</summary>
+                            <p>
+                                Pick a movie, tap to reveal it to yourself, act
+                                it out with no talking, and let your team shout
+                                out guesses before time runs out.
+                            </p>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>How many people can play?</summary>
+                            <p>
+                                Sylens needs at least two people: one to act
+                                and one to guess. Just Vibing is for one team,
+                                while Squad War is for two or more teams. You
+                                can also play together with TV Party.
+                            </p>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>What's the difference between Just Vibing and Squad War?</summary>
+                            <p>
+                                Just Vibing is casual one-team play with no scoring
+                                and unlimited skips. Squad War is a timed,
+                                team-based mode with scoring, power-ups and
+                                sudden-death tiebreakers.
+                            </p>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>Can I play Sylens on a TV?</summary>
+                            <p>
+                                Yes. Sylens runs natively on Android TV today
+                                through the same Google Play listing. TV Party
+                                lets phones act as controllers while the TV
+                                mirrors a Squad War game, without ever showing
+                                the movie title on screen. An Apple TV app is
+                                currently in App Store review.
+                            </p>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>What languages are supported?</summary>
+                            <p>
+                                Sylens supports English, Hindi, Malayalam and
+                                Tamil. Hindi, Malayalam and Tamil titles are
+                                also available fully spelled out in English
+                                letters, for players who speak the language
+                                but can't read the script.
+                            </p>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>Can players who read different languages play together?</summary>
+                            <p>
+                                Yes. Each player picks their own languages,
+                                separate from the app's display language, and
+                                Sylens remembers it for their turn, so a
+                                mixed-language group can play on the same
+                                team.
+                            </p>
+                        </details>
+
+                        <details class="faq-item">
+                            <summary>How does scoring work in Squad War?</summary>
+                            <p>
+                                Each turn starts with a point value that ticks
+                                down. Guess correctly and you keep the
+                                remaining points plus a time bonus. Power-ups
+                                like Change Movie, Clue and Half Name
+                                cost points to use, and a timeout scores
+                                zero.
+                            </p>
+                        </details>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- TIPS & TRICKS -->
+
+            <section id="tips" class="tips">
+
+                <div class="section-inner">
+
+                    <div class="section-heading">
+
+                        <p class="section-tag">
+                            Tips &amp; Tricks
+                        </p>
+
+                        <h2>
+                            Master the Sylens.
+                        </h2>
+
+                    </div>
+
+                    <div class="tips-grid">
+
+                        <div class="tip-card">
+                            <svg class="tip-icon tip-icon-act" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path fill="currentColor" d="M18 17.25C18.4557 17.25 18.8351 17.2493 19.1455 17.2705C19.4626 17.2921 19.7624 17.3387 20.0527 17.459C20.7264 17.7381 21.2619 18.2736 21.541 18.9473C21.6613 19.2376 21.7079 19.5374 21.7295 19.8545C21.7507 20.1649 21.75 20.5443 21.75 21C21.75 21.4142 21.4142 21.75 21 21.75C20.5858 21.75 20.25 21.4142 20.25 21C20.25 20.524 20.2493 20.2045 20.2324 19.957C20.216 19.7163 20.1872 19.5986 20.1553 19.5215C20.0284 19.2152 19.7848 18.9716 19.4785 18.8447C19.4014 18.8128 19.2837 18.784 19.043 18.7676C18.7955 18.7507 18.476 18.75 18 18.75C17.524 18.75 17.2045 18.7507 16.957 18.7676C16.7163 18.784 16.5986 18.8128 16.5215 18.8447C16.2152 18.9716 15.9716 19.2152 15.8447 19.5215C15.8128 19.5986 15.784 19.7163 15.7676 19.957C15.7507 20.2045 15.75 20.524 15.75 21C15.75 21.4142 15.4142 21.75 15 21.75C14.5858 21.75 14.25 21.4142 14.25 21C14.25 20.524 14.2493 20.2045 14.2324 19.957C14.216 19.7163 14.1872 19.5986 14.1553 19.5215C14.0284 19.2152 13.7848 18.9716 13.4785 18.8447C13.4014 18.8128 13.2837 18.784 13.043 18.7676C12.7955 18.7507 12.476 18.75 12 18.75C11.524 18.75 11.2045 18.7507 10.957 18.7676C10.7163 18.784 10.5986 18.8128 10.5215 18.8447C10.2152 18.9716 9.97159 19.2152 9.84473 19.5215C9.81277 19.5986 9.784 19.7163 9.76758 19.957C9.75071 20.2045 9.75 20.524 9.75 21C9.75 21.4142 9.41421 21.75 9 21.75C8.58579 21.75 8.25 21.4142 8.25 21C8.25 20.524 8.24929 20.2045 8.23242 19.957C8.216 19.7163 8.18723 19.5986 8.15527 19.5215C8.02841 19.2152 7.7848 18.9716 7.47852 18.8447C7.40136 18.8128 7.28368 18.784 7.04297 18.7676C6.79554 18.7507 6.47603 18.75 6 18.75C5.52397 18.75 5.20446 18.7507 4.95703 18.7676C4.71632 18.784 4.59864 18.8128 4.52148 18.8447C4.2152 18.9716 3.97159 19.2152 3.84473 19.5215C3.81277 19.5986 3.784 19.7163 3.76758 19.957C3.75071 20.2045 3.75 20.524 3.75 21C3.75 21.4142 3.41421 21.75 3 21.75C2.58579 21.75 2.25 21.4142 2.25 21C2.25 20.5443 2.24933 20.1649 2.27051 19.8545C2.29215 19.5374 2.33872 19.2376 2.45898 18.9473C2.73809 18.2736 3.27358 17.7381 3.94727 17.459C4.23762 17.3387 4.53744 17.2921 4.85449 17.2705C5.16486 17.2493 5.54432 17.25 6 17.25C6.45568 17.25 6.83514 17.2493 7.14551 17.2705C7.46256 17.2921 7.76238 17.3387 8.05273 17.459C8.41517 17.6091 8.73596 17.8351 9 18.1152C9.26404 17.8351 9.58483 17.6091 9.94727 17.459C10.2376 17.3387 10.5374 17.2921 10.8545 17.2705C11.1649 17.2493 11.5443 17.25 12 17.25C12.4557 17.25 12.8351 17.2493 13.1455 17.2705C13.4626 17.2921 13.7624 17.3387 14.0527 17.459C14.4152 17.6091 14.736 17.8351 15 18.1152C15.264 17.8351 15.5848 17.6091 15.9473 17.459C16.2376 17.3387 16.5374 17.2921 16.8545 17.2705C17.1649 17.2493 17.5443 17.25 18 17.25ZM10 2.25C10.4142 2.25 10.75 2.58579 10.75 3C10.75 7.2283 7.71362 10.7775 3.71289 11.5791C4.2608 12.3295 4.75 13.4405 4.75 15C4.75 15.4142 4.41421 15.75 4 15.75C3.58579 15.75 3.25 15.4142 3.25 15C3.25 13.6822 2.81534 12.8454 2.41406 12.3438C2.20962 12.0882 2.00762 11.9117 1.8623 11.8027C1.78996 11.7485 1.73189 11.7111 1.69629 11.6895C1.67879 11.6788 1.66678 11.672 1.66113 11.6689C1.65885 11.6677 1.65735 11.667 1.65723 11.667C1.65752 11.6671 1.659 11.6674 1.66016 11.668L1.66211 11.6689L1.66406 11.6709L1.66504 11.6699C1.641 11.6579 1.61807 11.6442 1.5957 11.6299C1.58366 11.6221 1.5721 11.6139 1.56055 11.6055C1.53472 11.5868 1.51038 11.5666 1.4873 11.5449C1.47874 11.5369 1.4701 11.529 1.46191 11.5205C1.43538 11.4932 1.41168 11.4636 1.38965 11.4326C1.3819 11.4217 1.37436 11.4107 1.36719 11.3994C1.32176 11.3278 1.28854 11.2486 1.26953 11.1641C1.26728 11.154 1.26454 11.144 1.2627 11.1338C1.26186 11.1292 1.26051 11.1247 1.25977 11.1201C1.25887 11.1146 1.25858 11.109 1.25781 11.1035C1.25505 11.0836 1.25311 11.0634 1.25195 11.043C1.25152 11.0355 1.25118 11.028 1.25098 11.0205C1.25079 11.0137 1.25 11.0069 1.25 11C1.25 10.9885 1.25047 10.9772 1.25098 10.9658C1.2515 10.9544 1.25189 10.943 1.25293 10.9316C1.25579 10.9 1.2619 10.8692 1.26855 10.8389C1.27691 10.8009 1.28765 10.7637 1.30176 10.7275C1.30586 10.717 1.3099 10.7066 1.31445 10.6963C1.33094 10.6591 1.35055 10.6232 1.37305 10.5889C1.37742 10.5822 1.38215 10.5758 1.38672 10.5693C1.4114 10.5342 1.43883 10.5006 1.46973 10.4697L1.47168 10.4678C1.47506 10.4643 1.48094 10.458 1.48926 10.4492C1.50642 10.4311 1.53339 10.4016 1.56934 10.3613C1.6413 10.2808 1.74821 10.1569 1.87793 9.99121C2.13784 9.65911 2.48944 9.16161 2.8418 8.51562C3.54659 7.22341 4.25 5.34646 4.25 3C4.25 2.58579 4.58579 2.25 5 2.25C5.41421 2.25001 5.75 2.58579 5.75 3C5.75 5.65337 4.95335 7.7766 4.1582 9.23438C3.99375 9.53586 3.8262 9.80749 3.66797 10.0518C6.85714 9.29243 9.25 6.41209 9.25 3C9.25 2.58579 9.58579 2.25 10 2.25ZM19 2.25C19.4142 2.25 19.75 2.58579 19.75 3C19.75 5.34646 20.4534 7.22341 21.1582 8.51562C21.5106 9.16161 21.8622 9.65911 22.1221 9.99121C22.2518 10.157 22.3587 10.2808 22.4307 10.3613C22.4666 10.4016 22.4936 10.4311 22.5107 10.4492C22.5191 10.458 22.5249 10.4643 22.5283 10.4678L22.5303 10.4697C22.561 10.5005 22.5877 10.5344 22.6123 10.5693C22.6169 10.5758 22.6216 10.5822 22.626 10.5889C22.6485 10.6232 22.668 10.659 22.6846 10.6963C22.6891 10.7066 22.6932 10.717 22.6973 10.7275C22.7114 10.7638 22.7231 10.8008 22.7314 10.8389C22.7381 10.8692 22.7432 10.9001 22.7461 10.9316C22.7471 10.943 22.7475 10.9544 22.748 10.9658C22.7486 10.9772 22.75 10.9885 22.75 11C22.75 11.0069 22.7482 11.0137 22.748 11.0205C22.7478 11.028 22.7475 11.0355 22.7471 11.043C22.7459 11.0634 22.744 11.0835 22.7412 11.1035C22.7404 11.109 22.7411 11.1147 22.7402 11.1201C22.7395 11.1248 22.7372 11.1292 22.7363 11.1338C22.7345 11.144 22.7318 11.154 22.7295 11.1641C22.7104 11.2487 22.6774 11.3277 22.6318 11.3994C22.6247 11.4108 22.6171 11.4217 22.6094 11.4326C22.5873 11.4636 22.5637 11.4932 22.5371 11.5205C22.5289 11.529 22.5203 11.5369 22.5117 11.5449C22.4886 11.5665 22.4643 11.5868 22.4385 11.6055C22.4269 11.6139 22.4154 11.6221 22.4033 11.6299C22.3812 11.644 22.3588 11.658 22.335 11.6699L22.3359 11.6709L22.3379 11.6689L22.3398 11.668C22.341 11.6674 22.3425 11.6671 22.3428 11.667C22.3428 11.667 22.3413 11.6676 22.3389 11.6689C22.3332 11.672 22.3212 11.6788 22.3037 11.6895C22.2681 11.7111 22.21 11.7485 22.1377 11.8027C21.9924 11.9117 21.7904 12.0882 21.5859 12.3438C21.1847 12.8454 20.75 13.6822 20.75 15C20.75 15.4142 20.4142 15.75 20 15.75C19.5858 15.75 19.25 15.4142 19.25 15C19.25 13.4408 19.7384 12.3295 20.2861 11.5791C16.2859 10.7771 13.25 7.22797 13.25 3C13.25 2.58579 13.5858 2.25 14 2.25C14.4142 2.25 14.75 2.58579 14.75 3C14.75 6.41143 17.1418 9.29175 20.3301 10.0518C20.1722 9.80762 20.0061 9.53549 19.8418 9.23438C19.0466 7.7766 18.25 5.65337 18.25 3C18.25 2.58579 18.5858 2.25 19 2.25Z"></path>
+                            </svg>
+                            <h3 class="tip-title">Act the genre first</h3>
+                            <p class="tip-text">
+                                A quick horror flinch or a dance move narrows
+                                things down fast, lead with the vibe before
+                                the details.
+                            </p>
+                        </div>
+
+                        <div class="tip-card">
+                            <svg class="tip-icon tip-icon-clock" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path fill="currentColor" d="M11.9999 3.24995C17.1085 3.24995 21.2499 7.39131 21.2499 12.4999C21.2499 14.7899 20.4154 16.8835 19.037 18.4989L21.0272 20.4638C21.3219 20.7547 21.3249 21.2295 21.0341 21.5243C20.7431 21.8191 20.2683 21.8222 19.9735 21.5311L17.9745 19.5585C16.3625 20.9243 14.2782 21.7499 11.9999 21.7499C9.73333 21.7499 7.65832 20.9332 6.04975 19.58L4.02143 21.5419C3.72366 21.8296 3.24874 21.8219 2.96088 21.5243C2.6731 21.2265 2.68081 20.7516 2.97846 20.4638L4.98432 18.5243C3.59298 16.9055 2.74994 14.8019 2.74994 12.4999C2.74994 7.39131 6.89131 3.24995 11.9999 3.24995ZM11.9999 4.74995C7.71973 4.74995 4.24994 8.21973 4.24994 12.4999C4.24994 16.7801 7.71973 20.2499 11.9999 20.2499C16.2801 20.2499 19.7499 16.7801 19.7499 12.4999C19.7499 8.21973 16.2801 4.74995 11.9999 4.74995ZM11.9999 7.24995C12.4141 7.24995 12.7499 7.58574 12.7499 7.99995V12.1894L14.5302 13.9696C14.8231 14.2625 14.8231 14.7373 14.5302 15.0302C14.2373 15.3231 13.7625 15.3231 13.4696 15.0302L11.4696 13.0302C11.329 12.8895 11.2499 12.6988 11.2499 12.4999V7.99995C11.2499 7.58574 11.5857 7.24995 11.9999 7.24995ZM4.46967 2.46968C4.76256 2.17678 5.23733 2.17678 5.53022 2.46968C5.82306 2.76257 5.8231 3.23735 5.53022 3.53022L2.53022 6.53022C2.23735 6.8231 1.76257 6.82306 1.46968 6.53022C1.17678 6.23733 1.17678 5.76257 1.46968 5.46968L4.46967 2.46968ZM18.4696 2.46968C18.7625 2.17678 19.2373 2.17678 19.5302 2.46968L22.5302 5.46968C22.823 5.76257 22.823 6.23735 22.5302 6.53022C22.2373 6.8231 21.7625 6.82306 21.4696 6.53022L18.4696 3.53022C18.1767 3.23733 18.1767 2.76257 18.4696 2.46968Z"></path>
+                            </svg>
+                            <h3 class="tip-title">Watch the clock</h3>
+                            <p class="tip-text">
+                                In Squad War, your score is tied to time
+                                remaining: a fast, confident guess earns a
+                                bigger bonus than a slow one.
+                            </p>
+                        </div>
+
+                        <div class="tip-card">
+                            <svg class="tip-icon tip-icon-target" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path fill="currentColor" d="M1.75,12 C1.75,6.063 6.563,1.25 12.5,1.25 C13.235,1.25 13.954,1.324 14.649,1.465 C15.055,1.547 15.317,1.943 15.235,2.349 C15.153,2.755 14.757,3.017 14.351,2.935 C13.753,2.814 13.134,2.75 12.5,2.75 C7.391,2.75 3.25,6.891 3.25,12 C3.25,17.109 7.391,21.25 12.5,21.25 C17.609,21.25 21.75,17.109 21.75,12 C21.75,11.366 21.686,10.747 21.565,10.149 C21.483,9.743 21.745,9.347 22.151,9.265 C22.557,9.183 22.953,9.445 23.035,9.851 C23.176,10.546 23.25,11.265 23.25,12 C23.25,17.937 18.437,22.75 12.5,22.75 C6.563,22.75 1.75,17.937 1.75,12 Z M20.403,2.134 C20.406,2.142 20.408,2.149 20.41,2.156 L20.846,3.721 L22.305,4.082 C22.314,4.084 22.324,4.087 22.333,4.089 C23.163,4.329 23.537,5.356 22.951,6.064 C22.395,6.735 21.658,7.599 20.673,8.103 C19.731,8.584 18.621,8.713 17.325,8.228 L13.061,12.493 C12.768,12.786 12.293,12.786 12,12.493 C11.707,12.2 11.707,11.725 12,11.432 L16.285,7.147 C15.818,5.931 15.922,4.853 16.371,3.92 C16.86,2.905 17.727,2.128 18.451,1.536 C19.155,0.961 20.153,1.332 20.403,2.134 Z M12.5,7.75 C10.153,7.75 8.25,9.653 8.25,12 C8.25,14.347 10.153,16.25 12.5,16.25 C14.847,16.25 16.75,14.347 16.75,12 C16.75,11.586 17.086,11.25 17.5,11.25 C17.914,11.25 18.25,11.586 18.25,12 C18.25,15.176 15.676,17.75 12.5,17.75 C9.324,17.75 6.75,15.176 6.75,12 C6.75,8.824 9.324,6.25 12.5,6.25 C12.914,6.25 13.25,6.586 13.25,7 C13.25,7.414 12.914,7.75 12.5,7.75 Z M19.989,6.767 C20.556,6.477 21.042,5.99 21.521,5.433 L20.06,5.073 C19.798,5.008 19.59,4.806 19.518,4.546 L19.079,2.967 C18.501,3.466 18.004,3.985 17.723,4.571 C17.441,5.157 17.348,5.86 17.759,6.788 C18.722,7.174 19.421,7.058 19.989,6.767 Z"></path>
+                            </svg>
+                            <h3 class="tip-title">Spend power-ups wisely</h3>
+                            <p class="tip-text">
+                                Clue and Half Name both cost
+                                points, so save them for the movies you're
+                                genuinely stuck on.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- WHAT'S NEW -->
+
+            <section id="whats-new" class="whats-new">
+
+                <div class="section-inner">
+
+                    <div class="section-heading">
+
+                        <p class="section-tag">
+                            What's New
+                        </p>
+
+                        <h2>
+                            Latest from Sylens
+                        </h2>
+
+                    </div>
+
+                    <div class="whats-new-list">
+
+                        <div class="whats-new-item is-live">
+
+                            <span class="whats-new-marker" aria-hidden="true"></span>
+
+                            <div>
+                                <p class="whats-new-status">Available now</p>
+                                <h3 class="whats-new-title">Sylens is here</h3>
+                                <p class="whats-new-text">
+                                    Sylens launches on Google Play and Android
+                                    TV with Just Vibing, Squad War and TV Party,
+                                    spanning English, Hindi, Malayalam and
+                                    Tamil.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="whats-new-item is-coming">
+
+                            <span class="whats-new-marker" aria-hidden="true"></span>
+
+                            <div>
+                                <p class="whats-new-status">Coming soon</p>
+                                <h3 class="whats-new-title">iPhone, iPad &amp; Apple TV</h3>
+                                <p class="whats-new-text">
+                                    The iOS and tvOS apps are in App Store
+                                    review. Check back here or subscribe on
+                                    YouTube for the announcement.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- COMMUNITY -->
+
+            <section id="community" class="community">
+
+                <div class="section-inner">
+
+                    <div class="section-heading">
+
+                        <p class="section-tag">
+                            Community
+                        </p>
+
+                        <h2>
+                            Join in.
+                        </h2>
+
+                    </div>
+
+                    <div class="community-grid">
+
+                        <div class="community-card">
+
+                            <svg class="community-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M10 8.5l6 3.5-6 3.5v-7z" fill="currentColor" stroke="none"></path>
+                            </svg>
+
+                            <h3 class="community-title">Follow on YouTube</h3>
+
+                            <p class="community-text">
+                                Gameplay, tips and behind-the-scenes from the
+                                Sylens team.
+                            </p>
+
+                            <a class="community-link" href="https://www.youtube.com/@SylensGame" target="_blank"
+                                rel="noopener">@SylensGame</a>
+
+                        </div>
+
+                        <div class="community-card">
+
+                            <svg class="community-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M3 12h18"></path>
+                                <path
+                                    d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9s1.3-6.5 3.8-9z">
+                                </path>
+                            </svg>
+
+                            <h3 class="community-title">Request a Language</h3>
+
+                            <p class="community-text">
+                                Want Sylens in a language we don't support
+                                yet? Let us know and we'll look into adding it.
+                            </p>
+
+                            <a class="community-link" href="https://vbverse.com/privacypolicy/sylens/support/"
+                                target="_blank" rel="noopener">Contact Support</a>
+
+                        </div>
+
+                        <div class="community-card">
+
+                            <svg class="community-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="6" cy="12" r="2.4"></circle>
+                                <circle cx="18" cy="6" r="2.4"></circle>
+                                <circle cx="18" cy="18" r="2.4"></circle>
+                                <path d="M8.2 10.8l7.6-4.4"></path>
+                                <path d="M8.2 13.2l7.6 4.4"></path>
+                            </svg>
+
+                            <h3 class="community-title">Share Sylens</h3>
+
+                            <p class="community-text">
+                                Know someone who'd love game night? Send them
+                                the link.
+                            </p>
+
+                            <button type="button" class="copy-btn" data-copy-url>Copy Link</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FINAL DOWNLOAD CTA -->
+
+            <section id="download" class="final-download">
+
+                <div class="section-inner">
+
+                    <div class="section-heading">
+
+                        <p class="section-tag">
+                            Get Sylens
+                        </p>
+
+                        <h2>
+                            Ready to play?
+                        </h2>
+
+                        <p>
+                            Guess. Act. Laugh Together.
+                        </p>
+
+                    </div>
+
+                    <div class="stores">
+
+                        <a class="store" href="https://play.google.com/store/apps/details?id=com.coderdoniv.sylens"
+                            target="_blank" rel="noopener">
+
+                            <img src="assets/sylens-icon.svg" alt="" class="store-icon">
+
+                            <span class="store-content">
+                                <span class="store-title">Google Play</span>
+                                <span class="store-subtitle">Phone &amp; Android TV</span>
+                            </span>
+
+                        </a>
+
+                        <div class="store apple disabled">
+
+                            <img src="assets/sylens-icon.svg" alt="" class="store-icon">
+
+                            <span class="store-content">
+                                <span class="store-title">App Store</span>
+                                <span class="store-subtitle">iPhone, iPad &amp; Apple TV, coming soon</span>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <p class="final-download-url">
+                        Visit <span>apps.vbverse.com/sylens</span> anytime to come back here.
+                    </p>
 
                 </div>
 
@@ -1100,8 +4540,54 @@
         </main>
 
 
-        <footer>
-            © 2026 Sylens · VBVerse
+        <footer class="site-footer">
+
+            <div class="footer-grid">
+
+                <div>
+                    <div class="footer-brand">Sylens</div>
+                    <p class="footer-brand-text">
+                        Fast-paced movie charades for friends, family and
+                        everyone who loves movies.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="footer-heading">Game</p>
+                    <div class="footer-links">
+                        <a href="#how-to-play">How to Play</a>
+                        <a href="#game-modes">Game Modes</a>
+                        <a href="#faq">FAQ</a>
+                        <a href="#videos">Videos</a>
+                        <a href="https://vbverse.com/privacypolicy/sylens/support/" target="_blank"
+                            rel="noopener">Support</a>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="footer-heading">Legal</p>
+                    <div class="footer-links">
+                        <a href="https://vbverse.com/privacypolicy/sylens/" target="_blank" rel="noopener">Privacy
+                            Policy</a>
+                        <a href="https://vbverse.com/privacypolicy/sylens/terms/" target="_blank" rel="noopener">Terms
+                            of Use</a>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="footer-heading">Follow</p>
+                    <div class="footer-links">
+                        <a href="https://www.youtube.com/@SylensGame" target="_blank" rel="noopener">YouTube</a>
+                        <a href="https://vbverse.com/" target="_blank" rel="noopener">VBVerse</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 Sylens · A VBVerse app
+            </div>
+
         </footer>
 
     </div>
@@ -1141,6 +4627,36 @@
 
 
     <script>
+
+        /*
+         * SCROLL CUE
+         *
+         * The blinking down arrow is pinned to the bottom
+         * edge of the screen (not the hero section), so it
+         * hides itself once the visitor has scrolled away
+         * from the hero instead of trailing along forever.
+         */
+
+        const scrollCue = document.querySelector(".scroll-cue");
+        const heroSection = document.querySelector(".hero");
+
+        if (scrollCue && heroSection) {
+
+            function updateScrollCue() {
+
+                const heroBottom = heroSection.getBoundingClientRect().bottom;
+
+                scrollCue.classList.toggle("is-hidden", heroBottom <= window.innerHeight);
+
+            }
+
+            updateScrollCue();
+
+            window.addEventListener("scroll", updateScrollCue, { passive: true });
+            window.addEventListener("resize", updateScrollCue);
+
+        }
+
 
         /*
          * DEVICE DETECTION
@@ -1200,6 +4716,44 @@
         else if (isIOS) {
 
             document.body.classList.add("ios-device");
+
+        }
+
+
+        /*
+         * COPY LINK BUTTON
+         *
+         * Lets visitors copy the permanent site URL
+         * from the "Share Sylens" community card.
+         */
+
+        const copyButton = document.querySelector("[data-copy-url]");
+
+        if (copyButton) {
+
+            copyButton.addEventListener("click", async () => {
+
+                const originalText = copyButton.textContent;
+
+                try {
+
+                    await navigator.clipboard.writeText("https://apps.vbverse.com/sylens/");
+
+                    copyButton.textContent = "Copied!";
+
+                } catch (err) {
+
+                    copyButton.textContent = "Copy failed";
+
+                }
+
+                setTimeout(() => {
+
+                    copyButton.textContent = originalText;
+
+                }, 1800);
+
+            });
 
         }
 
