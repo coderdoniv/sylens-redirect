@@ -4,6 +4,24 @@
 <head>
     <meta charset="UTF-8">
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4VTZT5PE7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-R4VTZT5PE7');
+    </script>
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "y3shbjeo2d");
+    </script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description" content="Sylens: Movie Charades. Guess. Act. Laugh Together.">
@@ -4704,7 +4722,22 @@
 
         if (isAndroid) {
 
-            window.location.replace(androidUrl);
+            let redirectedToStore = false;
+
+            function goToPlayStore() {
+                if (redirectedToStore) return;
+                redirectedToStore = true;
+                window.location.replace(androidUrl);
+            }
+
+            gtag('event', 'play_store_redirect', {
+                event_category: 'engagement',
+                event_label: 'android_auto_redirect',
+                event_callback: goToPlayStore,
+                event_timeout: 1000
+            });
+
+            setTimeout(goToPlayStore, 1000);
 
         }
 
@@ -4716,6 +4749,45 @@
         else if (isIOS) {
 
             document.body.classList.add("ios-device");
+            gtag('event', 'ios_coming_soon_view');
+
+        }
+
+
+        /*
+         * SECTION VISIBILITY
+         *
+         * Fires once per section the first time it's at least
+         * 50% visible, so GA4 can show which sections of the
+         * long landing page people actually reach vs skip.
+         */
+
+        const trackedSections = document.querySelectorAll("section[id]");
+
+        if (trackedSections.length && "IntersectionObserver" in window) {
+
+            const seenSections = new Set();
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+
+                entries.forEach((entry) => {
+
+                    if (entry.isIntersecting && !seenSections.has(entry.target.id)) {
+
+                        seenSections.add(entry.target.id);
+
+                        gtag('event', 'section_view', {
+                            event_category: 'engagement',
+                            event_label: entry.target.id
+                        });
+
+                    }
+
+                });
+
+            }, { threshold: 0.5 });
+
+            trackedSections.forEach((section) => sectionObserver.observe(section));
 
         }
 
@@ -4740,6 +4812,7 @@
                     await navigator.clipboard.writeText("https://apps.vbverse.com/sylens/");
 
                     copyButton.textContent = "Copied!";
+                    gtag('event', 'copy_link_click');
 
                 } catch (err) {
 
@@ -4756,6 +4829,30 @@
             });
 
         }
+
+
+        /*
+         * PLAY STORE CTA CLICKS
+         *
+         * Tracks clicks on every "store" button so we can
+         * see which section of the page (hero, mid-page,
+         * footer) converts best.
+         */
+
+        document.querySelectorAll('a.store[href*="play.google.com"]').forEach((link) => {
+
+            link.addEventListener("click", () => {
+
+                const ctaSection = link.closest('section');
+
+                gtag('event', 'play_store_cta_click', {
+                    event_category: 'engagement',
+                    event_label: (ctaSection && (ctaSection.id || ctaSection.className)) || 'unknown_section'
+                });
+
+            });
+
+        });
 
     </script>
 
