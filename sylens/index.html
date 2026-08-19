@@ -4717,10 +4717,20 @@
 
 
         /*
+         * ?preview=1 skips the Android/iOS gating below,
+         * so the full desktop landing page can be shared
+         * and viewed on any device (e.g. for review links).
+         */
+
+        const isPreview =
+            new URLSearchParams(window.location.search).has("preview");
+
+
+        /*
          * Android phones go directly to Google Play.
          */
 
-        if (isAndroid) {
+        if (isAndroid && !isPreview) {
 
             let redirectedToStore = false;
 
@@ -4746,7 +4756,7 @@
          * iPhone / iPad gets the Coming Soon experience.
          */
 
-        else if (isIOS) {
+        else if (isIOS && !isPreview) {
 
             document.body.classList.add("ios-device");
             gtag('event', 'ios_coming_soon_view');
