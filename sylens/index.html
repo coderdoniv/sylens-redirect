@@ -547,65 +547,6 @@
         }
 
         /* ==================================================
-           DOWNLOAD CARD
-        ================================================== */
-
-        .download-card {
-            width: min(760px, 100%);
-
-            margin: 0 auto 90px;
-
-            padding: 34px;
-
-            border-radius: 28px;
-
-            border: 1px solid var(--glass-border);
-
-            background:
-                linear-gradient(135deg,
-                    rgba(25, 5, 48, 0.86),
-                    rgba(12, 2, 28, 0.76));
-
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-
-            box-shadow:
-                0 30px 90px rgba(0, 0, 0, 0.45);
-
-            text-align: center;
-        }
-
-        .download-icon {
-            width: 72px;
-            height: 72px;
-
-            margin: 0 auto 18px;
-
-            display: block;
-
-            border-radius: 6px;
-
-            filter:
-                drop-shadow(0 0 20px rgba(160, 60, 255, 0.55));
-        }
-
-        .download-card h2 {
-            margin: 0 0 10px;
-
-            font-size: 30px;
-        }
-
-        .download-card>p {
-            max-width: 570px;
-
-            margin: 0 auto 28px;
-
-            line-height: 1.6;
-
-            color: var(--muted);
-        }
-
-        /* ==================================================
            SCREENSHOTS
         ================================================== */
 
@@ -1123,8 +1064,7 @@
 
         .tv-party {
             display: grid;
-            grid-template-columns: minmax(280px, 0.9fr) 1.25fr;
-            align-items: stretch;
+            grid-template-columns: 1fr;
 
             margin-top: 26px;
 
@@ -1135,6 +1075,44 @@
             border: 1px solid var(--glass-border);
 
             background: var(--glass);
+        }
+
+        .tv-mockup {
+            width: min(600px, 82%);
+
+            margin: 36px auto 0;
+        }
+
+        .tv-frame {
+            position: relative;
+
+            padding: 14px 14px 18px;
+
+            border-radius: 14px;
+
+            background: linear-gradient(160deg, #3a3a42, #1a1a20 45%, #0a0a0d);
+
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                inset 0 0 0 1px rgba(0, 0, 0, 0.6),
+                0 24px 40px rgba(0, 0, 0, 0.55);
+        }
+
+        .tv-frame::after {
+            content: "";
+
+            position: absolute;
+            left: 50%;
+            bottom: 6px;
+
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+            transform: translateX(-50%);
+
+            background: var(--cyan);
+            box-shadow: 0 0 6px var(--cyan);
         }
 
         .tv-party-shot {
@@ -1148,30 +1126,59 @@
             object-fit: cover;
             object-position: center;
 
-            border-right: 1px solid rgba(180, 110, 255, 0.24);
+            border-radius: 4px;
+
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+        }
+
+        .tv-stand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tv-stand-neck {
+            width: 10px;
+            height: 20px;
+
+            background: linear-gradient(180deg, #303038, #16161a);
+        }
+
+        .tv-stand-base {
+            width: 34%;
+            height: 10px;
+
+            border-radius: 6px;
+
+            background: linear-gradient(180deg, #35353d, #17171b);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.45);
         }
 
         .tv-party-copy {
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
 
-            padding: 28px 30px;
+            padding: 32px 30px 36px;
+
+            text-align: center;
 
             background: linear-gradient(110deg, rgba(22, 5, 45, 0.20), rgba(7, 1, 18, 0.46));
         }
 
         .tv-party-title {
-            margin: 0 0 6px;
+            margin: 0 0 8px;
 
-            font-size: 17px;
+            font-size: 19px;
             font-weight: 750;
         }
 
         .tv-party-text {
+            max-width: 620px;
             margin: 0;
 
-            font-size: 14px;
+            font-size: 15px;
             line-height: 1.6;
 
             color: var(--muted);
@@ -2130,59 +2137,6 @@
         }
 
         /* ==================================================
-           WHY SYLENS
-        ================================================== */
-
-        .why-sylens {
-            padding: 0 24px 110px;
-        }
-
-        .why-grid {
-            display: grid;
-
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-
-            gap: 20px;
-        }
-
-        .why-card {
-            padding: 28px 26px;
-
-            border-radius: 20px;
-
-            border: 1px solid rgba(255, 255, 255, 0.10);
-
-            background: rgba(255, 255, 255, 0.04);
-
-            text-align: left;
-        }
-
-        .why-icon {
-            width: 30px;
-            height: 30px;
-
-            margin-bottom: 16px;
-
-            color: var(--purple-light);
-        }
-
-        .why-title {
-            margin: 0 0 8px;
-
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .why-text {
-            margin: 0;
-
-            font-size: 16px;
-            line-height: 1.6;
-
-            color: var(--soft);
-        }
-
-        /* ==================================================
            VIDEOS
         ================================================== */
 
@@ -2190,41 +2144,156 @@
             padding: 0 24px 110px;
         }
 
-        .video-card {
-            width: min(700px, 100%);
+        .video-showcase {
+            width: min(720px, 100%);
 
             margin: 0 auto;
 
-            padding: 46px 34px;
+            overflow: hidden;
 
-            border-radius: 28px;
+            border-radius: 24px;
 
             border: 1px solid var(--glass-border);
 
-            background:
-                linear-gradient(135deg,
-                    rgba(255, 65, 205, 0.14),
-                    rgba(124, 44, 255, 0.18));
+            background: var(--glass);
+
+            box-shadow:
+                0 24px 60px rgba(0, 0, 0, 0.4);
+
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .video-showcase:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 30px 72px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-link {
+            display: contents;
+        }
+
+        .video-thumb {
+            position: relative;
+
+            aspect-ratio: 16 / 9;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            background: #05010c;
+        }
+
+        .video-thumb-media {
+            position: absolute;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .video-thumb::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background: linear-gradient(180deg, rgba(5, 1, 12, 0.12), rgba(5, 1, 12, 0.58));
+        }
+
+        .yt-play-badge {
+            position: relative;
+            z-index: 1;
+
+            width: 84px;
+            height: 59px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background: #ff0000;
+
+            box-shadow: 0 12px 32px rgba(255, 0, 0, 0.45);
+
+            transition: transform 0.25s ease;
+        }
+
+        .video-link:hover .yt-play-badge {
+            transform: scale(1.08);
+        }
+
+        .yt-play-badge::after {
+            content: "";
+
+            width: 0;
+            height: 0;
+
+            margin-left: 6px;
+
+            border-top: 14px solid transparent;
+            border-bottom: 14px solid transparent;
+            border-left: 24px solid #ffffff;
+        }
+
+        .video-thumb-chrome {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 16px 22px;
+
+            background: rgba(8, 2, 18, 0.75);
+
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .video-thumb-avatar {
+            width: 52px;
+            height: 52px;
+
+            flex-shrink: 0;
+
+            object-fit: contain;
+        }
+
+        .video-thumb-name {
+            display: block;
+
+            font-size: 14px;
+            font-weight: 750;
+
+            color: #ffffff;
+        }
+
+        .video-thumb-handle {
+            font-size: 12px;
+
+            color: var(--soft);
+        }
+
+        .video-showcase-copy {
+            padding: 30px 34px 36px;
 
             text-align: center;
         }
 
-        .video-icon {
-            width: 52px;
-            height: 52px;
-
-            margin: 0 auto 18px;
-
-            color: var(--pink);
-        }
-
-        .video-card h2 {
+        .video-showcase-copy h2 {
             margin: 0 0 10px;
 
-            font-size: 26px;
+            font-size: 24px;
         }
 
-        .video-card p {
+        .video-showcase-copy p {
             max-width: 480px;
 
             margin: 0 auto 26px;
@@ -2266,81 +2335,6 @@
             transform: translateY(-2px);
         }
 
-        /* ==================================================
-           FAQ
-        ================================================== */
-
-        .faq {
-            padding: 0 24px 110px;
-        }
-
-        .faq-list {
-            width: min(780px, 100%);
-
-            margin: 0 auto;
-
-            display: flex;
-            flex-direction: column;
-
-            gap: 12px;
-        }
-
-        .faq-item {
-            padding: 4px 22px;
-
-            border-radius: 18px;
-
-            border: 1px solid rgba(255, 255, 255, 0.12);
-
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .faq-item summary {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 16px;
-
-            padding: 18px 0;
-
-            font-size: 18px;
-            font-weight: 700;
-
-            cursor: pointer;
-
-            list-style: none;
-        }
-
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .faq-item summary::after {
-            content: "+";
-
-            flex-shrink: 0;
-
-            font-size: 20px;
-            font-weight: 400;
-
-            color: var(--purple-light);
-
-            transition: transform 0.22s ease;
-        }
-
-        .faq-item[open] summary::after {
-            transform: rotate(45deg);
-        }
-
-        .faq-item p {
-            margin: 0 0 20px;
-
-            font-size: 14px;
-            line-height: 1.65;
-
-            color: var(--muted);
-        }
 
         /* ==================================================
            TIPS & TRICKS
@@ -2403,190 +2397,6 @@
             line-height: 1.6;
 
             color: var(--soft);
-        }
-
-        /* ==================================================
-           WHAT'S NEW
-        ================================================== */
-
-        .whats-new {
-            padding: 0 24px 110px;
-        }
-
-        .whats-new-list {
-            width: min(780px, 100%);
-
-            margin: 0 auto;
-
-            display: flex;
-            flex-direction: column;
-
-            gap: 16px;
-        }
-
-        .whats-new-item {
-            display: flex;
-
-            gap: 18px;
-
-            padding: 23px 26px;
-
-            border-radius: 20px;
-
-            border: 1px solid rgba(180, 110, 255, 0.30);
-
-            background: linear-gradient(110deg, rgba(26, 6, 50, 0.78), rgba(12, 2, 28, 0.58));
-        }
-
-        .whats-new-marker {
-            flex-shrink: 0;
-
-            width: 3px;
-
-            border-radius: 3px;
-
-            background: linear-gradient(var(--purple-light), var(--pink));
-            box-shadow: 0 0 14px rgba(197, 83, 255, 0.42);
-        }
-
-        .whats-new-item.is-coming .whats-new-marker {
-            background: linear-gradient(var(--cyan), var(--purple-light));
-            box-shadow: 0 0 14px rgba(82, 220, 255, 0.32);
-        }
-
-        .whats-new-status {
-            display: flex;
-            align-items: center;
-
-            gap: 7px;
-
-            margin: 0 0 6px;
-
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-
-            color: var(--pink);
-        }
-
-        .whats-new-status::before {
-            content: "";
-
-            width: 6px;
-            height: 6px;
-
-            border-radius: 50%;
-
-            background: currentColor;
-            box-shadow: 0 0 9px currentColor;
-        }
-
-        .whats-new-item.is-coming .whats-new-status {
-            color: var(--cyan);
-        }
-
-        .whats-new-title {
-            margin: 0 0 6px;
-
-            font-size: 21px;
-            font-weight: 800;
-        }
-
-        .whats-new-text {
-            margin: 0;
-
-            font-size: 16px;
-            line-height: 1.6;
-
-            color: var(--muted);
-        }
-
-        /* ==================================================
-           COMMUNITY
-        ================================================== */
-
-        .community {
-            padding: 0 24px 110px;
-        }
-
-        .community-grid {
-            display: grid;
-
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-
-            gap: 20px;
-        }
-
-        .community-card {
-            padding: 28px 24px;
-
-            border-radius: 22px;
-
-            border: 1px solid rgba(255, 255, 255, 0.10);
-
-            background: rgba(255, 255, 255, 0.04);
-
-            text-align: center;
-        }
-
-        .community-icon {
-            width: 30px;
-            height: 30px;
-
-            margin: 0 auto 14px;
-
-            color: var(--purple-light);
-        }
-
-        .community-title {
-            margin: 0 0 8px;
-
-            font-size: 20px;
-            font-weight: 750;
-        }
-
-        .community-text {
-            margin: 0 0 16px;
-
-            font-size: 16px;
-            line-height: 1.6;
-
-            color: var(--soft);
-        }
-
-        .community-link {
-            font-size: 15px;
-            font-weight: 700;
-
-            color: var(--purple-light);
-
-            text-decoration: none;
-        }
-
-        .community-link:hover {
-            text-decoration: underline;
-        }
-
-        .copy-btn {
-            font: inherit;
-
-            padding: 0;
-
-            border: none;
-
-            background: none;
-
-            color: var(--purple-light);
-
-            font-weight: 700;
-            font-size: 15px;
-
-            cursor: pointer;
-        }
-
-        .copy-btn:hover {
-            text-decoration: underline;
         }
 
         /* ==================================================
@@ -2666,7 +2476,6 @@
         @media (max-width: 900px) {
 
             .how-grid,
-            .why-grid,
             .footer-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -2738,10 +2547,6 @@
                 padding-top: 65px;
             }
 
-            .download-card {
-                padding: 28px 20px;
-            }
-
             .screenshots {
                 grid-template-columns: 1fr;
 
@@ -2771,12 +2576,8 @@
             .game-modes,
             .game-tools-section,
             .languages,
-            .why-sylens,
             .videos,
-            .faq,
             .tips,
-            .whats-new,
-            .community,
             .final-download {
                 padding-left: 20px;
                 padding-right: 20px;
@@ -2784,30 +2585,14 @@
             }
 
             .how-grid,
-            .why-grid,
             .modes-grid,
             .languages-story,
-            .tips-grid,
-            .community-grid {
+            .tips-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .tv-party {
-                grid-template-columns: 1fr;
-            }
-
-            .tv-party-shot {
-                aspect-ratio: 16 / 9;
-                height: auto;
-
-                border-right: 0;
-                border-bottom: 1px solid rgba(180, 110, 255, 0.24);
             }
 
             .tv-party-copy {
                 padding: 24px 22px;
-
-                text-align: center;
             }
 
             .game-tools-stage {
@@ -2957,14 +2742,21 @@
                 text-align: left;
             }
 
-            .video-card {
-                padding: 34px 22px;
+            .video-showcase-copy {
+                padding: 26px 20px 30px;
             }
 
-            .whats-new-item {
-                gap: 14px;
+            .yt-play-badge {
+                width: 66px;
+                height: 46px;
 
-                padding: 20px;
+                border-radius: 12px;
+            }
+
+            .yt-play-badge::after {
+                border-top-width: 11px;
+                border-bottom-width: 11px;
+                border-left-width: 19px;
             }
 
             .footer-grid {
@@ -3032,7 +2824,6 @@
                     <a href="#game-tools" class="nav-optional">Game Tools</a>
                     <a href="#languages" class="nav-optional">Languages</a>
                     <a href="#videos" class="nav-optional">Videos</a>
-                    <a href="#faq">FAQ</a>
                     <a href="#download" class="site-nav-cta">Download</a>
                 </div>
 
@@ -3177,54 +2968,6 @@
                 <div class="section-inner">
 
 
-                    <!-- DOWNLOAD CARD -->
-
-                    <div class="download-card">
-
-                        <img src="assets/sylens-icon.svg" alt="Sylens" class="download-icon">
-
-                        <h2>
-                            Ready to play?
-                        </h2>
-
-                        <p>
-                            Sylens is available now on Android and
-                            iOS alike &mdash; phone, tablet and TV,
-                            all included.
-                        </p>
-
-
-                        <div class="stores">
-
-                            <a class="store" href="https://play.google.com/store/apps/details?id=com.coderdoniv.sylens"
-                                target="_blank" rel="noopener">
-
-                                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                                    alt="Get it on Google Play" class="store-badge">
-
-                                <span class="store-caption">
-                                    Phone &amp; Android TV
-                                </span>
-
-                            </a>
-
-
-                            <a class="store apple" href="https://apps.apple.com/us/app/sylens/id6770917773"
-                                target="_blank" rel="noopener">
-
-                                <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us"
-                                    alt="Download on the App Store" class="store-badge">
-
-                                <span class="store-caption">
-                                    iPhone, iPad &amp; Apple TV
-                                </span>
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
                     <!-- SCREENSHOTS -->
 
                     <div class="section-heading">
@@ -3270,14 +3013,19 @@
                         </p>
 
                         <h2>
-                            Movie charades. <span class="accent">Together.</span>
+                            Charades with a <span class="accent">twist.</span>
                         </h2>
 
                         <p>
-                            Sylens turns movie guessing into a fast, hilarious game
-                            for everyone. Pick a movie, act it out with no talking
-                            allowed, and race the clock while your friends try to
-                            guess it.
+                            Sylens turns movie charades into a fast-paced game
+                            of skill, strategy and a little bit of chaos. Pick
+                            a movie, act it out without saying a word, and
+                            race the clock; but when you're stuck, you have
+                            choices. Change the movie, spend points for a
+                            clue, or risk revealing part of the title. Play
+                            casually with Just Vibing, battle for points in
+                            Squad War, or take the game to the big screen
+                            with your phones as controllers.
                         </p>
 
                     </div>
@@ -3486,9 +3234,20 @@
 
                     <div class="tv-party">
 
-                        <img src="assets/TV.png"
-                            alt="Sylens TV Party screen with options to start a TV game or mirror a phone game"
-                            class="tv-party-shot" loading="lazy">
+                        <div class="tv-mockup">
+
+                            <div class="tv-frame">
+                                <img src="assets/TV.png"
+                                    alt="Sylens TV Party screen with options to start a TV game or mirror a phone game"
+                                    class="tv-party-shot" loading="lazy">
+                            </div>
+
+                            <div class="tv-stand">
+                                <span class="tv-stand-neck"></span>
+                                <span class="tv-stand-base"></span>
+                            </div>
+
+                        </div>
 
                         <div class="tv-party-copy">
 
@@ -3501,10 +3260,8 @@
                                 phones as controllers. The TV mirrors the game
                                 for everyone to watch, and never reveals the
                                 movie title, so the game stays fair.
-                                <strong>Live now on Android TV</strong> (same
-                                Google Play listing, no separate download)
-                                and <strong>Apple TV</strong> (same App Store
-                                listing as iPhone and iPad).
+                                <strong>Live now on Android TV</strong>
+                                and <strong>Apple TV</strong>.
                             </p>
 
                         </div>
@@ -4006,227 +3763,55 @@
             </section>
 
 
-            <!-- WHY SYLENS -->
-
-            <section id="why-sylens" class="why-sylens">
-
-                <div class="section-inner">
-
-                    <div class="section-heading">
-
-                        <p class="section-tag">
-                            Why Sylens
-                        </p>
-
-                        <h2>
-                            Built for game night.
-                        </h2>
-
-                        <p>
-                            Everything you need for a great round, nothing you
-                            don't.
-                        </p>
-
-                    </div>
-
-                    <div class="why-grid">
-
-                        <div class="why-card">
-                            <img src="assets/FlashIcon.svg" alt="" class="why-icon">
-                            <h3 class="why-title">Fast-Paced Rounds</h3>
-                            <p class="why-text">No waiting around, jump straight into the action.</p>
-                        </div>
-
-                        <div class="why-card">
-                            <img src="assets/FilmRoll02Icon.svg" alt="" class="why-icon">
-                            <h3 class="why-title">28,000+ Movies</h3>
-                            <p class="why-text">From classics to modern hits, across every genre.</p>
-                        </div>
-
-                        <div class="why-card">
-                            <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <circle cx="12" cy="12" r="9"></circle>
-                                <path d="M3 12h18"></path>
-                                <path
-                                    d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9s1.3-6.5 3.8-9z">
-                                </path>
-                            </svg>
-                            <h3 class="why-title">Multiple Languages</h3>
-                            <p class="why-text">Every player picks their own languages, even reading Malayalam, Hindi or Tamil in English letters.</p>
-                        </div>
-
-                        <div class="why-card">
-                            <img src="assets/UserGrroup02Icon.svg" alt="" class="why-icon">
-                            <h3 class="why-title">Made for Groups</h3>
-                            <p class="why-text">Friends, family and game nights of any size.</p>
-                        </div>
-
-                        <div class="why-card">
-                            <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <rect x="3" y="4" width="18" height="13" rx="2"></rect>
-                                <path d="M8 21h8"></path>
-                                <path d="M12 17v4"></path>
-                            </svg>
-                            <h3 class="why-title">Big-Screen Ready</h3>
-                            <p class="why-text">Host on Android TV now, with Apple TV on the way.</p>
-                        </div>
-
-                        <div class="why-card">
-                            <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <circle cx="12" cy="12" r="9"></circle>
-                                <circle cx="12" cy="12" r="5"></circle>
-                                <circle cx="12" cy="12" r="1"></circle>
-                            </svg>
-                            <h3 class="why-title">Strategic Scoring</h3>
-                            <p class="why-text">Power-ups, time bonuses and sudden death keep every round tense.</p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
             <!-- SEE SYLENS IN ACTION -->
 
             <section id="videos" class="videos">
 
                 <div class="section-inner">
 
-                    <div class="video-card">
+                    <div class="video-showcase">
 
-                        <svg class="video-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <path d="M10 8.5l6 3.5-6 3.5v-7z" fill="currentColor" stroke="none"></path>
-                        </svg>
+                        <a class="video-link" href="https://www.youtube.com/@SylensGame" target="_blank"
+                            rel="noopener" aria-label="Watch Sylens videos on YouTube">
 
-                        <h2>See Sylens in Action</h2>
+                            <div class="video-thumb">
 
-                        <p>
-                            Don't just take our word for it: watch full rounds
-                            of Just Vibing and Squad War, plus how-to-play
-                            walkthroughs, on the official Sylens YouTube channel.
-                        </p>
+                                <video class="video-thumb-media" src="assets/sylensclip.mp4" autoplay muted loop
+                                    playsinline></video>
 
-                        <a class="video-cta" href="https://www.youtube.com/@SylensGame" target="_blank" rel="noopener">
-                            Visit our YouTube channel
+                                <span class="yt-play-badge" aria-hidden="true"></span>
+
+                            </div>
+
+                            <div class="video-thumb-chrome">
+
+                                <img src="assets/sylens-logo.png" alt="" class="video-thumb-avatar">
+
+                                <span>
+                                    <span class="video-thumb-name">Sylens</span>
+                                    <span class="video-thumb-handle">@SylensGame</span>
+                                </span>
+
+                            </div>
+
                         </a>
 
-                    </div>
+                        <div class="video-showcase-copy">
 
-                </div>
+                            <h2>See Sylens in Action</h2>
 
-            </section>
-
-
-            <!-- FAQ -->
-
-            <section id="faq" class="faq">
-
-                <div class="section-inner">
-
-                    <div class="section-heading">
-
-                        <p class="section-tag">
-                            FAQ
-                        </p>
-
-                        <h2>
-                            Frequently Asked Questions
-                        </h2>
-
-                    </div>
-
-                    <div class="faq-list">
-
-                        <details class="faq-item">
-                            <summary>What is Sylens?</summary>
                             <p>
-                                Sylens is a fast-paced movie charades game. One
-                                player acts out a movie without speaking while
-                                others race the clock to guess it.
+                                Don't just take our word for it: watch full rounds
+                                of Just Vibing and Squad War, plus how-to-play
+                                walkthroughs, on the official Sylens YouTube channel.
                             </p>
-                        </details>
 
-                        <details class="faq-item">
-                            <summary>How do I play?</summary>
-                            <p>
-                                Pick a movie, tap to reveal it to yourself, act
-                                it out with no talking, and let your team shout
-                                out guesses before time runs out.
-                            </p>
-                        </details>
+                            <a class="video-cta" href="https://www.youtube.com/@SylensGame" target="_blank"
+                                rel="noopener">
+                                Visit our YouTube channel
+                            </a>
 
-                        <details class="faq-item">
-                            <summary>How many people can play?</summary>
-                            <p>
-                                Sylens needs at least two people: one to act
-                                and one to guess. Just Vibing is for one team,
-                                while Squad War is for two or more teams. You
-                                can also play together with TV Party.
-                            </p>
-                        </details>
-
-                        <details class="faq-item">
-                            <summary>What's the difference between Just Vibing and Squad War?</summary>
-                            <p>
-                                Just Vibing is casual one-team play with no scoring
-                                and unlimited skips. Squad War is a timed,
-                                team-based mode with scoring, power-ups and
-                                sudden-death tiebreakers.
-                            </p>
-                        </details>
-
-                        <details class="faq-item">
-                            <summary>Can I play Sylens on a TV?</summary>
-                            <p>
-                                Yes. Sylens runs natively on both Android TV
-                                and Apple TV, through the same Google Play and
-                                App Store listings as the phone apps. TV Party
-                                lets phones act as controllers while the TV
-                                mirrors a Squad War game, without ever showing
-                                the movie title on screen.
-                            </p>
-                        </details>
-
-                        <details class="faq-item">
-                            <summary>What languages are supported?</summary>
-                            <p>
-                                Sylens supports English, Hindi, Malayalam and
-                                Tamil. Hindi, Malayalam and Tamil titles are
-                                also available fully spelled out in English
-                                letters, for players who speak the language
-                                but can't read the script.
-                            </p>
-                        </details>
-
-                        <details class="faq-item">
-                            <summary>Can players who read different languages play together?</summary>
-                            <p>
-                                Yes. Each player picks their own languages,
-                                separate from the app's display language, and
-                                Sylens remembers it for their turn, so a
-                                mixed-language group can play on the same
-                                team.
-                            </p>
-                        </details>
-
-                        <details class="faq-item">
-                            <summary>How does scoring work in Squad War?</summary>
-                            <p>
-                                Each turn starts with a point value that ticks
-                                down. Guess correctly and you keep the
-                                remaining points plus a time bonus. Power-ups
-                                like Change Movie, Clue and Half Name
-                                cost points to use, and a timeout scores
-                                zero.
-                            </p>
-                        </details>
+                        </div>
 
                     </div>
 
@@ -4289,159 +3874,6 @@
                                 points, so save them for the movies you're
                                 genuinely stuck on.
                             </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- WHAT'S NEW -->
-
-            <section id="whats-new" class="whats-new">
-
-                <div class="section-inner">
-
-                    <div class="section-heading">
-
-                        <p class="section-tag">
-                            What's New
-                        </p>
-
-                        <h2>
-                            Latest from Sylens
-                        </h2>
-
-                    </div>
-
-                    <div class="whats-new-list">
-
-                        <div class="whats-new-item is-live">
-
-                            <span class="whats-new-marker" aria-hidden="true"></span>
-
-                            <div>
-                                <p class="whats-new-status">Available now</p>
-                                <h3 class="whats-new-title">iPhone, iPad &amp; Apple TV</h3>
-                                <p class="whats-new-text">
-                                    Sylens is now on the App Store, with the
-                                    same Just Vibing, Squad War and TV Party
-                                    modes as Android, across English, Hindi,
-                                    Malayalam and Tamil.
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <div class="whats-new-item is-live">
-
-                            <span class="whats-new-marker" aria-hidden="true"></span>
-
-                            <div>
-                                <p class="whats-new-status">Available now</p>
-                                <h3 class="whats-new-title">Sylens is here</h3>
-                                <p class="whats-new-text">
-                                    Sylens launches on Google Play and Android
-                                    TV with Just Vibing, Squad War and TV Party,
-                                    spanning English, Hindi, Malayalam and
-                                    Tamil.
-                                </p>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- COMMUNITY -->
-
-            <section id="community" class="community">
-
-                <div class="section-inner">
-
-                    <div class="section-heading">
-
-                        <p class="section-tag">
-                            Community
-                        </p>
-
-                        <h2>
-                            Join in.
-                        </h2>
-
-                    </div>
-
-                    <div class="community-grid">
-
-                        <div class="community-card">
-
-                            <svg class="community-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <circle cx="12" cy="12" r="9"></circle>
-                                <path d="M10 8.5l6 3.5-6 3.5v-7z" fill="currentColor" stroke="none"></path>
-                            </svg>
-
-                            <h3 class="community-title">Follow on YouTube</h3>
-
-                            <p class="community-text">
-                                Gameplay, tips and behind-the-scenes from the
-                                Sylens team.
-                            </p>
-
-                            <a class="community-link" href="https://www.youtube.com/@SylensGame" target="_blank"
-                                rel="noopener">@SylensGame</a>
-
-                        </div>
-
-                        <div class="community-card">
-
-                            <svg class="community-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <circle cx="12" cy="12" r="9"></circle>
-                                <path d="M3 12h18"></path>
-                                <path
-                                    d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9s1.3-6.5 3.8-9z">
-                                </path>
-                            </svg>
-
-                            <h3 class="community-title">Request a Language</h3>
-
-                            <p class="community-text">
-                                Want Sylens in a language we don't support
-                                yet? Let us know and we'll look into adding it.
-                            </p>
-
-                            <a class="community-link" href="https://vbverse.com/privacypolicy/sylens/support/"
-                                target="_blank" rel="noopener">Contact Support</a>
-
-                        </div>
-
-                        <div class="community-card">
-
-                            <svg class="community-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <circle cx="6" cy="12" r="2.4"></circle>
-                                <circle cx="18" cy="6" r="2.4"></circle>
-                                <circle cx="18" cy="18" r="2.4"></circle>
-                                <path d="M8.2 10.8l7.6-4.4"></path>
-                                <path d="M8.2 13.2l7.6 4.4"></path>
-                            </svg>
-
-                            <h3 class="community-title">Share Sylens</h3>
-
-                            <p class="community-text">
-                                Know someone who'd love game night? Send them
-                                the link.
-                            </p>
-
-                            <button type="button" class="copy-btn" data-copy-url>Copy Link</button>
-
                         </div>
 
                     </div>
@@ -4535,7 +3967,6 @@
                     <div class="footer-links">
                         <a href="#how-to-play">How to Play</a>
                         <a href="#game-modes">Game Modes</a>
-                        <a href="#faq">FAQ</a>
                         <a href="#videos">Videos</a>
                         <a href="https://vbverse.com/privacypolicy/sylens/support/" target="_blank"
                             rel="noopener">Support</a>
@@ -4802,45 +4233,6 @@
 
             qrParts.push("</svg>");
             qrHost.innerHTML = qrParts.join("");
-
-        }
-
-
-        /*
-         * COPY LINK BUTTON
-         *
-         * Lets visitors copy the permanent site URL
-         * from the "Share Sylens" community card.
-         */
-
-        const copyButton = document.querySelector("[data-copy-url]");
-
-        if (copyButton) {
-
-            copyButton.addEventListener("click", async () => {
-
-                const originalText = copyButton.textContent;
-
-                try {
-
-                    await navigator.clipboard.writeText("https://apps.vbverse.com/sylens/");
-
-                    copyButton.textContent = "Copied!";
-                    gtag('event', 'copy_link_click');
-
-                } catch (err) {
-
-                    copyButton.textContent = "Copy failed";
-
-                }
-
-                setTimeout(() => {
-
-                    copyButton.textContent = originalText;
-
-                }, 1800);
-
-            });
 
         }
 
