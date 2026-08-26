@@ -359,12 +359,13 @@
             min-width: 225px;
 
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
 
             gap: 14px;
 
-            padding: 15px 24px;
+            padding: 16px 24px;
 
             border-radius: 17px;
 
@@ -416,36 +417,42 @@
             box-shadow: none;
         }
 
-        .store-icon {
-            width: 34px;
-            height: 34px;
+        .store-badge {
+            /*
+             * Google's official PNG badge has a lot of
+             * transparent padding baked into its canvas (the
+             * visible badge fills ~67% of the image height),
+             * while Apple's SVG is tightly cropped. This height
+             * is scaled up so the two badges end up the same
+             * *visible* size - see the .apple override below.
+             */
 
-            border-radius: 6px;
+            height: 65px;
+            width: auto;
 
-            object-fit: contain;
+            display: block;
 
             flex-shrink: 0;
         }
 
-        .store-content {
-            text-align: left;
+        .store.apple .store-badge {
+            height: 44px;
         }
 
-        .store-title {
-            display: block;
+        /*
+         * The .store flex container's own 14px gap keeps this
+         * caption visually separate from the official badge
+         * above it (Apple/Google brand guidelines prohibit
+         * attaching custom text to the badge itself) - at least
+         * 1/4 the badge height (11px here).
+         */
 
-            font-size: 16px;
-            font-weight: 750;
-        }
-
-        .store-subtitle {
-            display: block;
-
-            margin-top: 3px;
-
+        .store-caption {
             font-size: 12px;
 
             color: rgba(255, 255, 255, 0.68);
+
+            text-align: center;
         }
 
         /* ==================================================
@@ -756,11 +763,25 @@
 
             border-top: 1px solid rgba(255, 255, 255, 0.06);
 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            gap: 8px;
+
             text-align: center;
 
             font-size: 13px;
 
             color: rgba(255, 255, 255, 0.38);
+        }
+
+        .footer-credit-logo {
+            height: 18px;
+            width: auto;
+
+            display: block;
         }
 
         /* ==================================================
@@ -3056,18 +3077,11 @@
                         <a class="store" href="https://play.google.com/store/apps/details?id=com.coderdoniv.sylens"
                             target="_blank" rel="noopener">
 
-                            <img src="assets/sylens-icon.svg" alt="" class="store-icon">
+                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                                alt="Get it on Google Play" class="store-badge">
 
-                            <span class="store-content">
-
-                                <span class="store-title">
-                                    Google Play
-                                </span>
-
-                                <span class="store-subtitle">
-                                    Available now
-                                </span>
-
+                            <span class="store-caption">
+                                Available now
                             </span>
 
                         </a>
@@ -3078,18 +3092,11 @@
                         <a class="store apple" href="https://apps.apple.com/us/app/sylens/id6770917773"
                             target="_blank" rel="noopener">
 
-                            <img src="assets/sylens-icon.svg" alt="" class="store-icon">
+                            <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us"
+                                alt="Download on the App Store" class="store-badge">
 
-                            <span class="store-content">
-
-                                <span class="store-title">
-                                    App Store
-                                </span>
-
-                                <span class="store-subtitle">
-                                    Available now
-                                </span>
-
+                            <span class="store-caption">
+                                Available now
                             </span>
 
                         </a>
@@ -3192,16 +3199,11 @@
                             <a class="store" href="https://play.google.com/store/apps/details?id=com.coderdoniv.sylens"
                                 target="_blank" rel="noopener">
 
-                                <span class="store-content">
+                                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                                    alt="Get it on Google Play" class="store-badge">
 
-                                    <span class="store-title">
-                                        Get Sylens
-                                    </span>
-
-                                    <span class="store-subtitle">
-                                        Google Play &middot; Phone &amp; Android TV
-                                    </span>
-
+                                <span class="store-caption">
+                                    Phone &amp; Android TV
                                 </span>
 
                             </a>
@@ -3210,16 +3212,11 @@
                             <a class="store apple" href="https://apps.apple.com/us/app/sylens/id6770917773"
                                 target="_blank" rel="noopener">
 
-                                <span class="store-content">
+                                <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us"
+                                    alt="Download on the App Store" class="store-badge">
 
-                                    <span class="store-title">
-                                        iPhone, iPad &amp; Apple TV
-                                    </span>
-
-                                    <span class="store-subtitle">
-                                        App Store
-                                    </span>
-
+                                <span class="store-caption">
+                                    iPhone, iPad &amp; Apple TV
                                 </span>
 
                             </a>
@@ -4491,24 +4488,20 @@
                         <a class="store" href="https://play.google.com/store/apps/details?id=com.coderdoniv.sylens"
                             target="_blank" rel="noopener">
 
-                            <img src="assets/sylens-icon.svg" alt="" class="store-icon">
+                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                                alt="Get it on Google Play" class="store-badge">
 
-                            <span class="store-content">
-                                <span class="store-title">Google Play</span>
-                                <span class="store-subtitle">Phone &amp; Android TV</span>
-                            </span>
+                            <span class="store-caption">Phone &amp; Android TV</span>
 
                         </a>
 
                         <a class="store apple" href="https://apps.apple.com/us/app/sylens/id6770917773"
                             target="_blank" rel="noopener">
 
-                            <img src="assets/sylens-icon.svg" alt="" class="store-icon">
+                            <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us"
+                                alt="Download on the App Store" class="store-badge">
 
-                            <span class="store-content">
-                                <span class="store-title">App Store</span>
-                                <span class="store-subtitle">iPhone, iPad &amp; Apple TV</span>
-                            </span>
+                            <span class="store-caption">iPhone, iPad &amp; Apple TV</span>
 
                         </a>
 
@@ -4570,7 +4563,8 @@
             </div>
 
             <div class="footer-bottom">
-                © 2026 Sylens · A VBVerse app
+                <span>© 2026 Sylens · A VBVerse app · Made by</span>
+                <img src="assets/coderdoniv_transparent.png" alt="coderdoniv" class="footer-credit-logo">
             </div>
 
         </footer>
@@ -4665,8 +4659,21 @@
          * straight to their app store.
          */
 
+        const searchParams =
+            new URLSearchParams(window.location.search);
+
         const isStoreRedirect =
-            new URLSearchParams(window.location.search).has("store");
+            searchParams.has("store");
+
+        /*
+         * ?src= identifies where the ?store=1 link came from
+         * (e.g. "qr" for the download-section QR code), so
+         * GA4 can tell a scanned redirect apart from any
+         * other ?store=1 link. Defaults to "link".
+         */
+
+        const redirectSource =
+            searchParams.get("src") || "link";
 
 
         /*
@@ -4677,7 +4684,7 @@
          * ad blockers / GA being blocked outright).
          */
 
-        function redirectToStore(url, eventName, eventLabel) {
+        function redirectToStore(url, eventName, eventLabel, source) {
 
             let redirected = false;
 
@@ -4690,6 +4697,7 @@
             gtag('event', eventName, {
                 event_category: 'engagement',
                 event_label: eventLabel,
+                source: source,
                 event_callback: go,
                 event_timeout: 1000
             });
@@ -4705,7 +4713,7 @@
 
         if (isAndroid && isStoreRedirect) {
 
-            redirectToStore(androidUrl, 'play_store_redirect', 'android_auto_redirect');
+            redirectToStore(androidUrl, 'play_store_redirect', 'android_auto_redirect', redirectSource);
 
         }
 
@@ -4716,7 +4724,7 @@
 
         else if (isIOS && isStoreRedirect) {
 
-            redirectToStore(appleUrl, 'app_store_redirect', 'ios_auto_redirect');
+            redirectToStore(appleUrl, 'app_store_redirect', 'ios_auto_redirect', redirectSource);
 
         }
 
@@ -4772,7 +4780,7 @@
         if (qrHost && typeof qrcode === "function") {
 
             const downloadQr = qrcode(0, "M");
-            downloadQr.addData("https://apps.vbverse.com/sylens?store=1");
+            downloadQr.addData("https://apps.vbverse.com/sylens?store=1&src=qr");
             downloadQr.make();
 
             const qrModuleCount = downloadQr.getModuleCount();
