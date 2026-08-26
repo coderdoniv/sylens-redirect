@@ -764,84 +764,6 @@
         }
 
         /* ==================================================
-           IOS COMING SOON VIEW
-        ================================================== */
-
-        .ios-view {
-            display: none;
-
-            min-height: 100vh;
-
-            align-items: center;
-            justify-content: center;
-
-            padding: 30px 22px;
-
-            text-align: center;
-        }
-
-        .ios-card {
-            width: min(440px, 100%);
-
-            padding: 38px 28px;
-
-            border-radius: 30px;
-
-            background:
-                linear-gradient(145deg,
-                    rgba(30, 6, 55, 0.90),
-                    rgba(10, 1, 23, 0.88));
-
-            border: 1px solid rgba(180, 110, 255, 0.38);
-
-            box-shadow:
-                0 30px 90px rgba(0, 0, 0, 0.55);
-
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-        }
-
-        .ios-icon {
-            width: 92px;
-            height: 92px;
-
-            display: block;
-
-            margin: 0 auto 22px;
-
-            filter:
-                drop-shadow(0 0 25px rgba(150, 55, 255, 0.55));
-        }
-
-        .ios-card h1 {
-            margin: 0 0 14px;
-
-            font-size: 34px;
-        }
-
-        .ios-card p {
-            margin: 0;
-
-            font-size: 17px;
-            line-height: 1.65;
-
-            color: var(--muted);
-        }
-
-        .ios-movie {
-            margin-top: 28px;
-
-            font-size: 14px;
-            font-weight: 700;
-
-            letter-spacing: 0.12em;
-
-            text-transform: uppercase;
-
-            color: rgba(255, 255, 255, 0.60);
-        }
-
-        /* ==================================================
            SITE NAV
         ================================================== */
 
@@ -2656,6 +2578,50 @@
             text-align: center;
         }
 
+        .qr-download {
+            margin-bottom: 36px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            gap: 14px;
+        }
+
+        .qr-download-panel {
+            width: 190px;
+            aspect-ratio: 1 / 1;
+
+            padding: 16px;
+
+            background: #fdfcff;
+            border-radius: 20px;
+
+            box-shadow:
+                0 16px 40px rgba(4, 0, 12, 0.38);
+        }
+
+        .qr-download-panel svg {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            shape-rendering: crispEdges;
+        }
+
+        .qr-download-caption {
+            margin: 0;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+
+            color: var(--soft);
+        }
+
         .final-download-url {
             display: inline-block;
 
@@ -2998,18 +2964,6 @@
             }
         }
 
-        /* ==================================================
-           IOS DEVICE MODE
-        ================================================== */
-
-        body.ios-device .desktop-page {
-            display: none;
-        }
-
-        body.ios-device .ios-view {
-            display: flex;
-        }
-
         @media (max-width: 1320px) {
 
             .hero {
@@ -3119,9 +3073,10 @@
                         </a>
 
 
-                        <!-- APP STORE - CURRENTLY COMING SOON -->
+                        <!-- APP STORE -->
 
-                        <div class="store apple disabled">
+                        <a class="store apple" href="https://apps.apple.com/us/app/sylens/id6770917773"
+                            target="_blank" rel="noopener">
 
                             <img src="assets/sylens-icon.svg" alt="" class="store-icon">
 
@@ -3132,12 +3087,12 @@
                                 </span>
 
                                 <span class="store-subtitle">
-                                    Coming soon
+                                    Available now
                                 </span>
 
                             </span>
 
-                        </div>
+                        </a>
 
                     </div>
 
@@ -3226,10 +3181,9 @@
                         </h2>
 
                         <p>
-                            Sylens is available now on Android, phone
-                            and Android TV alike. iPhone, iPad and
-                            Apple TV are currently making their way
-                            to the App Store.
+                            Sylens is available now on Android and
+                            iOS alike &mdash; phone, tablet and TV,
+                            all included.
                         </p>
 
 
@@ -3253,7 +3207,8 @@
                             </a>
 
 
-                            <div class="store apple disabled">
+                            <a class="store apple" href="https://apps.apple.com/us/app/sylens/id6770917773"
+                                target="_blank" rel="noopener">
 
                                 <span class="store-content">
 
@@ -3262,12 +3217,12 @@
                                     </span>
 
                                     <span class="store-subtitle">
-                                        Coming soon to the App Store
+                                        App Store
                                     </span>
 
                                 </span>
 
-                            </div>
+                            </a>
 
                         </div>
 
@@ -3550,9 +3505,9 @@
                                 for everyone to watch, and never reveals the
                                 movie title, so the game stays fair.
                                 <strong>Live now on Android TV</strong> (same
-                                Google Play listing, no separate download).
-                                <strong>Apple TV is currently in App Store
-                                    review.</strong>
+                                Google Play listing, no separate download)
+                                and <strong>Apple TV</strong> (same App Store
+                                listing as iPhone and iPad).
                             </p>
 
                         </div>
@@ -4233,12 +4188,12 @@
                         <details class="faq-item">
                             <summary>Can I play Sylens on a TV?</summary>
                             <p>
-                                Yes. Sylens runs natively on Android TV today
-                                through the same Google Play listing. TV Party
+                                Yes. Sylens runs natively on both Android TV
+                                and Apple TV, through the same Google Play and
+                                App Store listings as the phone apps. TV Party
                                 lets phones act as controllers while the TV
                                 mirrors a Squad War game, without ever showing
-                                the movie title on screen. An Apple TV app is
-                                currently in App Store review.
+                                the movie title on screen.
                             </p>
                         </details>
 
@@ -4372,28 +4327,29 @@
 
                             <div>
                                 <p class="whats-new-status">Available now</p>
+                                <h3 class="whats-new-title">iPhone, iPad &amp; Apple TV</h3>
+                                <p class="whats-new-text">
+                                    Sylens is now on the App Store, with the
+                                    same Just Vibing, Squad War and TV Party
+                                    modes as Android, across English, Hindi,
+                                    Malayalam and Tamil.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="whats-new-item is-live">
+
+                            <span class="whats-new-marker" aria-hidden="true"></span>
+
+                            <div>
+                                <p class="whats-new-status">Available now</p>
                                 <h3 class="whats-new-title">Sylens is here</h3>
                                 <p class="whats-new-text">
                                     Sylens launches on Google Play and Android
                                     TV with Just Vibing, Squad War and TV Party,
                                     spanning English, Hindi, Malayalam and
                                     Tamil.
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <div class="whats-new-item is-coming">
-
-                            <span class="whats-new-marker" aria-hidden="true"></span>
-
-                            <div>
-                                <p class="whats-new-status">Coming soon</p>
-                                <h3 class="whats-new-title">iPhone, iPad &amp; Apple TV</h3>
-                                <p class="whats-new-text">
-                                    The iOS and tvOS apps are in App Store
-                                    review. Check back here or subscribe on
-                                    YouTube for the announcement.
                                 </p>
                             </div>
 
@@ -4520,6 +4476,16 @@
 
                     </div>
 
+                    <div class="qr-download">
+
+                        <div class="qr-download-panel" id="downloadQr"></div>
+
+                        <p class="qr-download-caption">
+                            Scan to open on your phone
+                        </p>
+
+                    </div>
+
                     <div class="stores">
 
                         <a class="store" href="https://play.google.com/store/apps/details?id=com.coderdoniv.sylens"
@@ -4534,16 +4500,17 @@
 
                         </a>
 
-                        <div class="store apple disabled">
+                        <a class="store apple" href="https://apps.apple.com/us/app/sylens/id6770917773"
+                            target="_blank" rel="noopener">
 
                             <img src="assets/sylens-icon.svg" alt="" class="store-icon">
 
                             <span class="store-content">
                                 <span class="store-title">App Store</span>
-                                <span class="store-subtitle">iPhone, iPad &amp; Apple TV, coming soon</span>
+                                <span class="store-subtitle">iPhone, iPad &amp; Apple TV</span>
                             </span>
 
-                        </div>
+                        </a>
 
                     </div>
 
@@ -4611,38 +4578,8 @@
     </div>
 
 
-    <!-- ==================================================
-         IPHONE / IPAD COMING SOON PAGE
-    ================================================== -->
-
-    <section class="ios-view">
-
-        <div class="ios-card">
-
-            <img src="assets/sylens-icon.svg" alt="Sylens" class="ios-icon">
-
-            <h1>
-                Coming Soon
-            </h1>
-
-            <p>
-                Sylens is making its way to
-                the App Store.
-            </p>
-
-            <p>
-                We're putting the finishing touches
-                on the iPhone experience.
-            </p>
-
-            <div class="ios-movie">
-                Movie Charades · Sylens
-            </div>
-
-        </div>
-
-    </section>
-
+    <!-- Pure-JS QR encoder, used to render the download QR code below -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
 
     <script>
 
@@ -4679,18 +4616,21 @@
         /*
          * DEVICE DETECTION
          *
+         * By default every device shows the full landing
+         * page. Only with ?store=1 present:
+         *
          * Android:
          *   Redirect immediately to Google Play.
          *
          * iPhone / iPad:
-         *   Show the dedicated Coming Soon page.
-         *
-         * Desktop / Mac:
-         *   Show the full download page.
+         *   Redirect immediately to the App Store.
          */
 
         const androidUrl =
             "https://play.google.com/store/apps/details?id=com.coderdoniv.sylens";
+
+        const appleUrl =
+            "https://apps.apple.com/us/app/sylens/id6770917773";
 
 
         const userAgent =
@@ -4717,49 +4657,66 @@
 
 
         /*
-         * ?preview=1 skips the Android/iOS gating below,
-         * so the full desktop landing page can be shared
-         * and viewed on any device (e.g. for review links).
+         * The bare URL always shows the full landing page,
+         * on any device, so it's easy to share as a "check
+         * it out" link. ?store=1 opts into the Android/iOS
+         * auto-redirect below, for links and QR codes whose
+         * whole purpose is sending an existing visitor
+         * straight to their app store.
          */
 
-        const isPreview =
-            new URLSearchParams(window.location.search).has("preview");
+        const isStoreRedirect =
+            new URLSearchParams(window.location.search).has("store");
+
+
+        /*
+         * Redirects to a store URL, tracking the redirect
+         * as a GA4 event first. The navigation is guarded so
+         * it fires exactly once, whichever comes first: the
+         * GA4 event_callback, or the fallback timer (covers
+         * ad blockers / GA being blocked outright).
+         */
+
+        function redirectToStore(url, eventName, eventLabel) {
+
+            let redirected = false;
+
+            function go() {
+                if (redirected) return;
+                redirected = true;
+                window.location.replace(url);
+            }
+
+            gtag('event', eventName, {
+                event_category: 'engagement',
+                event_label: eventLabel,
+                event_callback: go,
+                event_timeout: 1000
+            });
+
+            setTimeout(go, 1000);
+
+        }
 
 
         /*
          * Android phones go directly to Google Play.
          */
 
-        if (isAndroid && !isPreview) {
+        if (isAndroid && isStoreRedirect) {
 
-            let redirectedToStore = false;
-
-            function goToPlayStore() {
-                if (redirectedToStore) return;
-                redirectedToStore = true;
-                window.location.replace(androidUrl);
-            }
-
-            gtag('event', 'play_store_redirect', {
-                event_category: 'engagement',
-                event_label: 'android_auto_redirect',
-                event_callback: goToPlayStore,
-                event_timeout: 1000
-            });
-
-            setTimeout(goToPlayStore, 1000);
+            redirectToStore(androidUrl, 'play_store_redirect', 'android_auto_redirect');
 
         }
 
 
         /*
-         * iPhone / iPad gets the Coming Soon experience.
+         * iPhone / iPad go directly to the App Store.
          */
 
-        else if (isIOS && !isPreview) {
+        else if (isIOS && isStoreRedirect) {
 
-            document.body.classList.add("ios-device");
-            gtag('event', 'ios_coming_soon_view');
+            redirectToStore(appleUrl, 'app_store_redirect', 'ios_auto_redirect');
 
         }
 
@@ -4798,6 +4755,45 @@
             }, { threshold: 0.5 });
 
             trackedSections.forEach((section) => sectionObserver.observe(section));
+
+        }
+
+
+        /*
+         * DOWNLOAD QR CODE
+         *
+         * Lets a desktop visitor scan straight into the
+         * mobile flow, which auto-routes to the right store
+         * per device (see DEVICE DETECTION above).
+         */
+
+        const qrHost = document.getElementById("downloadQr");
+
+        if (qrHost && typeof qrcode === "function") {
+
+            const downloadQr = qrcode(0, "M");
+            downloadQr.addData("https://apps.vbverse.com/sylens?store=1");
+            downloadQr.make();
+
+            const qrModuleCount = downloadQr.getModuleCount();
+            const qrParts = [
+                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + qrModuleCount + ' ' + qrModuleCount + '">'
+            ];
+
+            for (let row = 0; row < qrModuleCount; row += 1) {
+
+                for (let col = 0; col < qrModuleCount; col += 1) {
+
+                    if (downloadQr.isDark(row, col)) {
+                        qrParts.push('<rect x="' + col + '" y="' + row + '" width="1.02" height="1.02" fill="#16092b" />');
+                    }
+
+                }
+
+            }
+
+            qrParts.push("</svg>");
+            qrHost.innerHTML = qrParts.join("");
 
         }
 
@@ -4842,20 +4838,24 @@
 
 
         /*
-         * PLAY STORE CTA CLICKS
+         * STORE CTA CLICKS
          *
          * Tracks clicks on every "store" button so we can
          * see which section of the page (hero, mid-page,
-         * footer) converts best.
+         * footer) converts best, and how Play Store vs
+         * App Store CTAs compare.
          */
 
-        document.querySelectorAll('a.store[href*="play.google.com"]').forEach((link) => {
+        document.querySelectorAll('a.store[href*="play.google.com"], a.store[href*="apps.apple.com"]').forEach((link) => {
 
             link.addEventListener("click", () => {
 
                 const ctaSection = link.closest('section');
+                const eventName = link.href.includes('apps.apple.com')
+                    ? 'app_store_cta_click'
+                    : 'play_store_cta_click';
 
-                gtag('event', 'play_store_cta_click', {
+                gtag('event', eventName, {
                     event_category: 'engagement',
                     event_label: (ctaSection && (ctaSection.id || ctaSection.className)) || 'unknown_section'
                 });
