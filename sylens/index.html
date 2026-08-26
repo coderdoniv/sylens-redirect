@@ -348,95 +348,50 @@
             display: flex;
 
             justify-content: center;
-            align-items: stretch;
+            align-items: flex-end;
 
             flex-wrap: wrap;
 
-            gap: 16px;
+            gap: 28px;
         }
 
         .store {
-            min-width: 225px;
-
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
 
-            gap: 14px;
-
-            padding: 16px 24px;
-
-            border-radius: 17px;
+            gap: 12px;
 
             text-decoration: none;
 
             color: #ffffff;
 
-            border: 1px solid rgba(255, 255, 255, 0.17);
-
-            background:
-                linear-gradient(135deg,
-                    rgba(124, 44, 255, 0.96),
-                    rgba(70, 18, 135, 0.96));
-
-            box-shadow:
-                0 14px 45px rgba(68, 0, 130, 0.38);
-
-            transition:
-                transform 0.22s ease,
-                box-shadow 0.22s ease,
-                border-color 0.22s ease;
+            transition: transform 0.22s ease, opacity 0.22s ease;
         }
 
         .store:hover {
             transform: translateY(-3px);
 
-            border-color:
-                rgba(255, 255, 255, 0.35);
-
-            box-shadow:
-                0 20px 55px rgba(120, 40, 255, 0.45);
-        }
-
-        .store.apple {
-            background:
-                linear-gradient(135deg,
-                    rgba(255, 65, 205, 0.90),
-                    rgba(104, 32, 162, 0.96));
-        }
-
-        .store.disabled {
-            cursor: default;
-
-            opacity: 0.72;
-
-            background:
-                rgba(255, 255, 255, 0.09);
-
-            box-shadow: none;
+            opacity: 0.85;
         }
 
         .store-badge {
             /*
-             * Google's official PNG badge has a lot of
-             * transparent padding baked into its canvas (the
-             * visible badge fills ~67% of the image height),
-             * while Apple's SVG is tightly cropped. This height
-             * is scaled up so the two badges end up the same
-             * *visible* size - see the .apple override below.
+             * The Google asset is a locally-cropped copy of the
+             * official badge (transparent canvas padding trimmed,
+             * artwork itself untouched) so it and Apple's SVG
+             * share the same visible-content-to-canvas ratio,
+             * letting both badges use one shared height here and
+             * actually line up.
              */
 
-            height: 65px;
+            height: 52px;
             width: auto;
 
             display: block;
 
             flex-shrink: 0;
-        }
-
-        .store.apple .store-badge {
-            height: 44px;
         }
 
         /*
@@ -2868,12 +2823,8 @@
                         <a class="store" href="https://play.google.com/store/apps/details?id=com.coderdoniv.sylens"
                             target="_blank" rel="noopener">
 
-                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                            <img src="assets/google-play-badge.png"
                                 alt="Get it on Google Play" class="store-badge">
-
-                            <span class="store-caption">
-                                Available now
-                            </span>
 
                         </a>
 
@@ -2885,10 +2836,6 @@
 
                             <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us"
                                 alt="Download on the App Store" class="store-badge">
-
-                            <span class="store-caption">
-                                Available now
-                            </span>
 
                         </a>
 
@@ -3920,7 +3867,7 @@
                         <a class="store" href="https://play.google.com/store/apps/details?id=com.coderdoniv.sylens"
                             target="_blank" rel="noopener">
 
-                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                            <img src="assets/google-play-badge.png"
                                 alt="Get it on Google Play" class="store-badge">
 
                             <span class="store-caption">Phone &amp; Android TV</span>
