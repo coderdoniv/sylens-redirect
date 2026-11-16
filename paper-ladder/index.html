@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paper Ladder: Daily Word Game</title>
+<meta name="description" content="A calm daily word ladder for adults. Change one letter at a time to get from one word to another. Free on iPhone and Android, with no account.">
+<link rel="canonical" href="https://apps.vbverse.com/paper-ladder/">
+<meta name="theme-color" content="#F4F3EE">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Paper Ladder">
+<meta property="og:title" content="Paper Ladder: Daily Word Game">
+<meta property="og:description" content="A calm daily word ladder, one letter at a time. Free on iPhone and Android, with no account.">
+<meta property="og:url" content="https://apps.vbverse.com/paper-ladder/">
+<meta property="og:image" content="https://apps.vbverse.com/paper-ladder/assets/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Paper Ladder, a daily word ladder, one letter at a time">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="preload" href="assets/Gloock-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/InstrumentSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Paper Ladder: Daily Word Game","alternateName":"Paper Ladder","description":"A calm daily word ladder for adults who like a daily puzzle. Change one letter at a time to get from one word to another, and every step must be a real English word.","applicationCategory":"GameApplication","operatingSystem":"iOS, Android","isAccessibleForFree":true,"url":"https://apps.vbverse.com/paper-ladder/","image":"https://apps.vbverse.com/paper-ladder/assets/share.jpg","sameAs":["https://apps.apple.com/app/id6831459761","https://play.google.com/store/apps/details?id=com.coderdoniv.paperladder"]}</script>
+<style>
+@font-face{font-family:Gloock;src:url(assets/Gloock-Regular.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(assets/InstrumentSans-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(assets/InstrumentSans-SemiBold.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(assets/InstrumentSans-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+/* Colours: design/tokens.json, light (surface, primary, onSurfaceVariant, tertiary, surfaceContainer, outlineVariant, outline) */
+:root{--paper:#F4F3EE;--ink:#141312;--grey:#56524C;--red:#B8231A;--wash:#E9E7DF;--hair:#C9C4B8;--edge:#78736A}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper) url(assets/paper_grain.png) 0 0/256px;color:var(--ink);
+ font:400 18px/1.5556 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:Gloock,Georgia,serif;font-weight:400;margin:0}
+p{margin:0}
+img,video{max-width:100%;height:auto;display:block}
+a{color:inherit;text-underline-offset:3px}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.skip{position:absolute;left:16px;top:-80px;background:var(--ink);color:var(--paper);padding:12px 16px;z-index:2}
+.skip:focus{top:12px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+.kicker{font:600 14px/1.4286 "Instrument Sans",sans-serif;letter-spacing:1.75px;text-transform:uppercase;color:var(--grey)}
+.badges{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.badges a{display:block;min-height:48px}
+.badges img{height:54px;width:auto}
+.rule2{border:0;border-top:3px solid var(--ink);height:6px;margin:0;position:relative}
+.rule2::after{content:"";position:absolute;left:0;right:0;top:3px;border-top:1px solid var(--ink)}
+.num{font-family:Gloock,serif;color:var(--red)}
+.shot{border:1px solid var(--edge)}
+
+/* Header */
+.top{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--ink)}
+.brand{display:flex;align-items:center;gap:12px;font:400 24px/1 Gloock,serif;text-decoration:none;min-height:48px}
+.brand img{width:44px;height:44px;border:1px solid var(--hair)}
+.top nav a{font:600 16px/1 "Instrument Sans";padding:16px 0 16px 28px;display:inline-block}
+
+/* Hero: the words and the badges beside the iPhone playing the office's recording */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-top:56px;padding-bottom:64px}
+.hero h1{font-size:clamp(52px,8vw,104px);line-height:1;letter-spacing:-1px;margin:14px 0 24px}
+.hero p{max-width:30em;margin-bottom:16px}
+.hero .badges{margin-top:28px}
+.phone{margin:0 auto;width:min(100%,380px)}
+/* Apple's iPhone 18 Pro Max bezel, Silver, 1470x3000 (shown at half size); its screen is x 76, y 68, 1316x2864 */
+.device{position:relative;aspect-ratio:1470/3000}
+.device video{position:absolute;left:5.1701%;top:2.2667%;width:89.5238%;height:95.4667%;object-fit:cover;border-radius:12%/5.6%;background:var(--paper)}
+.device .bezel{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.phone figcaption{display:flex;align-items:center;gap:12px;margin-top:14px;font-size:14px;line-height:1.4286;color:var(--grey)}
+.playpause{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border:1px solid var(--ink);
+ background:var(--paper);color:var(--ink);cursor:pointer;padding:0}
+.playpause svg{width:22px;height:22px}
+.playpause .i-play{display:none}
+.playpause[data-state="paused"] .i-play{display:block}
+.playpause[data-state="paused"] .i-pause{display:none}
+.playpause[hidden]{display:none}
+
+/* The strip of five screens */
+.strip{background:var(--wash) url(assets/paper_grain.png) 0 0/256px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:40px 0 32px}
+.strip ul{list-style:none;padding:0 32px 8px;scroll-padding-inline:32px;display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;max-width:1120px;margin:0 auto}
+.strip li{flex:0 0 clamp(170px,17vw,196px);scroll-snap-align:start}
+.strip figure{margin:0}
+.strip figcaption{font:600 14px/1.4286 "Instrument Sans";letter-spacing:1.5px;text-transform:uppercase;color:var(--grey);padding-top:10px}
+
+section{padding:64px 0}
+section h2{font-size:clamp(32px,4vw,40px);line-height:1.2;margin-bottom:32px}
+
+/* How it works: three steps under ink rules */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.steps li{border-top:3px solid var(--ink);padding-top:16px}
+.steps .num{font-size:48px;line-height:1.1667;display:block}
+.steps h3{font:700 18px/1.3333 "Instrument Sans";margin:6px 0 8px}
+
+/* The moments beside the videos (and the share slip) */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.moments{list-style:none;margin:0;padding:0}
+.moments li{padding:18px 0;border-bottom:1px solid var(--hair)}
+.moments li:first-child{border-top:1px solid var(--ink)}
+.moments h3{font-size:24px;line-height:1.3333;margin-bottom:4px}
+.watch{display:grid;gap:32px}
+.video-embed{margin:0}
+.video-embed .frame{aspect-ratio:16/9;border:1px solid var(--ink);background:var(--ink)}
+.video-embed iframe{display:block;width:100%;height:100%;border:0}
+.video-embed figcaption{font-size:16px;color:var(--grey);margin-top:10px}
+.chapters{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.chapters:empty{display:none}
+.slip{margin:0;border:1px solid var(--ink);background:var(--paper) url(assets/paper_grain.png) 0 0/256px;padding:24px 28px 26px}
+.slip h3{font-size:24px;line-height:1.3333;margin:10px 0 16px}
+.slip .msg{border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);padding:16px 0;
+ font:600 18px/1.7778 "Instrument Sans",sans-serif;white-space:pre-line;overflow-wrap:anywhere}
+.slip .msg .marks{font-weight:400;letter-spacing:2px;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji","Instrument Sans",sans-serif}
+.slip figcaption{font-size:16px;line-height:1.5;color:var(--grey);margin-top:14px}
+
+/* Questions that open and close */
+details{border-bottom:1px solid var(--hair)}
+details:first-of-type{border-top:1px solid var(--ink)}
+summary{font:400 22px/1.2727 Gloock,serif;padding:16px 40px 16px 0;cursor:pointer;list-style:none;position:relative;min-height:48px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:4px;top:12px;font:400 28px/1 "Instrument Sans";color:var(--red)}
+details[open] summary::after{content:"\2212"}
+details p{padding:0 0 18px;max-width:38em}
+
+/* The ink band with the badges again */
+.cta{background:var(--ink);color:var(--paper);padding:56px 0;text-align:center}
+.cta h2{font-size:clamp(32px,4.4vw,48px);line-height:1.1667;margin-bottom:8px}
+.cta p{margin-bottom:24px}
+.cta .badges{justify-content:center}
+.cta a:focus-visible{outline-color:var(--paper)}
+
+footer{padding:40px 0 56px;font-size:16px}
+footer ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 28px}
+footer li a{display:inline-block;padding:12px 0}
+footer .fine{color:var(--grey);margin-top:16px;font-size:14px;line-height:1.4286}
+
+@media (max-width:720px){
+ .wrap{padding:0 20px}
+ .badges img{height:48px}
+ .top nav{display:none}
+ .hero{grid-template-columns:1fr;gap:36px;padding-top:36px;padding-bottom:44px}
+ .phone{width:min(76%,320px)}
+ .strip ul{padding:0 20px 8px;scroll-padding-inline:20px;gap:16px}
+ .strip li{flex-basis:58%}
+ section{padding:44px 0}
+ .steps{grid-template-columns:1fr;gap:24px}
+ .two{grid-template-columns:1fr;gap:36px}
+ .chapters{grid-template-columns:1fr}
+ .slip{padding:20px 20px 22px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the page</a>
+<div class="wrap"><header class="top"><a class="brand" href="#main"><img src="assets/icon.png" alt="" width="44" height="44">Paper Ladder</a><nav aria-label="On this page"><a href="#how">How it works</a><a href="#moments">The moments</a><a href="#questions">Questions</a></nav></header></div>
+
+<main id="main">
+<div class="wrap hero">
+ <div>
+  <span class="kicker">A calm daily word ladder</span>
+  <h1>Paper Ladder</h1>
+  <p>A calm daily word ladder for adults who like a daily puzzle. Change one letter at a time to get from one word to another, and every step must be a real English word.</p>
+  <p><strong>Paper Ladder: Daily Word Game</strong> is free on iPhone and Android. It has no account and no login, and your games, run and stats stay on your phone.</p>
+  <div class="badges"><a href="https://apps.apple.com/app/id6831459761"><img src="assets/badge-appstore.png" alt="Download on the App Store" width="162" height="54"></a><a href="https://play.google.com/store/apps/details?id=com.coderdoniv.paperladder"><img src="assets/badge-googleplay.png" alt="Get it on Google Play" width="181" height="54"></a></div>
+ </div>
+ <figure class="phone" style="margin-left:auto;margin-right:auto">
+  <div class="device">
+   <video id="take" muted playsinline loop preload="auto" poster="assets/ladder-take-poster.jpg" width="660" height="1434"
+    aria-label="Paper Ladder on an iPhone: today's ladder, Cold to Warm, climbed one letter at a time through Cord, Card and Ward, with each changed letter ringed in red; it lands on par, then the Result and Share result">
+    <source src="assets/ladder-take.mp4" type="video/mp4">
+   </video>
+   <img class="bezel" src="assets/iphone-18-pro-max-silver.png" alt="" width="735" height="1500">
+  </div>
+  <figcaption><button class="playpause" type="button" data-state="paused" aria-label="Play the recording" hidden><svg class="i-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7C4 5.58579 4 4.87868 4.43934 4.43934C4.87868 4 5.58579 4 7 4C8.41421 4 9.12132 4 9.56066 4.43934C10 4.87868 10 5.58579 10 7V17C10 18.4142 10 19.1213 9.56066 19.5607C9.12132 20 8.41421 20 7 20C5.58579 20 4.87868 20 4.43934 19.5607C4 19.1213 4 18.4142 4 17V7Z" stroke="currentColor" stroke-width="1.5"/><path d="M14 7C14 5.58579 14 4.87868 14.4393 4.43934C14.8787 4 15.5858 4 17 4C18.4142 4 19.1213 4 19.5607 4.43934C20 4.87868 20 5.58579 20 7V17C20 18.4142 20 19.1213 19.5607 19.5607C19.1213 20 18.4142 20 17 20C15.5858 20 14.8787 20 14.4393 19.5607C14 19.1213 14 18.4142 14 17V7Z" stroke="currentColor" stroke-width="1.5"/></svg><svg class="i-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></button><span>Recorded in the app: Cold to Warm, solved on par.</span></figcaption>
+ </figure>
+</div>
+
+<div class="strip" aria-label="The app's screens"><ul>
+ <li><figure><img class="shot" src="assets/screen-ladder.jpg" alt="The Ladder screen with Cold, Cord and Card set" loading="lazy" width="660" height="1434"><figcaption>The ladder</figcaption></figure></li>
+ <li><figure><img class="shot" src="assets/screen-home.jpg" alt="The Home screen with today's ladder" loading="lazy" width="660" height="1434"><figcaption>Today</figcaption></figure></li>
+ <li><figure><img class="shot" src="assets/screen-result.jpg" alt="The Result screen, solved in four and stamped On par" loading="lazy" width="660" height="1434"><figcaption>Result</figcaption></figure></li>
+ <li><figure><img class="shot" src="assets/screen-practice.jpg" alt="Practice: Easy, Medium and Hard ladders" loading="lazy" width="660" height="1434"><figcaption>Practice</figcaption></figure></li>
+ <li><figure><img class="shot" src="assets/screen-stats.jpg" alt="Your record: current run, longest run and daily numbers" loading="lazy" width="660" height="1434"><figcaption>Your record</figcaption></figure></li>
+</ul></div>
+
+<section id="how"><div class="wrap">
+ <h2>How it works</h2>
+ <ol class="steps">
+  <li><span class="num" aria-hidden="true">1</span><h3>Start with today's puzzle.</h3><p>Everyone gets the same puzzle each day, with a start word and a target word.</p></li>
+  <li><span class="num" aria-hidden="true">2</span><h3>Change one letter at a time.</h3><p>Each step must be an ordinary English word. A step that is not a word is refused, with the reason shown, and the changed letter is marked on the ladder.</p></li>
+  <li><span class="num" aria-hidden="true">3</span><h3>Finish at par, then share.</h3><p>Par is the shortest ladder for that day's puzzle. Share your result without spoilers: the answer words are never shown.</p></li>
+ </ol>
+</div></section>
+
+<section id="moments" style="padding-top:0"><div class="wrap">
+ <div class="two">
+  <div>
+   <h2>The three moments</h2>
+   <ul class="moments">
+    <li><h3>Today's puzzle.</h3><p>The Home screen shows the day's start and target, and the ladder grows one rung at a time.</p></li>
+    <li><h3>A step refused, a hint offered.</h3><p>A word that is not allowed is turned back with a plain reason. A free first hint reveals the next word without spoiling the rest.</p></li>
+    <li><h3>Result and streak.</h3><p>Your steps are set against par, with a spoiler-free share and your streak.</p></li>
+   </ul>
+  </div>
+  <div class="watch" id="watch">
+   <!-- Where the videos go. The launch video, once published, comes first in this column, above the share slip:
+        a figure with class video-embed, holding a div with class frame (16:9) with its YouTube embed inside, and its
+        title as the figcaption. The how-to-play chapters, once published for the web, go in the chapters list
+        below the two columns, one item each, built the same way. The styles for both are already above. -->
+   <figure class="slip">
+    <span class="kicker">The share</span>
+    <h3>Your result, without spoilers.</h3>
+    <div class="msg" role="img" aria-label="Paper Ladder #14, 4 steps, par 4, no hints; a ladder, four step marks and a tick">Paper Ladder #14 · 4 steps (par 4) · no hints
+<span class="marks">🪜 ▪▪▪▪ ✔</span></div>
+    <figcaption>What Share result copies for the ladder recorded above: the puzzle number, the score and one mark a step, never the words.</figcaption>
+   </figure>
+  </div>
+ </div>
+ <ol class="chapters" aria-label="How to play, in short videos"></ol>
+</div></section>
+
+<section id="questions" style="padding-top:0"><div class="wrap" style="max-width:820px">
+ <h2>Questions</h2>
+ <details open><summary>Is it free?</summary><p>Yes. It is supported by ads: a small banner on screens outside the game, and an optional rewarded video if you want an extra hint. There are never ads while you play.</p></details>
+ <details><summary>Do I need an account?</summary><p>No. There is no login and no server. Your games, run and stats are stored only on your phone.</p></details>
+ <details><summary>Can I play without a connection?</summary><p>Yes. The daily puzzle is made on your phone from the date, and practice mode works offline.</p></details>
+ <details><summary>What if today's puzzle is too hard?</summary><p>Practice mode has Easy, Medium and Hard ladders, as many as you like. Each one is a fresh puzzle, so you can practise without touching your daily run.</p></details>
+ <details><summary>Which words count?</summary><p>Ordinary English words, including British spellings.</p></details>
+</div></section>
+
+<div class="cta"><div class="wrap">
+ <h2>Today's ladder is waiting.</h2>
+ <p>Free on iPhone and Android. No account.</p>
+ <div class="badges"><a href="https://apps.apple.com/app/id6831459761"><img src="assets/badge-appstore.png" alt="Download on the App Store" width="162" height="54" loading="lazy"></a><a href="https://play.google.com/store/apps/details?id=com.coderdoniv.paperladder"><img src="assets/badge-googleplay.png" alt="Get it on Google Play" width="181" height="54" loading="lazy"></a></div>
+</div></div>
+</main>
+
+<footer><div class="wrap">
+ <hr class="rule2" style="margin-bottom:28px">
+ <h2 class="kicker" style="margin-bottom:8px">Support and legal</h2>
+ <ul>
+  <li><a href="https://vbverse.com/privacypolicy/paper-ladder/">Privacy policy</a></li>
+  <li><a href="https://vbverse.com/privacypolicy/paper-ladder/terms/">Terms of use</a></li>
+  <li><a href="https://vbverse.com/privacypolicy/paper-ladder/support/">Support</a></li>
+  <li><a href="mailto:support@vbverse.com">support@vbverse.com</a></li>
+ </ul>
+ <p class="fine">Apple and the Apple logo are trademarks of Apple Inc. App Store is a service mark of Apple Inc. iPhone is a trademark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.</p>
+</div></footer>
+
+<script>
+(function(){
+ var v=document.getElementById("take"),b=document.querySelector(".playpause");
+ if(!v||!b)return;
+ var still=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches,chosen=false;
+ function show(){var p=v.paused;b.dataset.state=p?"paused":"playing";b.setAttribute("aria-label",p?"Play the recording":"Pause the recording");}
+ b.hidden=false;
+ b.addEventListener("click",function(){chosen=true;if(v.paused){v.play().catch(function(){});}else{v.pause();}});
+ v.addEventListener("play",show);v.addEventListener("pause",show);
+ if(!still){
+  if("IntersectionObserver" in window){
+   new IntersectionObserver(function(es){es.forEach(function(e){if(chosen)return;if(e.isIntersecting){v.play().catch(function(){});}else{v.pause();}});},{threshold:.25}).observe(v);
+  }else{v.play().catch(function(){});}
+ }
+ show();
+})();
+</script>
+</body>
+</html>

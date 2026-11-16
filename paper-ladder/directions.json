@@ -1,0 +1,11 @@
+{"directions": [
+ {"n": 1, "name": "The front page",
+  "idea": "A newspaper puzzle page with no phone in it. A full-width masthead and edition line, then the words and store badges beside a worked ladder, Cold to Warm, set in the app's own big capitals with the changed letters ringed in red. Below: three numbered columns for how it works, three columns of flat screens for the moments, the video as a boxed feature, and the questions in two newspaper columns.",
+  "suits": "It is the app's own idea, a printed puzzle column, carried onto the web, and it explains the game in the first screen without a word. It looks like no other game's page. Its risk: the real app appears only lower down, as three flat screens."},
+ {"n": 2, "name": "The phone on the proof",
+  "idea": "The product leads. The name, the words and the store badges sit beside a large iPhone showing the real Ladder screen; a strip of all five screens follows straight after. Then three steps under ink rules, the moments as a short list beside the launch video, questions that open and close, and an ink band with the badges again.",
+  "suits": "The most familiar shape for an app's page and the one that shows the most of the real app soonest; a stranger sees exactly what they will download. In the build the phone can play the office's recording instead of a still. Its risk: it is the layout most other apps use, so only the paper look sets it apart."},
+ {"n": 3, "name": "Video first, three moments",
+  "idea": "The launch video leads, large and centred under a one-line headline, with the badges beneath it. Then the three moments as three full-width rows, each with a big red numeral, a heading and an iPhone showing that screen, alternating sides. How it works is a compact ink band, the questions a single open column, and the badges close the page.",
+  "suits": "Best once the launch video is out: the video does the explaining, as on Knotwords' and Monument Valley's pages, and the three moments match the video's three beats. Its risk: it is the longest page, and until the video is published its first screen has nothing moving in it."}
+]}
